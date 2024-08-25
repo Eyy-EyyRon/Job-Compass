@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Notifications - Job Compass</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Dark mode specific styles */
+        [data-theme="dark"] {
+            --bg-color: #1a202c;
+            --text-color: #d2d9e0; /* Light text color */
+            --accent-color: #4299e1;
+        }
+
+        [data-theme="dark"] body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        [data-theme="dark"] .navbar,
+        [data-theme="dark"] .footer {
+            background-color: #2d3748;
+            color: #3d82dd;
+        }
+
+        [data-theme="dark"] .navbar a,
+        [data-theme="dark"] .footer a {
+            color: var(--accent-color);
+        }
+
+        [data-theme="dark"] .navbar a:hover,
+        [data-theme="dark"] .footer a:hover {
+            color: #90cdf4;
+        }
+
+        [data-theme="dark"] .bg-white {
+            background-color: #2d3748;
+            color: #d2d9e0; /* Light text color */
+        }
+
+        [data-theme="dark"] .text-gray-700 {
+            color: #e2e8f0; /* Lighter text color for readability */
+        }
+
+        [data-theme="dark"] .border {
+            border-color: #4a5568;
+        }
+
+        [data-theme="dark"] .hover\:text-blue-600:hover {
+            color: #63b3ed; /* Lighter blue for hover effect */
+        }
+
+        [data-theme="dark"] .hover\:underline:hover {
+            text-decoration: underline;
+        }
+
+        /* General notification styles */
+        .notification {
+            padding: 12px;
+            background-color: #2d3748; /* Dark background color */
+            border: 1px solid #4a5568;
+            border-radius: 0.5rem;
+            margin-bottom: 10px;
+            color: #d2d9e0; /* Light text color */
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            position: relative;
+        }
+
+        .notification:hover {
+            background-color: #4a5568; /* Darker shade on hover */
+            border-color: #2b6cb0; /* Blue border on hover */
+        }
+
+        .notification h4 {
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #e2e8f0; /* Light text color */
+        }
+
+        .notification p {
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+            color: #edf2f7; /* Even lighter text color */
+        }
+
+        .notification .meta {
+            font-size: 0.875rem;
+            color: #a0aec0; /* Lighter text color */
+        }
+
+        /* Delete button */
+        .notification .delete-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #e53e3e; /* Red background */
+            color: #fff; /* White text */
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .notification .delete-btn:hover {
+            background-color: #c53030; /* Darker red on hover */
+        }
+
+        /* Notifications Container */
+        .notifications-container {
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .notifications-list {
+            width: 30%;
+            min-width: 250px;
+            max-width: 350px;
+            height: calc(100vh - 80px);
+            overflow-y: auto;
+            border-right: 1px solid #cbd5e0;
+        }
+
+        .notifications-list h2 {
+            color: #5e7fdb;
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 1rem;
+            background-color: #4f5153;
+            border-bottom: 1px solid #cbd5e0;
+        }
+
+        .notification-container {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: #36425a; /* Dark background color */
+        }
+
+        .notification-content {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #2d3748;
+            border-radius: 0.5rem;
+            border: 1px solid #4a5568;
+            color: #edf2f7; /* Even lighter text color for better readability */
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-900">
+
+  <!-- Navbar -->
+<nav class="navbar shadow-md">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <!-- Brand Name -->
+        <div class="flex items-center">
+            <a href="#" id="title" class="text-2xl font-bold text-blue-600 dark:text-blue-300">Job Compass™</a>
+        </div>
+
+        <!-- Hamburger Menu for Mobile View -->
+        <div class="lg:hidden">
+            <button id="menu-toggle" class="text-gray-700 dark:text-gray-300 focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+
+        <!-- Navigation Links -->
+        <div id="navbar-links" class="hidden lg:flex items-center space-x-4">
+            <a href="User-Homepage.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-home mr-1"></i> Home
+            </a>
+            <a href="User-Profile.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-user mr-1"></i> Profile
+            </a>
+            
+            <a href="User-notification.html" class="relative hover:text-blue-600 dark:hover:text-blue-300 mx-2">
+                <i class="fas fa-bell mr-1"></i> Notifications
+                <span class="absolute top-0 right-0 inline-flex items-center justify-center w-4 h-4 p-1 text-xs font-bold text-white bg-red-600 rounded-full transform translate-x-2/3 -translate-y-1/2">3</span>
+            </a>
+            
+            <a href="User-settings.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-cog mr-1"></i> Settings
+            </a>
+            <a href="User-Inbox.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-inbox mr-1"></i> Inbox
+            </a>
+            <a href="logout.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-sign-out-alt mr-1"></i> Logout
+            </a>
+        </div>
+    </div>
+
+   <!-- Mobile Menu -->
+<div id="mobile-menu" class="lg:hidden hidden">
+    <div class="px-4 py-2 space-y-2">
+        
+        <!-- Menu Links -->
+        <a href="User-Homepage.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+            <i class="fas fa-home mr-1"></i> Home
+        </a>
+        <a href="User-Profile.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+            <i class="fas fa-user mr-1"></i> Profile
+        </a>
+
+        <a href="User-notification.html" class="relative flex items-center hover:text-blue-600 dark:hover:text-blue-300">
+            <i class="fas fa-bell mr-2 relative">
+                <!-- Notification icon -->
+            </i>
+            Notifications
+            <span class="absolute top-0 right-0 flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-600 rounded-full -translate-y-1/2 translate-x-2">
+                3
+            </span>
+        </a>
+        
+        <a href="User-settings.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+            <i class="fas fa-cog mr-1"></i> Settings
+        </a>
+        <a href="User-Inbox.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+            <i class="fas fa-inbox mr-1"></i> Inbox
+        </a>
+        <a href="logout.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+            <i class="fas fa-sign-out-alt mr-1"></i> Logout
+        </a>
+    </div>
+</div>
+
+</nav>
+
+    <!-- Main Content -->
+    <section class="container mx-auto px-4 py-8">
+        <div class="flex notifications-container">
+            <!-- Notifications List -->
+            <div class="notifications-list bg-white dark:bg-gray-800 border-r dark:border-gray-700">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-300 mb-4 px-4">Notifications</h2>
+                <div id="notifications">
+                    <!-- Dynamic list of notifications will be populated here -->
+                </div>
+            </div>
+
+            <!-- Notification Container -->
+            <div class="notification-container bg-gray-100 dark:bg-gray-800 px-8 py-4">
+                <div id="notification-content" class="notification-content">
+                    <!-- Notification content will be displayed here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer py-6">
+        <div class="container mx-auto text-center text-gray-700 dark:text-gray-300">
+            &copy; 2024 Job Compass. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Initialize theme preference on page load
+        window.onload = function () {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+
+            // Populate notifications
+            populateNotificationsList(notifications);
+        };
+
+        // Toggle mobile menu visibility
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+        // Dummy data for notifications
+        const notifications = [
+            { id: 1, title: 'Application Deadline Approaching', content: 'The application deadline for the marketing manager position is approaching. Please submit your application by the end of the week.' },
+            { id: 2, title: 'New Job Opportunity', content: 'A new job opportunity matching your profile has been posted. Click here to view the details.' },
+            { id: 3, title: 'Interview Scheduled', content: 'Your interview for the software developer position has been scheduled for next Monday at 10 AM.' }
+        ];
+
+        // Function to populate notifications list
+        function populateNotificationsList(notifications) {
+            const notificationsContainer = document.getElementById('notifications');
+            notificationsContainer.innerHTML = notifications.map(notification => `
+                <div class="notification" onclick="viewNotification(${notification.id})">
+                    <h4>${notification.title}</h4>
+                    <p class="meta">${new Date().toLocaleString()}</p>
+                    <button class="delete-btn" onclick="deleteNotification(event, ${notification.id})"><i class="fas fa-trash-alt"></i></button>
+                </div>
+            `).join('');
+        }
+
+        // Function to view notification content
+        function viewNotification(id) {
+            const notification = notifications.find(n => n.id === id);
+            const contentContainer = document.getElementById('notification-content');
+            contentContainer.innerHTML = `
+                <h2>${notification.title}</h2>
+                <p>${notification.content}</p>
+            `;
+        }
+
+        // Function to delete notification
+        function deleteNotification(event, id) {
+            event.stopPropagation();
+            const notificationIndex = notifications.findIndex(n => n.id === id);
+            if (notificationIndex > -1) {
+                notifications.splice(notificationIndex, 1);
+                populateNotificationsList(notifications);
+                document.getElementById('notification-content').innerHTML = '';
+            }
+        }
+    </script>
+</body>
+
+</html>

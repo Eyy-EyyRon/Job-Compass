@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Inbox - Job Compass</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Dark mode specific styles */
+        [data-theme="dark"] {
+            --bg-color: #1a202c;
+            --text-color: #d2d9e0; /* Light text color */
+            --accent-color: #4299e1;
+        }
+    
+        [data-theme="dark"] body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+    
+        [data-theme="dark"] .navbar,
+        [data-theme="dark"] .footer {
+            background-color: #2d3748;
+            color: #3d82dd;
+        }
+    
+        [data-theme="dark"] .navbar a,
+        [data-theme="dark"] .footer a {
+            color: var(--accent-color);
+        }
+    
+        [data-theme="dark"] .navbar a:hover,
+        [data-theme="dark"] .footer a:hover {
+            color: #90cdf4;
+        }
+    
+        [data-theme="dark"] .bg-white {
+            background-color: #2d3748;
+            color: #d2d9e0; /* Light text color */
+        }
+    
+        [data-theme="dark"] .text-gray-700 {
+            color: #e2e8f0; /* Lighter text color for readability */
+        }
+    
+        [data-theme="dark"] .border {
+            border-color: #4a5568;
+        }
+    
+        [data-theme="dark"] .hover\:text-blue-600:hover {
+            color: #63b3ed; /* Lighter blue for hover effect */
+        }
+    
+        [data-theme="dark"] .hover\:underline:hover {
+            text-decoration: underline;
+        }
+    
+        /* General message styles */
+        .message {
+            padding: 12px;
+            background-color: #2d3748; /* Dark background color */
+            border: 1px solid #4a5568;
+            border-radius: 0.5rem;
+            margin-bottom: 10px;
+            color: #d2d9e0; /* Light text color */
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            position: relative;
+        }
+    
+        .message:hover {
+            background-color: #4a5568; /* Darker shade on hover */
+            border-color: #2b6cb0; /* Blue border on hover */
+        }
+    
+        .message h4 {
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #e2e8f0; /* Light text color */
+        }
+    
+        .message p {
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+            color: #edf2f7; /* Even lighter text color */
+        }
+    
+        .message .meta {
+            font-size: 0.875rem;
+            color: #a0aec0; /* Lighter text color */
+        }
+    
+        /* Delete button */
+        .message .delete-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #e53e3e; /* Red background */
+            color: #fff; /* White text */
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+    
+        .message .delete-btn:hover {
+            background-color: #c53030; /* Darker red on hover */
+        }
+    
+        /* Inbox Container */
+        .inbox-container {
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 2rem;
+        }
+    
+        .inbox-list {
+            width: 30%;
+            min-width: 250px;
+            max-width: 350px;
+            height: calc(100vh - 80px);
+            overflow-y: auto;
+            border-right: 1px solid #cbd5e0;
+            background-color: #4f5153;
+        }
+    
+        [data-theme="dark"] .inbox-list {
+            border-right-color: #4a5568;
+            background-color: #2d3748;
+        }
+    
+        .inbox-list h2 {
+            color: #5e7fdb;
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 1rem;
+            background-color: #4f5153;
+            border-bottom: 1px solid #cbd5e0;
+        }
+    
+        [data-theme="dark"] .inbox-list h2 {
+            color: #cbd5e0;
+            background-color: #2d3748;
+            border-bottom-color: #4a5568;
+        }
+    
+        .message-container {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: #36425a; /* Dark background color */
+        }
+    
+        .message-thread {
+            cursor: pointer;
+            padding: 12px;
+            border-bottom: 1px solid #cbd5e0;
+        }
+    
+        [data-theme="dark"] .message-thread {
+            border-bottom-color: #4a5568;
+        }
+    
+        .message-thread:hover {
+            background-color: #2a68d3; /* Darker shade on hover */
+            border-color: #2b6cb0; /* Blue border on hover */
+        }
+    
+        .message-content {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #2d3748;
+            border-radius: 0.5rem;
+            border: 1px solid #4a5568;
+            color: #edf2f7; /* Even lighter text color for better readability */
+        }
+    
+        /* Reply Form */
+        .reply-form {
+            margin-top: 20px;
+        }
+    
+        .reply-form textarea {
+            resize: vertical;
+            color: #374151; /* Default text color */
+            background-color: #edf2f7; /* Default background color */
+            border-color: #e5e7eb; /* Default border color */
+            padding: 0.5rem;
+            font-size: 0.875rem;
+            border-radius: 0.5rem;
+            width: 100%;
+            min-height: 100px;
+        }
+    
+        .reply-form textarea::placeholder {
+            color: #9ca3af; /* Placeholder color in light mode */
+        }
+    
+        [data-theme="dark"] .reply-form textarea {
+            color: #cbd5e0; /* Text color in dark mode */
+            background-color: #2d3748; /* Background color in dark mode */
+            border-color: #4a5568; /* Border color in dark mode */
+        }
+    
+        [data-theme="dark"] .reply-form textarea::placeholder {
+            color: #9ca3af; /* Placeholder color in dark mode */
+        }
+    
+        .reply-form button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #3182ce; /* Default button color */
+            color: #fff;
+            border: none;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+    
+        .reply-form button:hover {
+            background-color: #2b6cb0; /* Darker blue on hover */
+        }
+    
+        [data-theme="dark"] .reply-form button {
+            background-color: #4a5568; /* Dark mode button color */
+        }
+    
+        [data-theme="dark"] .reply-form button:hover {
+            background-color: #2b6cb0; /* Darker blue on hover in dark mode */
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-900">
+ <!-- Navbar -->
+ <nav class="navbar shadow-md">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <!-- Brand Name -->
+        <div class="flex items-center">
+            <a href="#" id="title" class="text-2xl font-bold text-blue-600 dark:text-blue-300">Job Compass™</a>
+        </div>
+
+        <!-- Hamburger Menu for Mobile View -->
+        <div class="lg:hidden">
+            <button id="menu-toggle" class="text-gray-700 dark:text-gray-300 focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+
+        <!-- Navigation Links -->
+        <div id="navbar-links" class="hidden lg:flex items-center space-x-4">
+            <a href="User-Homepage.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-home mr-1"></i> Home
+            </a>
+            <a href="User-Profile.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-user mr-1"></i> Profile
+            </a>
+            
+            <a href="User-notification.html" class="relative hover:text-blue-600 dark:hover:text-blue-300 mx-2">
+                <i class="fas fa-bell mr-1"></i> Notifications
+                <span class="absolute top-0 right-0 inline-flex items-center justify-center w-4 h-4 p-1 text-xs font-bold text-white bg-red-600 rounded-full transform translate-x-2/3 -translate-y-1/2">3</span>
+            </a>
+            
+            <a href="User-settings.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-cog mr-1"></i> Settings
+            </a>
+            <a href="User-Inbox.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-inbox mr-1"></i> Inbox
+            </a>
+            <a href="logout.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-sign-out-alt mr-1"></i> Logout
+            </a>
+        </div>
+    </div>
+
+   <!-- Mobile Menu -->
+<div id="mobile-menu" class="lg:hidden hidden">
+    <div class="px-4 py-2 space-y-2">
+        
+        <!-- Menu Links -->
+        <a href="User-Homepage.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+            <i class="fas fa-home mr-1"></i> Home
+        </a>
+        <a href="User-Profile.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+            <i class="fas fa-user mr-1"></i> Profile
+        </a>
+
+        <a href="User-notification.html" class="relative flex items-center hover:text-blue-600 dark:hover:text-blue-300">
+            <i class="fas fa-bell mr-2 relative">
+                <!-- Notification icon -->
+            </i>
+            Notifications
+            <span class="absolute top-0 right-0 flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-600 rounded-full -translate-y-1/2 translate-x-2">
+                3
+            </span>
+        </a>
+        
+        <a href="User-settings.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+            <i class="fas fa-cog mr-1"></i> Settings
+        </a>
+        <a href="User-Inbox.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+            <i class="fas fa-inbox mr-1"></i> Inbox
+        </a>
+        <a href="logout.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+            <i class="fas fa-sign-out-alt mr-1"></i> Logout
+        </a>
+    </div>
+</div>
+
+</nav>
+
+    <!-- Main Content -->
+    <div class="inbox-container flex">
+        <!-- Inbox List -->
+        <div class="inbox-list">
+            <h2 class="text-white">Inbox</h2>
+            <div id="inbox-messages">
+                <!-- Dynamic messages will be injected here -->
+            </div>
+        </div>
+
+        <!-- Message Container -->
+        <div class="message-container">
+            <div id="message-content" class="message-content">
+                <!-- Message content will be displayed here -->
+            </div>
+
+            <!-- Reply Form -->
+            <form id="reply-form" class="reply-form hidden">
+                <textarea id="reply-text" rows="4" placeholder="Type your reply here..."></textarea>
+                <button type="button" id="send-reply" class="mt-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Send</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer bg-gray-800 text-white py-4 text-center">
+        <p>&copy; 2024 Job Compass™ - All rights reserved.</p>
+    </footer>
+
+    <script>
+           // Initialize theme preference on page load
+           window.onload = function () {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+
+            // Populate notifications
+            populateNotificationsList(notifications);
+        };
+
+        // Toggle mobile menu visibility
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+        // Mock data for messages
+        const messages = [
+            {
+                id: 1,
+                subject: 'Job Application Received',
+                sender: 'hr@company.com',
+                body: 'Your job application for the position of Software Engineer has been received.',
+                date: '2024-08-13'
+            },
+            {
+                id: 2,
+                subject: 'Interview Invitation',
+                sender: 'hr@company.com',
+                body: 'You are invited to an interview for the Software Engineer position.',
+                date: '2024-08-14'
+            }
+            // Add more messages as needed
+        ];
+
+        const inboxMessagesDiv = document.getElementById('inbox-messages');
+        const messageContentDiv = document.getElementById('message-content');
+        const replyForm = document.getElementById('reply-form');
+        const replyTextArea = document.getElementById('reply-text');
+        const sendReplyButton = document.getElementById('send-reply');
+
+        function loadMessages() {
+            inboxMessagesDiv.innerHTML = '';
+            messages.forEach(message => {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message');
+                messageDiv.innerHTML = `
+                    <h4>${message.subject}</h4>
+                    <p class="meta">From: ${message.sender} | Date: ${message.date}</p>
+                    <button class="delete-btn" onclick="deleteMessage(${message.id})"><i class="fas fa-trash-alt"></i></button>
+                `;
+                messageDiv.addEventListener('click', () => {
+                    showMessage(message);
+                });
+                inboxMessagesDiv.appendChild(messageDiv);
+            });
+        }
+
+        function showMessage(message) {
+            messageContentDiv.innerHTML = `
+                <h3>${message.subject}</h3>
+                <p>From: ${message.sender}</p>
+                <p>${message.body}</p>
+                <p>Date: ${message.date}</p>
+            `;
+            replyForm.classList.remove('hidden');
+        }
+
+        function deleteMessage(id) {
+            // Remove message from array
+            const index = messages.findIndex(msg => msg.id === id);
+            if (index !== -1) {
+                messages.splice(index, 1);
+                loadMessages();
+                messageContentDiv.innerHTML = '';
+                replyForm.classList.add('hidden');
+            }
+        }
+
+        sendReplyButton.addEventListener('click', () => {
+            const replyText = replyTextArea.value;
+            if (replyText.trim() !== '') {
+                alert('Reply sent!');
+                replyTextArea.value = '';
+                replyForm.classList.add('hidden');
+            }
+        });
+
+        // Load messages on page load
+        loadMessages();
+    </script>
+</body>
+
+</html>

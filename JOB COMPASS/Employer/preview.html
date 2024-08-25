@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post a Job</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+
+        input[type="text"],
+        input[type="email"],
+        textarea,
+        select,
+        input[type="file"],
+        input[type="number"] {
+            padding: 0.75rem;
+            width: 100%;
+            border-radius: 0.5rem;
+            border: 1px solid #3666a5; /* Default border color */
+            transition: border-color 0.3s ease;
+            background-color: #ffffff; /* Light mode background color */
+            color: #1a202c; /* Light mode text color */
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus,
+        select:focus,
+        input[type="file"]:focus,
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #4299e1; /* Focus border color */
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a202c;
+            --text-color: #cbd5e0;
+            --border-color: #2d3748;
+        }
+
+        [data-theme="dark"] body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        [data-theme="dark"] .navbar,
+        [data-theme="dark"] .footer {
+            background-color: #2d3748;
+            color: #a0aec0;
+        }
+
+        [data-theme="dark"] .profile-picture-container {
+            border-color: #2d3748;
+        }
+
+        [data-theme="dark"] input[type="text"],
+        [data-theme="dark"] input[type="email"],
+        [data-theme="dark"] textarea,
+        [data-theme="dark"] select,
+        [data-theme="dark"] input[type="file"],
+        [data-theme="dark"] input[type="number"] {
+            color: #0d69c4; /* Dark mode text color */
+            border-color: #4a5568; /* Dark mode border color */
+            background-color: white;
+            font-weight: bold;
+        }
+
+        [data-theme="dark"] input[type="text"]:focus,
+        [data-theme="dark"] input[type="email"]:focus,
+        [data-theme="dark"] textarea:focus,
+        [data-theme="dark"] select:focus,
+        [data-theme="dark"] input[type="file"]:focus,
+        [data-theme="dark"] input[type="number"]:focus {
+            border-color: #4299e1; /* Dark mode focus border color */
+        }
+
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .navbar,
+        .footer {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .navbar {
+            background-color: #ffffff; /* Light mode navbar background color */
+            color: #1a202c; /* Light mode navbar text color */
+        }
+
+        .footer {
+            background-color: #f9fafb; /* Light mode footer background color */
+            color: #4a5568; /* Light mode footer text color */
+        }
+
+        .navbar a,
+        .footer a {
+            color: #4299e1; /* Link color in light mode */
+            transition: color 0.3s ease;
+        }
+
+        .navbar a:hover,
+        .footer a:hover {
+            color: #3182ce; /* Hover color for links in light mode */
+        }
+
+        /* Dark mode specific styles */
+        [data-theme="dark"] .navbar a,
+        [data-theme="dark"] .footer a {
+            color: #4299e1; /* Link color in dark mode */
+        }
+
+        [data-theme="dark"] .navbar a:hover,
+        [data-theme="dark"] .footer a:hover {
+            color: #90cdf4; /* Hover color for links in dark mode */
+        }
+
+        [data-theme="dark"] .bg-white {
+            background-color: #2d3748; /* Dark mode background color for elements with bg-white class */
+            color: #cbd5e0; /* Dark mode text color for elements with bg-white class */
+        }
+
+        [data-theme="dark"] .text-gray-700 {
+            color: #a0aec0; /* Dark mode text color for elements with text-gray-700 class */
+        }
+
+        [data-theme="dark"] .border {
+            border-color: #4a5568; /* Dark mode border color for elements with border class */
+            background-color: #1752b86c;
+        }
+
+        [data-theme="dark"] .hover\:text-blue-600:hover {
+            color: #90cdf4; /* Hover color in dark mode for elements with hover:text-blue-600 class */
+        }
+
+        [data-theme="dark"] .hover\:underline:hover {
+            text-decoration: underline; /* Underline effect in dark mode for elements with hover:underline class */
+        }
+/* Modal Styles */
+.modal {
+color: #112d66;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px;
+    width: 100%;
+    position: relative;
+}
+
+.close {
+    font-weight: bold;
+    color: #3182ce;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Placeholder Style */
+.placeholder-style {
+    display: inline-block;
+    padding: 8px;
+    border: 1px solid #d1d5db; /* Border color */
+    border-radius: 4px;
+    color: #f9fbff; /* Text color */
+    font-size: 14px;
+    min-width: 300px; /* Minimum width to fit content */
+    line-height: 1.5;
+}
+/* Base styles for job type items */
+.job-type-item {
+    color: #1a202c;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    border: 1px solid #d1d5db; /* Gray border */
+    border-radius: 0.375rem; /* Rounded corners */
+    background-color: #2d374800; /* Dark gray background */
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Style for the icon span */
+.job-type-item .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    background-color: #e5e7eb; /* Gray background for the icon */
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 1.50rem; /* Size of the plus symbol */
+    color: #083a91; /* Dark gray color for the plus symbol */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-align: center;
+    line-height: 2rem;
+}
+
+/* Change icon when the checkbox is selected */
+.job-type-item input:checked ~ .icon {
+    background-color: #4ade80; /* Green background for checked */
+    color: white; /* White checkmark */
+}
+
+.job-type-item input:checked ~ .icon::before {
+    content: '✔'; /* Checkmark symbol */
+    font-size: 1.25rem; /* Size of the checkmark */
+}
+
+/* Ensure the icon shows a plus symbol when not checked */
+.job-type-item input:not(:checked) ~ .icon::before {
+    content: '+'; /* Plus symbol when not checked */
+}
+/* Base styles for both benefit and supplemental pay items */
+.benefit-item, .supplemental-pay-item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    border: 1px solid #d1d5db; /* Gray border */
+    border-radius: 0.375rem; /* Rounded corners */
+    background-color: #2d374800; /* Background color */
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Style for the icon span */
+.benefit-item .icon, .supplemental-pay-item .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    background-color: #e5e7eb; /* Gray background for the icon */
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 1.50rem; /* Size of the plus symbol */
+    color: #083a91; /* Color for the plus symbol */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-align: center;
+    line-height: 2rem;
+}
+
+/* Change icon when the checkbox is selected */
+.benefit-item input:checked ~ .icon, .supplemental-pay-item input:checked ~ .icon {
+    background-color: #4ade80; /* Green background for checked */
+    color: white; /* White checkmark */
+}
+
+.benefit-item input:checked ~ .icon::before, .supplemental-pay-item input:checked ~ .icon::before {
+    content: '✔'; /* Checkmark symbol */
+    font-size: 1.25rem; /* Size of the checkmark */
+}
+
+/* Ensure the icon shows a plus symbol when not checked */
+.benefit-item input:not(:checked) ~ .icon::before, .supplemental-pay-item input:not(:checked) ~ .icon::before {
+    content: '+'; /* Plus symbol when not checked */
+}
+
+/* Text color changes for dark mode */
+.text-gray-700.dark\:text-gray-300 {
+    color: #d1d5db; /* Light gray text color for dark mode */
+}
+
+.editor-container {
+    border: 1px solid #d1d5db; /* Border around the editor */
+    border-radius: 0.375rem; /* Rounded corners */
+    background-color: #ffffff; /* Background color */
+    padding: 0.5rem;
+}
+
+.toolbar {
+    background-color: #b7c0d1;
+    color: #3666a5;
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+
+
+.toolbar-btn:hover {
+    background-color: #d1d5db; /* Hover state */
+}
+
+.text-editor {
+    min-height: 100px;
+    outline: none;
+    padding: 0.5rem;
+    font-size: 1rem;
+    color: #111827;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    background-color: #c0cece; /* Editor background color */
+    border-radius: 0.375rem; /* Rounded corners */
+}
+
+.text-editor:empty:before {
+    content: attr(placeholder);
+    color: #9ca3af;
+}
+
+.text-editor h-40 {
+    height: 10rem;
+}
+/* Base styles for toolbar buttons */
+.toolbar-btn {
+    background-color: transparent;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: background-color 0.3s ease, border 0.3s ease;
+}
+
+/* Base styles for toolbar buttons */
+.toolbar-btn {
+    background-color: transparent;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: background-color 0.3s ease, border 0.3s ease;
+}
+
+/* Active state styles */
+.toolbar-btn.active {
+    background-color: #186e96; /* Light gray background */
+    border-radius: 0.375rem; /* Rounded corners */
+    border: 1px solid #aaa; /* Gray border */
+    color: #333; /* Dark text color */
+}
+
+/* Ensure proper styling for list items */
+.text-editor ul {
+    padding-left: 1.5rem; /* Indent bullets */
+    margin: 0; /* Remove default margin */
+}
+
+.text-editor ul li {
+    list-style-type: disc; /* Bullet type */
+}
+.text-blue-600 {
+    --tw-text-opacity: 1;
+    color: rgb(255, 255, 255)
+}
+    </style>
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-900">
+
+     <!-- Navbar -->
+     <nav class="navbar shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <!-- Brand Name -->
+            <div class="flex items-center">
+                <a href="#" id="title" class="text-2xl font-bold text-blue-600 dark:text-blue-300">Job Compass™</a>
+            </div>
+    
+            <!-- Hamburger Menu for Mobile View -->
+            <div class="lg:hidden">
+                <button id="menu-toggle" class="text-gray-700 dark:text-gray-300 focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+    
+    
+            <!-- Navigation Links -->
+            <div id="navbar-links" class="hidden lg:flex items-center space-x-4">
+                <a href="Job-Posting-Page.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                    <i class="fas fa-briefcase mr-1"></i> Post A Job
+                </a>
+                <a href="Job-Listings-Page.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                    <i class="fas fa-list mr-1"></i> Job Listings
+                </a>
+                <a href="Inbox.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                    <i class="fas fa-inbox mr-1"></i> Inbox
+                </a>
+                <a href="Employer-Profile.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                    <i class="fas fa-user mr-1"></i> Profile
+                </a>
+                <a href="Notification.html"class="relative hover:text-blue-600 dark:hover:text-blue-300 mx-2">
+                    <i class="fas fa-bell mr-1"></i> Notifications
+                    <span class="absolute top-0 right-0 inline-flex items-center justify-center w-4 h-4 p-1 text-xs font-bold text-white bg-red-600 rounded-full transform translate-x-2/3 -translate-y-1/2">3</span>
+                </a>
+                <a href="Employer-Homepage.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                    <i class="fas fa-home mr-1"></i> Home
+                </a>
+                <a href="Employer_Settings-Page.html"class="hover:text-blue-600 dark:hover:text-blue-300">
+                    <i class="fas fa-cog mr-1"></i> Settings
+                </a>
+                <a href="C:\Users\HP 348\OneDrive\Desktop\Capstone1-2\Landing,signup,login\Landing-Page.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                    <i class="fas fa-sign-out-alt mr-1"></i> Logout
+                </a>
+            </div>
+        </div>
+    
+        
+    
+       <!-- Mobile Menu -->
+    <div id="mobile-menu" class="lg:hidden hidden">
+        <div class="px-4 py-2 space-y-2">
+            
+            <!-- Menu Links -->
+            <a href="Employer-Homepage.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-home mr-1"></i> Home
+            </a>
+            <a href="Employer-Profile.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-user mr-1"></i> Profile
+            </a>
+    
+            <a href="Notification.html" class="relative flex items-center hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-bell mr-2 relative">
+                    <!-- Notification icon -->
+                </i>
+                Notifications
+                <span class="absolute top-0 right-0 flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-600 rounded-full -translate-y-1/2 translate-x-2">
+                    3
+                </span>
+            </a>
+            
+            <a href="Employer_Settings-Page.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-cog mr-1"></i> Settings
+            </a>
+            <a href="Inbox.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-inbox mr-1"></i> Inbox
+            </a>
+    
+            <a href="Job-Posting-Page.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-briefcase mr-1"></i> Post A Job
+            </a>
+    
+            <a href="Job-Listings-Page.html"  class="block hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-list mr-1"></i> Job Listings
+            </a>
+            <a href="C:\Users\HP 348\OneDrive\Desktop\Capstone1-2\Landing,signup,login\Landing-Page.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-sign-out-alt mr-1"></i> Logout
+            </a>
+        </div>
+    </div>
+    
+    </nav>
+
+<!-- Review Section -->
+<section class="p-6 max-w-4xl mx-auto bg-white rounded-lg shadow-md dark:bg-gray-800">
+    <!-- Review Header -->
+    <div class="mb-6">
+        <h2 class="text-2xl font-bold mb-4">Review Section</h2>
+        
+        <!-- Job Details -->
+        <div class="mb-6">
+            <h3 class="text-xl font-semibold mb-3">Job Details</h3>
+            <div class="grid grid-cols-2 gap-4">
+
+               
+<!-- Job Title Section -->
+<div class="mb-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border dark:border-gray-600">
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
+        <div class="flex-1 mb-4 md:mb-0">
+            <p class="text-gray-800 dark:text-gray-200 font-semibold text-lg">Job Title:</p>
+            <p id="jobTitleDisplay" class="text-gray-900 dark:text-gray-100 mt-1">Title of the job here</p>
+        </div>
+        <button type="button" class="text-blue-600 dark:text-blue-300 ml-4" onclick="openModal('jobTitleModal')">View</button>
+    </div>
+</div>
+
+
+
+<!-- Modal for Job Title -->
+<div id="jobTitleModal" class="modal hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+    <div class="modal-content bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-11/12 md:w-2/3 lg:w-1/2">
+        <span class="close text-gray-700 dark:text-gray-300 cursor-pointer text-xl float-right" onclick="closeModal('jobTitleModal')">&times;</span>
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Edit Job Title</h2>
+        
+        <div class="mb-4">
+            <label for="job-title" class="block text-gray-700 dark:text-gray-300 font-bold">Job Title</label>
+            <input type="text" id="job-title" name="job-title" class="mt-1 w-full p-2 border rounded bg-white dark:bg-gray-800 dark:text-gray-300 placeholder-gray-400" value="Intern">
+        </div>
+        
+        <button type="button" class="bg-black-600 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700 dark:bg-white-500 dark:hover:bg-white-400" onclick="saveJobTitle()">Save</button>
+    </div>
+</div>
+
+
+<!-- Company Name Section -->
+<div class="mb-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border dark:border-gray-600">
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
+        <div class="flex-1 mb-4 md:mb-0">
+            <p class="text-gray-800 dark:text-gray-200 font-semibold text-lg">Company for this Job:</p>
+            <p id="companyDisplay" class="text-gray-900 dark:text-gray-100 mt-1">Company Name Here</p>
+        </div>
+        <button type="button" class="text-blue-600 dark:text-blue-300 ml-4" onclick="openModal('companyModal')">View</button>
+    </div>
+</div>
+
+
+
+<!-- Modal for Company Name -->
+<div id="companyModal" class="modal hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+    <div class="modal-content bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-11/12 md:w-2/3 lg:w-1/2">
+        <span class="close text-gray-700 dark:text-gray-300 cursor-pointer text-xl float-right" onclick="closeModal('companyModal')">&times;</span>
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Edit Company Name</h2>
+        
+        <div>
+            <label for="companyInput" class="block text-gray-700 dark:text-gray-300 font-bold">Company for this Job:</label>
+            <input type="text" id="companyInput" placeholder="Enter Company Name" class="mt-1 w-full p-2 border rounded bg-white dark:bg-gray-800 dark:text-gray-300 placeholder-gray-400" value="Company Name Here">
+        </div>
+        
+        <button type="button" class="bg-blue-600 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveCompanyName()">Save</button>
+    </div>
+</div>
+
+<!-- Number of Openings Section -->
+<div class="mb-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border dark:border-gray-600">
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
+        <div class="flex-1 mb-4 md:mb-0">
+            <p class="text-gray-800 dark:text-gray-200 font-semibold text-lg">Number of Openings:</p>
+            <p id="openingsDisplay" class="text-gray-900 dark:text-gray-100 mt-1">Number of Openings Here</p>
+        </div>
+        <button type="button" class="text-blue-600 dark:text-blue-300 ml-4" onclick="openModal('openingsModal')">View</button>
+    </div>
+</div>
+
+
+
+
+<!-- Modal for Number of Openings -->
+<div id="openingsModal" class="modal hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+    <div class="modal-content bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-11/12 md:w-2/3 lg:w-1/2">
+        <span class="close text-gray-700 dark:text-gray-300 cursor-pointer text-xl float-right" onclick="closeModal('openingsModal')">&times;</span>
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Edit Number of Openings</h2>
+        
+        <div class="mb-4">
+            <label for="number-of-hires" class="block text-gray-700 dark:text-gray-300 font-bold">Number of people to hire for this job:</label>
+            <input type="number" id="number-of-hires" name="number-of-hires" class="mt-1 w-full p-2 border rounded bg-white dark:bg-gray-800 dark:text-gray-300 placeholder-gray-400" value="2">
+        </div>
+        
+        <button type="button" class="bg-blue-600 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveNumberOfOpenings()">Save</button>
+    </div>
+</div>
+
+
+<!-- Location Section -->
+<div class="mb-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border dark:border-gray-600">
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
+        <div class="flex-1 mb-4 md:mb-0">
+            <p class="text-gray-800 dark:text-gray-200 font-semibold text-lg">Location:</p>
+            <p id="locationDisplay" class="text-gray-900 dark:text-gray-100 mt-1">Location Here</p>
+        </div>
+        <button type="button" class="text-blue-600 dark:text-blue-300 ml-4" onclick="openModal('locationModal')">View</button>
+    </div>
+</div>
+
+
+
+<!-- Modal for Location -->
+<div id="locationModal" class="modal hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+    <div class="modal-content bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-11/12 md:w-2/3 lg:w-1/2">
+        <span class="close text-gray-700 dark:text-gray-300 cursor-pointer text-xl float-right" onclick="closeModal('locationModal')">&times;</span>
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Edit Location</h2>
+        
+        <div class="mb-4">
+            <label for="job-location-type" class="block text-gray-700 dark:text-gray-300 font-bold">Job Location Type</label>
+            <select id="job-location-type" name="job-location-type" class="mt-1 w-full p-2 border rounded bg-white dark:bg-gray-700 dark:text-gray-300">
+                <option value="required">In person - precise location</option>
+                <option value="limited">In person, within a limited area</option>
+                <option value="remote">Fully remote: no on-site work required</option>
+                <option value="hybrid">Hybrid: some on-site required</option>
+                <option value="on-the-road">On the road</option>
+            </select>
+        </div>
+        
+        <button type="button" class="bg-blue-600 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveLocation()">Save</button>
+    </div>
+</div>
+
+
+<!-- Job Type Section -->
+<div class="mb-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border dark:border-gray-600">
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
+        <div class="flex-1 mb-4 md:mb-0">
+            <p class="text-gray-800 dark:text-gray-200 font-semibold text-lg">Job Type:</p>
+            <p id="jobTypeDisplay" class="text-gray-900 dark:text-gray-100 mt-1">Job Type Here</p>
+        </div>
+        <button type="button" class="text-blue-600 dark:text-blue-300 ml-4" onclick="openModal('jobTypeModal')">View</button>
+    </div>
+</div>
+
+
+
+<!-- Modal for Job Type -->
+<div id="jobTypeModal" class="modal hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+    <div class="modal-content bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-md w-full">
+        <span class="close text-gray-600 dark:text-gray-300 text-2xl cursor-pointer float-right" onclick="closeModal('jobTypeModal')">&times;</span>
+        <h2 class="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200">Edit Job Type</h2>
+        <div>
+            <div class="grid grid-cols-2 gap-4">
+                <label class="job-type-item flex items-center cursor-pointer">
+                    <input type="checkbox" name="job_type[]" value="full-time" class="hidden" />
+                    <span class="icon w-5 h-5 border-2 border-gray-400 dark:border-gray-600 rounded-sm"></span>
+                    <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Full-time</span>
+                </label>
+                <label class="job-type-item flex items-center cursor-pointer">
+                    <input type="checkbox" name="job_type[]" value="part-time" class="hidden" />
+                    <span class="icon w-5 h-5 border-2 border-gray-400 dark:border-gray-600 rounded-sm"></span>
+                    <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Part-time</span>
+                </label>
+                <label class="job-type-item flex items-center cursor-pointer">
+                    <input type="checkbox" name="job_type[]" value="permanent" class="hidden" />
+                    <span class="icon w-5 h-5 border-2 border-gray-400 dark:border-gray-600 rounded-sm"></span>
+                    <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Permanent</span>
+                </label>
+                <label class="job-type-item flex items-center cursor-pointer">
+                    <input type="checkbox" name="job_type[]" value="fixed-term" class="hidden" />
+                    <span class="icon w-5 h-5 border-2 border-gray-400 dark:border-gray-600 rounded-sm"></span>
+                    <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Fixed term</span>
+                </label>
+                <label class="job-type-item flex items-center cursor-pointer">
+                    <input type="checkbox" name="job_type[]" value="temporary" class="hidden" />
+                    <span class="icon w-5 h-5 border-2 border-gray-400 dark:border-gray-600 rounded-sm"></span>
+                    <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Temporary</span>
+                </label>
+                <label class="job-type-item flex items-center cursor-pointer">
+                    <input type="checkbox" name="job_type[]" value="ojt" class="hidden" />
+                    <span class="icon w-5 h-5 border-2 border-gray-400 dark:border-gray-600 rounded-sm"></span>
+                    <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">OJT (On the job training)</span>
+                </label>
+                <label class="job-type-item flex items-center cursor-pointer">
+                    <input type="checkbox" name="job_type[]" value="fresh-graduate" class="hidden" />
+                    <span class="icon w-5 h-5 border-2 border-gray-400 dark:border-gray-600 rounded-sm"></span>
+                    <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Fresh graduate</span>
+                </label>
+            </div>
+        </div>
+        <button type="button" class="bg-blue-600 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveJobType()">Save</button>
+    </div>
+</div>
+
+
+<!-- Expected Hours per Week Section -->
+<div class="mb-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border dark:border-gray-600">
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
+        <div class="flex-1 mb-4 md:mb-0">
+            <p class="text-gray-800 dark:text-gray-200 font-semibold text-lg">Expected Hours per Week:</p>
+            <p id="hoursPerWeekDisplay" class="text-gray-900 dark:text-gray-100 mt-1">Hours per Week Here</p>
+        </div>
+        <button type="button" class="text-blue-600 dark:text-blue-300 ml-4" onclick="openModal('hoursPerWeekModal')">View</button>
+    </div>
+</div>
+
+
+
+<!-- Modal for Expected Hours per Week -->
+<div id="hoursPerWeekModal" class="modal hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+    <div class="modal-content bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-lg w-full">
+        <span class="close text-gray-600 dark:text-gray-300 text-2xl cursor-pointer float-right" onclick="closeModal('hoursPerWeekModal')">&times;</span>
+        <h2 class="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200">Edit Expected Hours per Week</h2>
+        <!-- Expected Hours Section -->
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border dark:border-gray-700">
+            <form>
+                <!-- Expected Hours -->
+                <div class="mb-4">
+                    <label class="block text-gray-700 dark:text-gray-300 mb-2 text-xl font-bold">Expected Hours</label>
+
+                    <!-- Show by Dropdown -->
+                    <div class="mb-4">
+                        <label class="block text-gray-700 dark:text-gray-300 mb-2 text-lg font-bold">Show by</label>
+                        <select id="show-by" name="show-by" class="mt-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 w-full p-2 rounded font-bold">
+                            <option value="range">Range</option>
+                            <option value="fixed">Fixed hours</option>
+                            <option value="max">Maximum</option>
+                            <option value="min">Minimum</option>
+                        </select>
+                    </div>
+
+                    <!-- Range Input -->
+                    <div id="range-input" class="hidden mb-4">
+                        <label class="block text-gray-700 dark:text-gray-300 mb-2 font-bold">From</label>
+                        <input type="number" id="range-from" name="range-from" placeholder="0" class="mt-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 w-full p-2 rounded" />
+                        <label class="block text-gray-700 dark:text-gray-300 mt-4 mb-2 font-bold">To</label>
+                        <input type="number" id="range-to" name="range-to" placeholder="0" class="mt-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 w-full p-2 rounded" />
+                        <span id="range-text" class="block text-gray-700 dark:text-gray-300 mt-2 font-bold">Hours per week</span>
+                    </div>
+
+                    <!-- Fixed Hours Input -->
+                    <div id="fixed-hours-input" class="hidden mb-4">
+                        <label class="block text-gray-700 dark:text-gray-300 mb-2 font-bold">Fixed Hours</label>
+                        <input type="number" id="fixed-hours" name="fixed-hours" placeholder="Enter fixed hours" class="mt-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 w-full p-2 rounded" />
+                        <span id="fixed-hours-text" class="block text-gray-700 dark:text-gray-300 mt-2 font-bold">Hours per week</span>
+                    </div>
+
+                    <!-- Minimum Input -->
+                    <div id="min-input" class="hidden mb-4">
+                        <label class="block text-gray-700 dark:text-gray-300 mb-2 font-bold">Minimum</label>
+                        <input type="number" id="min-hours" name="min-hours" placeholder="No less than" class="mt-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 w-full p-2 rounded font-bold" />
+                    </div>
+
+                    <!-- Maximum Input -->
+                    <div id="max-input" class="hidden mb-4">
+                        <label class="block text-gray-700 dark:text-gray-300 mb-2 font-bold">Maximum</label>
+                        <input type="number" id="max-hours" name="max-hours" placeholder="No more than" class="mt-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 w-full p-2 rounded font-bold" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <button type="button" class="bg-blue-600 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveHoursPerWeek()">Save</button>
+    </div>
+</div>
+
+
+<!-- Schedule Section -->
+<div class="mb-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border dark:border-gray-600">
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
+        <div class="flex-1 mb-4 md:mb-0">
+            <p class="text-gray-800 dark:text-gray-200 font-semibold text-lg">Schedule:</p>
+            <p id="scheduleDisplay" class="text-gray-900 dark:text-gray-100 mt-1">Schedule Here</p>
+        </div>
+        <button type="button" class="text-blue-600 dark:text-blue-300 ml-4" onclick="openModal('scheduleModal')">View</button>
+    </div>
+</div>
+
+
+
+<!-- Modal for Schedule -->
+<div id="scheduleModal" class="modal hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+    <div class="modal-content bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-11/12 md:w-2/3 lg:w-1/2">
+        <span class="close text-gray-700 dark:text-gray-300 cursor-pointer text-xl float-right" onclick="closeModal('scheduleModal')">&times;</span>
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Edit Schedule</h2>
+        <div class="grid grid-cols-1 gap-4">
+            <!-- Job Type Options with Vertical Scrollbar -->
+            <div class="col-span-2 flex flex-col overflow-y-auto max-h-60 pr-2">
+                <label class="job-type-item cursor-pointer flex items-center mb-2">
+                    <input type="checkbox" name="job_type[]" value="full-time" class="hidden" />
+                    <span class="icon bg-gray-300 dark:bg-gray-600 w-4 h-4 mr-2 inline-block"></span>
+                    <span class="text-gray-700 dark:text-gray-300 font-bold">Full-time</span>
+                </label>
+                <label class="job-type-item cursor-pointer flex items-center mb-2">
+                    <input type="checkbox" name="job_type[]" value="part-time" class="hidden" />
+                    <span class="icon bg-gray-300 dark:bg-gray-600 w-4 h-4 mr-2 inline-block"></span>
+                    <span class="text-gray-700 dark:text-gray-300 font-bold">Part-time</span>
+                </label>
+                <label class="job-type-item cursor-pointer flex items-center mb-2">
+                    <input type="checkbox" name="job_type[]" value="permanent" class="hidden" />
+                    <span class="icon bg-gray-300 dark:bg-gray-600 w-4 h-4 mr-2 inline-block"></span>
+                    <span class="text-gray-700 dark:text-gray-300 font-bold">Permanent</span>
+                </label>
+                <label class="job-type-item cursor-pointer flex items-center mb-2">
+                    <input type="checkbox" name="job_type[]" value="fixed-term" class="hidden" />
+                    <span class="icon bg-gray-300 dark:bg-gray-600 w-4 h-4 mr-2 inline-block"></span>
+                    <span class="text-gray-700 dark:text-gray-300 font-bold">Fixed term</span>
+                </label>
+                <label class="job-type-item cursor-pointer flex items-center mb-2">
+                    <input type="checkbox" name="job_type[]" value="temporary" class="hidden" />
+                    <span class="icon bg-gray-300 dark:bg-gray-600 w-4 h-4 mr-2 inline-block"></span>
+                    <span class="text-gray-700 dark:text-gray-300 font-bold">Temporary</span>
+                </label>
+                <label class="job-type-item cursor-pointer flex items-center mb-2">
+                    <input type="checkbox" name="job_type[]" value="ojt" class="hidden" />
+                    <span class="icon bg-gray-300 dark:bg-gray-600 w-4 h-4 mr-2 inline-block"></span>
+                    <span class="text-gray-700 dark:text-gray-300 font-bold">OJT (On the job training)</span>
+                </label>
+                <label class="job-type-item cursor-pointer flex items-center mb-2">
+                    <input type="checkbox" name="job_type[]" value="fresh-graduate" class="hidden" />
+                    <span class="icon bg-gray-300 dark:bg-gray-600 w-4 h-4 mr-2 inline-block"></span>
+                    <span class="text-gray-700 dark:text-gray-300 font-bold">Fresh graduate</span>
+                </label>
+                <!-- Additional Job Type Options -->
+                <label class="job-type-item cursor-pointer flex items-center mb-2">
+                    <input type="checkbox" name="job_type[]" value="flextime" class="hidden" />
+                    <span class="icon bg-gray-300 dark:bg-gray-600 w-4 h-4 mr-2 inline-block"></span>
+                    <span class="text-gray-700 dark:text-gray-300 font-bold">Flextime</span>
+                </label>
+                <label class="job-type-item cursor-pointer flex items-center mb-2">
+                    <input type="checkbox" name="job_type[]" value="8-hour-shift" class="hidden" />
+                    <span class="icon bg-gray-300 dark:bg-gray-600 w-4 h-4 mr-2 inline-block"></span>
+                    <span class="text-gray-700 dark:text-gray-300 font-bold">8 hour shift</span>
+                </label>
+                <label class="job-type-item cursor-pointer flex items-center mb-2">
+                    <input type="checkbox" name="job_type[]" value="10-hour-shift" class="hidden" />
+                    <span class="icon bg-gray-300 dark:bg-gray-600 w-4 h-4 mr-2 inline-block"></span>
+                    <span class="text-gray-700 dark:text-gray-300 font-bold">10 hour shift</span>
+                </label>
+                <label class="job-type-item cursor-pointer flex items-center mb-2">
+                    <input type="checkbox" name="job_type[]" value="12-hour-shift" class="hidden" />
+                    <span class="icon bg-gray-300 dark:bg-gray-600 w-4 h-4 mr-2 inline-block"></span>
+                    <span class="text-gray-700 dark:text-gray-300 font-bold">12 hour shift</span>
+                </label>
+                <label class="job-type-item cursor-pointer flex items-center mb-2">
+                    <input type="checkbox" name="job_type[]" value="shift-system" class="hidden" />
+                    <span class="icon bg-gray-300 dark:bg-gray-600 w-4 h-4 mr-2 inline-block"></span>
+                    <span class="text-gray-700 dark:text-gray-300 font-bold">Shift system</span>
+                </label>
+                <label class="job-type-item cursor-pointer flex items-center mb-2">
+                    <input type="checkbox" name="job_type[]" value="early-shift" class="hidden" />
+                    <span class="icon bg-gray-300 dark:bg-gray-600 w-4 h-4 mr-2 inline-block"></span>
+                    <span class="text-gray-700 dark:text-gray-300 font-bold">Early shift</span>
+                </label>
+                <label class="job-type-item cursor-pointer flex items-center mb-2">
+                    <input type="checkbox" name="job_type[]" value="day-shift" class="hidden" />
+                    <span class="icon bg-gray-300 dark:bg-gray-600 w-4 h-4 mr-2 inline-block"></span>
+                    <span class="text-gray-700 dark:text-gray-300 font-bold">Day shift</span>
+                </label>
+                <label class="job-type-item cursor-pointer flex items-center mb-2">
+                    <input type="checkbox" name="job_type[]" value="afternoon-shift" class="hidden" />
+                    <span class="icon bg-gray-300 dark:bg-gray-600 w-4 h-4 mr-2 inline-block"></span>
+                    <span class="text-gray-700 dark:text-gray-300 font-bold">Afternoon shift</span>
+                </label>
+                <label class="job-type-item cursor-pointer flex items-center mb-2">
+                    <input type="checkbox" name="job_type[]" value="evening-shift" class="hidden" />
+                    <span class="icon bg-gray-300 dark:bg-gray-600 w-4 h-4 mr-2 inline-block"></span>
+                    <span class="text-gray-700 dark:text-gray-300 font-bold">Evening shift</span>
+                </label>
+                <label class="job-type-item cursor-pointer flex items-center mb-2">
+                    <input type="checkbox" name="job_type[]" value="late-shift" class="hidden" />
+                    <span class="icon bg-gray-300 dark:bg-gray-600 w-4 h-4 mr-2 inline-block"></span>
+                    <span class="text-gray-700 dark:text-gray-300 font-bold">Late shift</span>
+                </label>
+                <label class="job-type-item cursor-pointer flex items-center mb-2">
+                    <input type="checkbox" name="job_type[]" value="night-shift" class="hidden" />
+                    <span class="icon bg-gray-300 dark:bg-gray-600 w-4 h-4 mr-2 inline-block"></span>
+                    <span class="text-gray-700 dark:text-gray-300 font-bold">Night shift</span>
+                </label>
+                <label class="job-type-item cursor-pointer flex items-center mb-2">
+                    <input type="checkbox" name="job_type[]" value="rotational-shift" class="hidden" />
+                    <span class="icon bg-gray-300 dark:bg-gray-600 w-4 h-4 mr-2 inline-block"></span>
+                    <span class="text-gray-700 dark:text-gray-300 font-bold">Rotational shift</span>
+                </label>
+                <label class="job-type-item cursor-pointer flex items-center mb-2">
+                    <input type="checkbox" name="job_type[]" value="split-shift" class="hidden" />
+                    <span class="icon bg-gray-300 dark:bg-gray-600 w-4 h-4 mr-2 inline-block"></span>
+                    <span class="text-gray-700 dark:text-gray-300 font-bold">Split shift</span>
+                </label>
+            </div>
+        </div>
+        
+        <div class="flex justify-end mt-6">
+            <button type="button" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600" onclick="saveSchedule()">Save</button>
+        </div>
+    </div>
+</div>
+
+<!-- Pay Section -->
+<div class="mb-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border dark:border-gray-600">
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
+        <div class="flex-1 mb-4 md:mb-0">
+            <p class="text-gray-800 dark:text-gray-200 font-semibold text-lg">Pay:</p>
+            <p id="payDisplay" class="text-gray-900 dark:text-gray-100 mt-1">Enter Pay Here</p>
+        </div>
+        <button type="button" class="text-blue-600 dark:text-blue-300 ml-4" onclick="openModal('payModal')">View</button>
+    </div>
+</div>
+
+
+<!-- Modal for Pay -->
+<div id="payModal" class="modal hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+    <div class="modal-content bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-11/12 md:w-2/3 lg:w-1/2">
+        <span class="close text-gray-700 dark:text-gray-300 cursor-pointer text-xl float-right" onclick="closeModal('payModal')">&times;</span>
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Edit Pay</h2>
+        
+        <div class="max-w-3xl mx-auto bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md border dark:border-gray-700">
+            <form>
+                <!-- Show Pay By -->
+                <div class="mb-4">
+                    <label class="block text-gray-700 dark:text-gray-300 mb-2 text-xl font-bold">Show Pay By</label>
+                    <select id="show-pay-by" name="show-pay-by" class="mt-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 w-full p-2 rounded font-bold" onchange="updatePayInput()">
+                        <option value="range">Range</option>
+                        <option value="starting-amount">Starting amount</option>
+                        <option value="maximum-amount">Maximum amount</option>
+                        <option value="exact-amount">Exact amount</option>
+                    </select>
+                </div>
+                
+                <!-- Pay Range Input -->
+                <div id="pay-range-input" class="mb-4">
+                    <div class="flex space-x-4">
+                        <div class="w-1/2">
+                            <label id="pay-min-label" class="block text-gray-700 dark:text-gray-300 mb-2 font-bold">Minimum</label>
+                            <div class="flex items-center">
+                                <span class="text-gray-700 dark:text-gray-300 font-bold">₱</span>
+                                <input type="number" id="pay-min" name="pay-min" placeholder="Enter minimum" class="mt-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 w-full p-2 rounded ml-1" />
+                            </div>
+                        </div>
+                        <div class="w-1/2">
+                            <label id="pay-max-label" class="block text-gray-700 dark:text-gray-300 mb-2 font-bold">Maximum</label>
+                            <div class="flex items-center">
+                                <span class="text-gray-700 dark:text-gray-300 font-bold"></span>
+                                <input type="number" id="pay-max" name="pay-max" placeholder="Enter maximum" class="mt-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 w-full p-2 rounded ml-1" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        <button type="button" class="bg-blue-600 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="savePay()">Save</button>
+    </div>
+</div>
+
+<!-- Supplemental Pay Section -->
+<div class="mb-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border dark:border-gray-600">
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
+        <div class="flex-1 mb-4 md:mb-0">
+            <p class="text-gray-800 dark:text-gray-200 font-semibold text-lg">Supplemental Pay:</p>
+            <p id="supplementalPayDisplay" class="text-gray-900 dark:text-gray-100 mt-1">Enter Supplemental Pay Here</p>
+        </div>
+        <button type="button" class="text-blue-600 dark:text-blue-300 ml-4" onclick="openModal('supplementalPayModal')">View</button>
+    </div>
+</div>
+
+
+
+<!-- Modal for Supplemental Pay -->
+<div id="supplementalPayModal" class="modal hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+    <div class="modal-content bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-11/12 md:w-2/3 lg:w-1/2">
+        <span class="close text-gray-700 dark:text-gray-300 cursor-pointer text-xl float-right" onclick="closeModal('supplementalPayModal')">&times;</span>
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Edit Supplemental Pay</h2>
+        
+        <div class="grid grid-cols-2 gap-4">
+            <label class="supplemental-pay-item flex items-center cursor-pointer">
+                <input type="checkbox" name="supplemental_pay[]" value="signing-bonus" class="hidden" />
+                <span class="icon bg-gray-300 dark:bg-gray-600 rounded-full w-4 h-4 flex items-center justify-center mr-2"></span>
+                <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Signing bonus</span>
+            </label>
+            <label class="supplemental-pay-item flex items-center cursor-pointer">
+                <input type="checkbox" name="supplemental_pay[]" value="commission-pay" class="hidden" />
+                <span class="icon bg-gray-300 dark:bg-gray-600 rounded-full w-4 h-4 flex items-center justify-center mr-2"></span>
+                <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Commission pay</span>
+            </label>
+            <label class="supplemental-pay-item flex items-center cursor-pointer">
+                <input type="checkbox" name="supplemental_pay[]" value="bonus-opportunities" class="hidden" />
+                <span class="icon bg-gray-300 dark:bg-gray-600 rounded-full w-4 h-4 flex items-center justify-center mr-2"></span>
+                <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Bonus opportunities</span>
+            </label>
+            <label class="supplemental-pay-item flex items-center cursor-pointer">
+                <input type="checkbox" name="supplemental_pay[]" value="tips" class="hidden" />
+                <span class="icon bg-gray-300 dark:bg-gray-600 rounded-full w-4 h-4 flex items-center justify-center mr-2"></span>
+                <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Tips</span>
+            </label>
+            <label class="supplemental-pay-item flex items-center cursor-pointer">
+                <input type="checkbox" name="supplemental_pay[]" value="other" class="hidden" />
+                <span class="icon bg-gray-300 dark:bg-gray-600 rounded-full w-4 h-4 flex items-center justify-center mr-2"></span>
+                <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Other</span>
+            </label>
+        </div>
+        
+        <button type="button" class="bg-blue-600 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveSupplementalPay()">Save</button>
+    </div>
+</div>
+
+<!-- Benefits Section -->
+<div class="mb-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border dark:border-gray-600">
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
+        <div class="flex-1 mb-4 md:mb-0">
+            <p class="text-gray-800 dark:text-gray-200 font-semibold text-lg">Benefits:</p>
+            <p id="benefitsDisplay" class="text-gray-900 dark:text-gray-100 mt-1">Enter Benefits Here</p>
+        </div>
+        <button type="button" class="text-blue-600 dark:text-blue-300 ml-4" onclick="openModal('benefitsModal')">View</button>
+    </div>
+</div>
+
+
+<!-- Modal for Benefits -->
+<div id="benefitsModal" class="modal hidden fixed inset-0 flex items-center justify-center z-50 bg-gray-800 bg-opacity-75">
+    <div class="modal-content bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-3xl relative">
+        <span class="close absolute top-4 right-4 text-2xl cursor-pointer" onclick="closeModal('benefitsModal')">&times;</span>
+        <h2 class="text-2xl font-bold mb-4">Edit Benefits</h2>
+        <!-- Scrollable Container -->
+        <div class="scroll-container overflow-y-auto max-h-96">
+            <div class="grid grid-cols-2 gap-4">
+                <label class="benefit-item flex items-center cursor-pointer">
+                    <input type="checkbox" name="benefits[]" value="health-insurance" class="hidden" />
+                    <span class="icon"></span>
+                    <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Health insurance</span>
+                </label>
+                <label class="benefit-item flex items-center cursor-pointer">
+                    <input type="checkbox" name="benefits[]" value="paid-time-off" class="hidden" />
+                    <span class="icon"></span>
+                    <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Paid time off</span>
+                </label>
+                <label class="benefit-item flex items-center cursor-pointer">
+                    <input type="checkbox" name="benefits[]" value="dental-insurance" class="hidden" />
+                    <span class="icon"></span>
+                    <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Dental insurance</span>
+                </label>
+                <label class="benefit-item flex items-center cursor-pointer">
+                    <input type="checkbox" name="benefits[]" value="401k" class="hidden" />
+                    <span class="icon"></span>
+                    <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">401(k)</span>
+                </label>
+                <label class="benefit-item flex items-center cursor-pointer">
+                    <input type="checkbox" name="benefits[]" value="vision-insurance" class="hidden" />
+                    <span class="icon"></span>
+                    <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Vision insurance</span>
+                </label>
+                <label class="benefit-item flex items-center cursor-pointer">
+                    <input type="checkbox" name="benefits[]" value="flexible-schedule" class="hidden" />
+                    <span class="icon"></span>
+                    <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Flexible schedule</span>
+                </label>
+                <label class="benefit-item flex items-center cursor-pointer">
+                    <input type="checkbox" name="benefits[]" value="tuition-reimbursement" class="hidden" />
+                    <span class="icon"></span>
+                    <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Tuition reimbursement</span>
+                </label>
+                <label class="benefit-item flex items-center cursor-pointer">
+                    <input type="checkbox" name="benefits[]" value="life-insurance" class="hidden" />
+                    <span class="icon"></span>
+                    <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Life insurance</span>
+                </label>
+                <label class="benefit-item flex items-center cursor-pointer">
+                    <input type="checkbox" name="benefits[]" value="401k-matching" class="hidden" />
+                    <span class="icon"></span>
+                    <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">401(k) matching</span>
+                </label>
+                <label class="benefit-item flex items-center cursor-pointer">
+                    <input type="checkbox" name="benefits[]" value="retirement-plan" class="hidden" />
+                    <span class="icon"></span>
+                    <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Retirement plan</span>
+                </label>
+                <label class="benefit-item flex items-center cursor-pointer">
+                    <input type="checkbox" name="benefits[]" value="referral-program" class="hidden" />
+                    <span class="icon"></span>
+                    <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Referral program</span>
+                </label>
+                <label class="benefit-item flex items-center cursor-pointer">
+                    <input type="checkbox" name="benefits[]" value="employee-discount" class="hidden" />
+                    <span class="icon"></span>
+                    <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Employee discount</span>
+                </label>
+                <label class="benefit-item flex items-center cursor-pointer">
+                    <input type="checkbox" name="benefits[]" value="flexible-spending-account" class="hidden" />
+                    <span class="icon"></span>
+                    <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Flexible spending account</span>
+                </label>
+                <label class="benefit-item flex items-center cursor-pointer">
+                    <input type="checkbox" name="benefits[]" value="health-savings-account" class="hidden" />
+                    <span class="icon"></span>
+                    <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Health savings account</span>
+                </label>
+                <label class="benefit-item flex items-center cursor-pointer">
+                    <input type="checkbox" name="benefits[]" value="relocation-assistance" class="hidden" />
+                    <span class="icon"></span>
+                    <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Relocation assistance</span>
+                </label>
+                <label class="benefit-item flex items-center cursor-pointer">
+                    <input type="checkbox" name="benefits[]" value="parental-leave" class="hidden" />
+                    <span class="icon"></span>
+                    <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Parental leave</span>
+                </label>
+                <label class="benefit-item flex items-center cursor-pointer">
+                    <input type="checkbox" name="benefits[]" value="professional-development-assistance" class="hidden" />
+                    <span class="icon"></span>
+                    <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Professional development assistance</span>
+                </label>
+                <label class="benefit-item flex items-center cursor-pointer">
+                    <input type="checkbox" name="benefits[]" value="employee-assistance-program" class="hidden" />
+                    <span class="icon"></span>
+                    <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Employee assistance program</span>
+                </label>
+                <label class="benefit-item flex items-center cursor-pointer">
+                    <input type="checkbox" name="benefits[]" value="other" class="hidden" />
+                    <span class="icon"></span>
+                    <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Other</span>
+                </label>
+            </div>
+        </div>
+        <button type="button" class="bg-blue-600 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveBenefits()">Save</button>
+    </div>
+</div>
+
+<!-- Job Description Section -->
+<div class="mb-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border dark:border-gray-600">
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
+        <div class="flex-1 mb-4 md:mb-0">
+            <p class="text-gray-800 dark:text-gray-200 font-semibold text-lg">Job Description:</p>
+            <p id="jobDescriptionDisplay" class="text-gray-900 dark:text-gray-100 mt-1">Enter Job Description Here</p>
+        </div>
+        <button type="button" class="text-blue-600 dark:text-blue-300 ml-4" onclick="openModal('jobDescriptionModal')">View</button>
+    </div>
+</div>
+
+
+
+<!-- Modal for Job Description -->
+<div id="jobDescriptionModal" class="modal hidden">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('jobDescriptionModal')">&times;</span>
+        <h2 class="text-2xl font-bold mb-4">Edit Job Description</h2>
+        <section class="max-w-2xl mx-auto my-8">
+            <div class="editor-container">
+                <div class="toolbar">
+                    <button type="button" id="bold-btn" onclick="formatText('bold')" class="toolbar-btn"><b>B</b></button>
+                    <button type="button" id="italic-btn" onclick="formatText('italic')" class="toolbar-btn"><i>I</i></button>
+                    <button type="button" id="list-btn" onclick="formatText('insertUnorderedList')" class="toolbar-btn">•</button>
+                </div>
+                <div class="text-editor" contenteditable="true" placeholder="Type your description here..."></div>
+            </div>
+        <button type="button" class="bg-blue-600 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveJobDescription()">Save</button>
+    </div>
+</div>
+
+            </div>
+        </div>
+
+        <!-- Settings -->
+        <div>
+            <h3 class="text-xl font-semibold mb-3">Settings</h3>
+            <div class="grid grid-cols-2 gap-4">
+
+<!-- Application Method Section -->
+<div class="mb-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border dark:border-gray-600">
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
+        <div class="flex-1 mb-4 md:mb-0">
+            <p class="text-gray-800 dark:text-gray-200 font-semibold text-lg">Application Method:</p>
+            <p id="applicationMethodDisplay" class="text-gray-900 dark:text-gray-100 mt-1">Enter Application Method Here</p>
+        </div>
+        <button type="button" class="text-blue-600 dark:text-blue-300 ml-4" onclick="openModal('applicationMethodModal')">View</button>
+    </div>
+</div>
+
+
+<!-- Modal for Application Method -->
+<div id="applicationMethodModal" class="modal hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+    <div class="modal-content bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-11/12 md:w-2/3 lg:w-1/2">
+        <span class="close text-gray-700 dark:text-gray-300 cursor-pointer text-xl float-right" onclick="closeModal('applicationMethodModal')">&times;</span>
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Edit Application Method</h2>
+        
+        <!-- Communication Preferences -->
+        <div class="mb-4">
+            <h3 class="text-lg font-semibold mb-2">Communication Preferences</h3>
+            <label for="daily-updates" class="block text-gray-700 dark:text-gray-300">Send daily updates to</label>
+            <input type="email" id="daily-updates" placeholder="Enter email address" class="w-full mt-1 p-2 border rounded dark:bg-gray-800 dark:text-gray-300">
+            <div id="additional-emails" class="mt-2">
+                <!-- Dynamic email fields will be added here -->
+            </div>
+            <button type="button" id="add-email-btn" class="text-blue-600 dark:text-blue-300 mt-1 text-sm">+ Add another email</button>
+        </div>
+
+        <!-- Application Preferences -->
+        <div class="mb-4">
+            <h3 class="text-lg font-semibold mb-2">Application Preferences</h3>
+            <label for="resume-request" class="block text-gray-700 dark:text-gray-300 text-sm">Ask potential candidates for a resume?</label>
+            <select id="resume-request" class="w-full mt-1 p-2 border rounded dark:bg-gray-800 dark:text-gray-300">
+                <option value="yes">Yes, require a resume</option>
+                <option value="no">No, don’t require a resume</option>
+                <option value="optional">Give the option to include a resume</option>
+            </select>
+
+            <label class="block mt-2 text-sm">
+                <input type="checkbox" id="criminal-record" class="mr-1">
+                People with a criminal record are encouraged to apply
+            </label>
+            
+            <label for="background-check" class="block mt-2 text-gray-700 dark:text-gray-300 text-sm">Do you require a background check for this job?</label>
+            <select id="background-check" class="w-full mt-1 p-2 border rounded dark:bg-gray-800 dark:text-gray-300">
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+        </div>
+        <button type="button" class="bg-blue-600 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveApplicationMethod()">Save</button>
+    </div>
+</div>
+
+
+<!-- Candidates Contact You (Email) Section -->
+<div class="mb-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border dark:border-gray-600">
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
+        <div class="flex-1 mb-4 md:mb-0">
+            <p class="text-gray-800 dark:text-gray-200 font-semibold text-lg">Candidates Contact You (Email):</p>
+            <p id="candidatesContactEmailDisplay" class="text-gray-900 dark:text-gray-100 mt-1">Candidates Contact You (Email)</p>
+        </div>
+        <button type="button" class="text-blue-600 dark:text-blue-300 ml-4" onclick="openModal('candidatesContactEmailModal')">View</button>
+    </div>
+</div>
+
+
+<!-- Modal for Candidates Contact You (Email) -->
+<div id="candidatesContactEmailModal" class="modal hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+    <div class="modal-content bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-11/12 md:w-2/3 lg:w-1/2">
+        <span class="close text-gray-700 dark:text-gray-300 cursor-pointer text-xl float-right" onclick="closeModal('candidatesContactEmailModal')">&times;</span>
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Edit Candidates Contact You (Email)</h2>
+        
+        <div class="mt-4">
+            <label class="flex items-center cursor-pointer">
+                <input type="checkbox" id="contactByEmail" class="form-checkbox text-blue-600 dark:text-blue-300">
+                <span class="ml-2 text-gray-700 dark:text-gray-300">By email to the address provided</span>
+            </label>
+        </div>
+        <button type="button" class="bg-blue-600 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveCandidatesContactEmail()">Save</button>
+    </div>
+</div>
+
+
+
+<!-- Candidates Contact You (Phone) Section -->
+<div class="mb-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border dark:border-gray-600">
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
+        <div class="flex-1 mb-4 md:mb-0">
+            <p class="text-gray-800 dark:text-gray-200 font-semibold text-lg">Candidates Contact You (Phone):</p>
+            <p id="candidatesContactPhoneDisplay" class="text-gray-900 dark:text-gray-100 mt-1">Yes/No</p>
+        </div>
+        <button type="button" class="text-blue-600 dark:text-blue-300 ml-4" onclick="openModal('candidatesContactPhoneModal')">View</button>
+    </div>
+</div>
+
+
+<!-- Modal for Candidates Contact You (Phone) -->
+<div id="candidatesContactPhoneModal" class="modal hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+    <div class="modal-content bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-11/12 md:w-2/3 lg:w-1/2">
+        <span class="close text-gray-700 dark:text-gray-300 cursor-pointer text-xl float-right" onclick="closeModal('candidatesContactPhoneModal')">&times;</span>
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Edit Candidates Contact You (Phone)</h2>
+        
+        <div class="mb-4">
+            <label for="candidatesContactPhoneSelect" class="block text-gray-700 dark:text-gray-300">Candidates Contact You (Phone):</label>
+            <select id="candidatesContactPhoneSelect" class="w-full p-2 border rounded dark:bg-gray-800 dark:text-gray-300">
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+        </div>
+        <button type="button" class="bg-blue-600 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveCandidatesContactPhone()">Save</button>
+    </div>
+</div>
+
+
+<!-- Fair Chance Hiring Section -->
+<div class="mb-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border dark:border-gray-600">
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
+        <div class="flex-1 mb-4 md:mb-0">
+            <p class="text-gray-800 dark:text-gray-200 font-semibold text-lg">Fair Chance Hiring:</p>
+            <p id="fairChanceHiringDisplay" class="text-gray-900 dark:text-gray-100 mt-1">People with criminal record are allowed to apply</p>
+        </div>
+        <button type="button" class="text-blue-600 dark:text-blue-300 ml-4" onclick="openModal('fairChanceHiringModal')">View</button>
+    </div>
+</div>
+
+
+<!-- Modal for Fair Chance Hiring -->
+<div id="fairChanceHiringModal" class="modal hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+    <div class="modal-content bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-11/12 md:w-2/3 lg:w-1/2">
+        <span class="close text-gray-700 dark:text-gray-300 cursor-pointer text-xl float-right" onclick="closeModal('fairChanceHiringModal')">&times;</span>
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Edit Fair Chance Hiring</h2>
+        
+        <div class="mb-4">
+            <label for="fairChanceHiringSelect" class="block text-gray-700 dark:text-gray-300">Fair Chance Hiring:</label>
+            <select id="fairChanceHiringSelect" class="w-full p-2 border rounded dark:bg-gray-800 dark:text-gray-300">
+                <option value="allowed">People with criminal record are allowed to apply</option>
+                <option value="not-allowed">People with criminal record are not allowed to apply</option>
+            </select>
+        </div>
+        <button type="button" class="bg-blue-600 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveFairChanceHiring()">Save</button>
+    </div>
+</div>
+
+
+<!-- Hiring Timeline Section -->
+<div class="mb-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border dark:border-gray-600">
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
+        <div class="flex-1 mb-4 md:mb-0">
+            <p class="text-gray-800 dark:text-gray-200 font-semibold text-lg">Hiring Timeline:</p>
+            <p id="hiringTimelineDisplay" class="text-gray-900 dark:text-gray-100 mt-1">Enter Hiring Timeline</p>
+        </div>
+        <button type="button" class="text-blue-600 dark:text-blue-300 ml-4" onclick="openModal('hiringTimelineModal')">View</button>
+    </div>
+</div>
+
+
+<!-- Modal for Hiring Timeline -->
+<div id="hiringTimelineModal" class="modal hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+    <div class="modal-content bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-11/12 md:w-2/3 lg:w-1/2">
+        <span class="close text-gray-700 dark:text-gray-300 cursor-pointer text-xl float-right" onclick="closeModal('hiringTimelineModal')">&times;</span>
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Edit Hiring Timeline</h2>
+        
+        <div>
+            <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">Hire Settings</h3>
+            <label for="hiring-timeline" class="block text-gray-700 dark:text-gray-300 text-sm">Hiring timeline for this job</label>
+            <select id="hiring-timeline" class="w-full mt-1 p-1.5 border rounded dark:bg-gray-800 dark:text-gray-300">
+                <option value="3-days">3 Days</option>
+                <option value="1-week">1 Week</option>
+                <option value="1-month">1 Month</option>
+                <option value="more">More than 1 Month</option>
+            </select>
+        </div>
+        <button type="button" class="bg-blue-600 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveHiringTimeline()">Save</button>
+    </div>
+</div>
+
+
+   
+<div class="text-center mt-6">
+    <a href="application-settings.html" class="bg-gray-600 text-white p-3 rounded-lg hover:bg-gray-700 inline-block text-sm ml-4 transition duration-300 ease-in-out">Back</a>
+    <a href="" class="bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 inline-block text-sm ml-4 transition duration-300 ease-in-out">Submit Job</a>
+</div>
+
+</section>
+
+
+
+    <!-- Footer -->
+    <footer class="footer py-6">
+        <div class="container mx-auto text-center text-gray-700 dark:text-gray-300">
+            &copy; 2024 Job Compass. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        function saveThemePreference() {
+            const html = document.documentElement;
+            localStorage.setItem('theme', html.dataset.theme);
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            html.dataset.theme = html.dataset.theme === "light" ? "dark" : "light";
+            saveThemePreference();
+        }
+
+        window.onload = function () {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.dataset.theme = theme;
+            document.getElementById('toggle-dark-mode').addEventListener('click', function() {
+                toggleTheme();
+            });
+        };
+
+        // Toggle mobile menu visibility
+const menuToggle = document.getElementById('menu-toggle');
+const mobileMenu = document.getElementById('mobile-menu');
+if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+}
+function openModal(modalId) {
+    document.getElementById(modalId).style.display = 'flex';
+}
+
+function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+}
+
+function saveJobTitle() {
+    var newTitle = document.getElementById('jobTitleInput').value;
+    document.getElementById('jobTitleDisplay').textContent = newTitle;
+    closeModal('jobTitleModal');
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const showBySelect = document.getElementById('show-by');
+    const rangeInput = document.getElementById('range-input');
+    const fixedHoursInput = document.getElementById('fixed-hours-input');
+    const minInput = document.getElementById('min-input');
+    const maxInput = document.getElementById('max-input');
+
+    function updateFields() {
+        const selectedOption = showBySelect.value;
+
+        // Hide all sections
+        rangeInput.classList.add('hidden');
+        fixedHoursInput.classList.add('hidden');
+        minInput.classList.add('hidden');
+        maxInput.classList.add('hidden');
+
+        // Show relevant sections based on selection
+        if (selectedOption === 'range') {
+            rangeInput.classList.remove('hidden');
+            document.getElementById('range-text').textContent = 'Hours per week';
+        } else if (selectedOption === 'fixed') {
+            fixedHoursInput.classList.remove('hidden');
+            document.getElementById('fixed-hours-text').textContent = 'Hours per week';
+        } else if (selectedOption === 'max') {
+            maxInput.classList.remove('hidden');
+            document.getElementById('max-hours').placeholder = 'No more than';
+        } else if (selectedOption === 'min') {
+            minInput.classList.remove('hidden');
+            document.getElementById('min-hours').placeholder = 'No less than';
+        }
+    }
+
+    // Initialize with the default value
+    updateFields();
+
+    // Update fields when "Show by" selection changes
+    showBySelect.addEventListener('change', updateFields);
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const showBySelect = document.getElementById('show-by');
+    const rangeInput = document.getElementById('range-input');
+    const fixedHoursInput = document.getElementById('fixed-hours-input');
+    const minInput = document.getElementById('min-input');
+    const maxInput = document.getElementById('max-input');
+
+    function updateFields() {
+        const selectedOption = showBySelect.value;
+
+        // Hide all sections
+        rangeInput.classList.add('hidden');
+        fixedHoursInput.classList.add('hidden');
+        minInput.classList.add('hidden');
+        maxInput.classList.add('hidden');
+
+        // Show relevant sections based on selection
+        if (selectedOption === 'range') {
+            rangeInput.classList.remove('hidden');
+            document.getElementById('range-text').textContent = 'Hours per week';
+        } else if (selectedOption === 'fixed') {
+            fixedHoursInput.classList.remove('hidden');
+            document.getElementById('fixed-hours-text').textContent = 'Hours per week';
+        } else if (selectedOption === 'max') {
+            maxInput.classList.remove('hidden');
+            document.getElementById('max-hours').placeholder = 'No more than';
+        } else if (selectedOption === 'min') {
+            minInput.classList.remove('hidden');
+            document.getElementById('min-hours').placeholder = 'No less than';
+        }
+    }
+
+    // Initialize with the default value
+    updateFields();
+
+    // Update fields when "Show by" selection changes
+    showBySelect.addEventListener('change', updateFields);
+});
+
+function updatePayInput() {
+        const showPayBy = document.getElementById("show-pay-by").value;
+        const payMinLabel = document.getElementById("pay-min-label");
+        const payMaxLabel = document.getElementById("pay-max-label");
+        const payMinInput = document.getElementById("pay-min");
+        const payMaxInput = document.getElementById("pay-max");
+
+        if (showPayBy === "starting-amount" || showPayBy === "maximum-amount" || showPayBy === "exact-amount") {
+            payMinLabel.textContent = "Amount";
+            payMinInput.placeholder = "1";
+            payMaxLabel.style.display = "none";
+            payMaxInput.style.display = "none";
+        } else {
+            payMinLabel.textContent = "Minimum";
+            payMinInput.placeholder = "Enter minimum";
+            payMaxLabel.style.display = "block";
+            payMaxInput.style.display = "block";
+        }
+    }
+    function formatText(command) {
+    document.execCommand(command, false, null);
+    updateActiveStates();
+}
+
+function toggleBulletList() {
+    const editor = document.querySelector('.text-editor');
+    if (editor.queryCommandState('insertUnorderedList')) {
+        document.execCommand('insertUnorderedList', false, null); // Remove list
+    } else {
+        document.execCommand('insertUnorderedList', false, null); // Add list
+    }
+    updateActiveStates();
+}
+
+function updateActiveStates() {
+    const editor = document.querySelector('.text-editor');
+
+    // Update the state of each button
+    document.getElementById('bold-btn').classList.toggle('active', document.queryCommandState('bold'));
+    document.getElementById('italic-btn').classList.toggle('active', document.queryCommandState('italic'));
+    document.getElementById('list-btn').classList.toggle('active', document.queryCommandState('insertUnorderedList'));
+}
+
+// Initialize active states on page load
+updateActiveStates();
+
+document.addEventListener('DOMContentLoaded', () => {
+        const addEmailBtn = document.getElementById('add-email-btn');
+        const additionalEmails = document.getElementById('additional-emails');
+
+        addEmailBtn.addEventListener('click', () => {
+            const emailField = document.createElement('input');
+            emailField.type = 'email';
+            emailField.placeholder = 'Enter additional email address';
+            emailField.className = 'w-full mt-2 p-2 border rounded dark:bg-gray-800 dark:text-gray-300';
+            additionalEmails.appendChild(emailField);
+        });
+    });
+    
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Compass Landing Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .custom-button {
+      background-color: #4a90e2;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .custom-button:hover {
+      background-color: #357ABD;
+      transform: scale(1.05);
+    }
+
+    .hero-section {
+      background: linear-gradient(to right, #4a90e2, #6a11cb);
+      color: white;
+      text-align: center;
+      padding: 5rem 0;
+    }
+
+    .hero-section h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      animation: fadeInUp 1s ease-in-out;
+    }
+
+    .hero-section p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      animation: fadeInUp 1.5s ease-in-out;
+    }
+
+    .features-section h2, .features-section p {
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .feature-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      padding: 2rem;
+      border-radius: 1rem;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-2xl font-bold text-blue-600">Job Compass™</a> <!-- Link to Landing Page -->
+      <div>
+        <a href="Login-Landing-Page.html" class="text-gray-600 hover:text-blue-600 mx-2">Login</a>
+        <a href="Sign-Up.html" class="text-gray-600 hover:text-blue-600 mx-2">Sign Up</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container mx-auto px-4">
+      <h1 class="text-4xl font-bold mb-4">Find Your Dream Job</h1>
+      <p class="mb-8">Search thousands of jobs across Zamboanga city.</p>
+      <form class="flex justify-center">
+        <input type="text" class="w-2/3 p-3 rounded-l-lg" placeholder="Search for jobs...">
+        <button class="custom-button">Search</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="container mx-auto px-4 py-20 features-section">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold">Why Choose Us?</h2>
+      <p class="text-gray-600">Explore the benefits of using Job Compass</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-white p-6 rounded-lg shadow-md text-center feature-card">
+        <h3 class="text-2xl font-bold mb-4">Easy to Use</h3>
+        <p class="text-gray-600">Our platform is user-friendly and easy to navigate.</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow-md text-center feature-card">
+        <h3 class="text-2xl font-bold mb-4">Wide Range of Jobs</h3>
+        <p class="text-gray-600">Find jobs in various industries and locations within Zamboanga city.</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow-md text-center feature-card">
+        <h3 class="text-2xl font-bold mb-4">Trusted by Thousands</h3>
+        <p class="text-gray-600">We are trusted by job seekers and employers alike.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-6">
+    <div class="container mx-auto px-4 text-center">
+      <p>&copy; 2024 Job Compass. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

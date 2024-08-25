@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post a Job</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .profile-picture-container {
+            width: 10rem;
+            height: 10rem;
+            position: relative;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid #a3d8f4; /* Light blue border color */
+            transition: border-color 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-picture-container:hover {
+            border-color: #4299e1; /* Blue border color on hover */
+        }
+
+        .profile-picture-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the image covers the container */
+            object-position: center; /* Ensures the image is centered */
+        }
+
+        .profile-picture-container input {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .profile-picture-text {
+            position: absolute;
+            color: black; /* Changed to black for better visibility */
+            font-size: 1rem;
+            text-align: center;
+            pointer-events: none;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7); /* Optional for better visibility */
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea,
+        select,
+        input[type="file"],
+        input[type="number"] {
+            padding: 0.75rem;
+            width: 100%;
+            border-radius: 0.5rem;
+            border: 1px solid #3666a5; /* Default border color */
+            transition: border-color 0.3s ease;
+            background-color: #ffffff; /* Light mode background color */
+            color: #1a202c; /* Light mode text color */
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus,
+        select:focus,
+        input[type="file"]:focus,
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #4299e1; /* Focus border color */
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a202c;
+            --text-color: #cbd5e0;
+            --border-color: #2d3748;
+        }
+
+        [data-theme="dark"] body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        [data-theme="dark"] .navbar,
+        [data-theme="dark"] .footer {
+            background-color: #2d3748;
+            color: #a0aec0;
+        }
+
+        [data-theme="dark"] .profile-picture-container {
+            border-color: #2d3748;
+        }
+
+        [data-theme="dark"] input[type="text"],
+        [data-theme="dark"] input[type="email"],
+        [data-theme="dark"] textarea,
+        [data-theme="dark"] select,
+        [data-theme="dark"] input[type="file"],
+        [data-theme="dark"] input[type="number"] {
+            background-color: #2d3748; /* Dark mode background color */
+            color: #cbd5e0; /* Dark mode text color */
+            border-color: #4a5568; /* Dark mode border color */
+        }
+
+        [data-theme="dark"] input[type="text"]:focus,
+        [data-theme="dark"] input[type="email"]:focus,
+        [data-theme="dark"] textarea:focus,
+        [data-theme="dark"] select:focus,
+        [data-theme="dark"] input[type="file"]:focus,
+        [data-theme="dark"] input[type="number"]:focus {
+            border-color: #4299e1; /* Dark mode focus border color */
+        }
+
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .navbar,
+        .footer {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .navbar {
+            background-color: #ffffff; /* Light mode navbar background color */
+            color: #1a202c; /* Light mode navbar text color */
+        }
+
+        .footer {
+            background-color: #f9fafb; /* Light mode footer background color */
+            color: #4a5568; /* Light mode footer text color */
+        }
+
+        .navbar a,
+        .footer a {
+            color: #4299e1; /* Link color in light mode */
+            transition: color 0.3s ease;
+        }
+
+        .navbar a:hover,
+        .footer a:hover {
+            color: #3182ce; /* Hover color for links in light mode */
+        }
+
+        /* Dark mode specific styles */
+        [data-theme="dark"] .navbar a,
+        [data-theme="dark"] .footer a {
+            color: #4299e1; /* Link color in dark mode */
+        }
+
+        [data-theme="dark"] .navbar a:hover,
+        [data-theme="dark"] .footer a:hover {
+            color: #90cdf4; /* Hover color for links in dark mode */
+        }
+
+        [data-theme="dark"] .bg-white {
+            background-color: #2d3748; /* Dark mode background color for elements with bg-white class */
+            color: #cbd5e0; /* Dark mode text color for elements with bg-white class */
+        }
+
+        [data-theme="dark"] .text-gray-700 {
+            color: #a0aec0; /* Dark mode text color for elements with text-gray-700 class */
+        }
+
+        [data-theme="dark"] .border {
+            border-color: #4a5568; /* Dark mode border color for elements with border class */
+        }
+
+        [data-theme="dark"] .hover\:text-blue-600:hover {
+            color: #90cdf4; /* Hover color in dark mode for elements with hover:text-blue-600 class */
+        }
+
+        [data-theme="dark"] .hover\:underline:hover {
+            text-decoration: underline; /* Underline effect in dark mode for elements with hover:underline class */
+        }
+
+
+/* Base styles for both benefit and supplemental pay items */
+.benefit-item, .supplemental-pay-item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    border: 1px solid #d1d5db; /* Gray border */
+    border-radius: 0.375rem; /* Rounded corners */
+    background-color: #2d3748; /* Background color */
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Style for the icon span */
+.benefit-item .icon, .supplemental-pay-item .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    background-color: #e5e7eb; /* Gray background for the icon */
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 1.50rem; /* Size of the plus symbol */
+    color: #083a91; /* Color for the plus symbol */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-align: center;
+    line-height: 2rem;
+}
+
+/* Change icon when the checkbox is selected */
+.benefit-item input:checked ~ .icon, .supplemental-pay-item input:checked ~ .icon {
+    background-color: #4ade80; /* Green background for checked */
+    color: white; /* White checkmark */
+}
+
+.benefit-item input:checked ~ .icon::before, .supplemental-pay-item input:checked ~ .icon::before {
+    content: '✔'; /* Checkmark symbol */
+    font-size: 1.25rem; /* Size of the checkmark */
+}
+
+/* Ensure the icon shows a plus symbol when not checked */
+.benefit-item input:not(:checked) ~ .icon::before, .supplemental-pay-item input:not(:checked) ~ .icon::before {
+    content: '+'; /* Plus symbol when not checked */
+}
+
+/* Text color changes for dark mode */
+.text-gray-700.dark\:text-gray-300 {
+    color: #d1d5db; /* Light gray text color for dark mode */
+}
+
+
+    </style>
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-900">
+
+     <!-- Navbar -->
+     <nav class="navbar shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <!-- Brand Name -->
+            <div class="flex items-center">
+                <a href="#" id="title" class="text-2xl font-bold text-blue-600 dark:text-blue-300">Job Compass™</a>
+            </div>
+    
+            <!-- Hamburger Menu for Mobile View -->
+            <div class="lg:hidden">
+                <button id="menu-toggle" class="text-gray-700 dark:text-gray-300 focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+    
+    
+            <!-- Navigation Links -->
+            <div id="navbar-links" class="hidden lg:flex items-center space-x-4">
+                <a href="Job-Posting-Page.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                    <i class="fas fa-briefcase mr-1"></i> Post A Job
+                </a>
+                <a href="Job-Listings-Page.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                    <i class="fas fa-list mr-1"></i> Job Listings
+                </a>
+                <a href="Inbox.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                    <i class="fas fa-inbox mr-1"></i> Inbox
+                </a>
+                <a href="Employer-Profile.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                    <i class="fas fa-user mr-1"></i> Profile
+                </a>
+                <a href="Notification.html"class="relative hover:text-blue-600 dark:hover:text-blue-300 mx-2">
+                    <i class="fas fa-bell mr-1"></i> Notifications
+                    <span class="absolute top-0 right-0 inline-flex items-center justify-center w-4 h-4 p-1 text-xs font-bold text-white bg-red-600 rounded-full transform translate-x-2/3 -translate-y-1/2">3</span>
+                </a>
+                <a href="Employer-Homepage.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                    <i class="fas fa-home mr-1"></i> Home
+                </a>
+                <a href="Employer_Settings-Page.html"class="hover:text-blue-600 dark:hover:text-blue-300">
+                    <i class="fas fa-cog mr-1"></i> Settings
+                </a>
+                <a href="C:\Users\HP 348\OneDrive\Desktop\Capstone1-2\Landing,signup,login\Landing-Page.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                    <i class="fas fa-sign-out-alt mr-1"></i> Logout
+                </a>
+            </div>
+        </div>
+    
+        
+    
+       <!-- Mobile Menu -->
+    <div id="mobile-menu" class="lg:hidden hidden">
+        <div class="px-4 py-2 space-y-2">
+            
+            <!-- Menu Links -->
+            <a href="Employer-Homepage.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-home mr-1"></i> Home
+            </a>
+            <a href="Employer-Profile.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-user mr-1"></i> Profile
+            </a>
+    
+            <a href="Notification.html" class="relative flex items-center hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-bell mr-2 relative">
+                    <!-- Notification icon -->
+                </i>
+                Notifications
+                <span class="absolute top-0 right-0 flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-600 rounded-full -translate-y-1/2 translate-x-2">
+                    3
+                </span>
+            </a>
+            
+            <a href="Employer_Settings-Page.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-cog mr-1"></i> Settings
+            </a>
+            <a href="Inbox.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-inbox mr-1"></i> Inbox
+            </a>
+    
+            <a href="Job-Posting-Page.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-briefcase mr-1"></i> Post A Job
+            </a>
+    
+            <a href="Job-Listings-Page.html"  class="block hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-list mr-1"></i> Job Listings
+            </a>
+            <a href="C:\Users\HP 348\OneDrive\Desktop\Capstone1-2\Landing,signup,login\Landing-Page.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-sign-out-alt mr-1"></i> Logout
+            </a>
+        </div>
+    </div>
+    
+    </nav>
+
+<!-- Job Details Section -->
+<section class="container mx-auto px-4 py-20">
+    <div class="max-w-3xl mx-auto bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md border dark:border-gray-700">
+        <h2 class="text-3xl font-bold mb-8 text-center">Add pay and benefits</h2>
+        <form>
+
+
+            <div class="max-w-3xl mx-auto bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md border dark:border-gray-700">
+                <form>
+                    <!-- Expected Hours -->
+                    <div class="mb-4">
+                        <label class="block text-gray-700 dark:text-gray-300 mb-2 text-xl font-bold">Expected Hours</label>
+        
+                        <!-- Show by Dropdown -->
+                        <div class="mb-4">
+                            <label class="block text-gray-700 dark:text-gray-300 mb-2 text-lg font-bold">Show by</label>
+                            <select id="show-by" name="show-by" class="mt-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 w-full p-2 rounded font-bold">
+                                <option value="range">Range</option>
+                                <option value="fixed">Fixed hours</option>
+                                <option value="max">Maximum</option>
+                                <option value="min">Minimum</option>
+                            </select>
+                        </div>
+        
+                        <!-- Range Input -->
+                        <div id="range-input" class="hidden mb-4">
+                            <label class="block text-gray-700 dark:text-gray-300 mb-2 font-bold">From</label>
+                            <input type="number" id="range-from" name="range-from" placeholder="0" class="mt-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 w-full p-2 rounded" />
+                            <label class="block text-gray-700 dark:text-gray-300 mt-4 mb-2 font-bold">To</label>
+                            <input type="number" id="range-to" name="range-to" placeholder="0" class="mt-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 w-full p-2 rounded" />
+                            <span id="range-text" class="block text-gray-700 dark:text-gray-300 mt-2 font-bold">Hours per week</span>
+                        </div>
+        
+                        <!-- Fixed Hours Input -->
+                        <div id="fixed-hours-input" class="hidden mb-4">
+                            <label class="block text-gray-700 dark:text-gray-300 mb-2 font-bold">Fixed Hours</label>
+                            <input type="number" id="fixed-hours" name="fixed-hours" placeholder="Enter fixed hours" class="mt-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 w-full p-2 rounded" />
+                            <span id="fixed-hours-text" class="block text-gray-700 dark:text-gray-300 mt-2 font-bold">Hours per week</span>
+                        </div>
+        
+                        <!-- Minimum Input -->
+                        <div id="min-input" class="hidden mb-4">
+                            <label class="block text-gray-700 dark:text-gray-300 mb-2 font-bold">Minimum</label>
+                            <input type="number" id="min-hours" name="min-hours" placeholder="No less than" class="mt-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 w-full p-2 rounded font-bold" />
+                        </div>
+                       
+                        <!-- Maximum Input -->
+                        <div id="max-input" class="hidden mb-4">
+                            <label class="block text-gray-700 dark:text-gray-300 mb-2 font-bold">Maximum</label>
+                            <input type="number" id="max-hours" name="max-hours" placeholder="No more than" class="mt-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 w-full p-2 rounded font-bold" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+                    <div class="max-w-3xl mx-auto bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md border dark:border-gray-700">
+                        <form>
+                            <div class="max-w-3xl mx-auto bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md border dark:border-gray-700">
+                                <form>
+                                    <!-- Show Pay By -->
+                                    <div class="mb-4">
+                                        <label class="block text-gray-700 dark:text-gray-300 mb-2 text-xl font-bold">Show Pay By</label>
+                            
+                                        <select id="show-pay-by" name="show-pay-by" class="mt-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 w-full p-2 rounded font-bold" onchange="updatePayInput()">
+                                            <option value="range">Range</option>
+                                            <option value="starting-amount">Starting amount</option>
+                                            <option value="maximum-amount">Maximum amount</option>
+                                            <option value="exact-amount">Exact amount</option>
+                                        </select>
+                                    </div>
+                            
+                                    <!-- Pay Range Input -->
+                                    <div id="pay-range-input" class="mb-4">
+                                        <div class="flex space-x-4">
+                                            <div class="w-1/2">
+                                                <label id="pay-min-label" class="block text-gray-700 dark:text-gray-300 mb-2 font-bold">Minimum</label>
+                                                <div class="flex items-center">
+                                                    <span class="text-gray-700 dark:text-gray-300 font-bold">₱</span>
+                                                    <input type="number" id="pay-min" name="pay-min" placeholder="Enter minimum" class="mt-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 w-full p-2 rounded ml-1" />
+                                                </div>
+                                            </div>
+                                            <div class="w-1/2">
+                                                <label id="pay-max-label" class="block text-gray-700 dark:text-gray-300 mb-2 font-bold">Maximum</label>
+                                                <div class="flex items-center">
+                                                    <span class="text-gray-700 dark:text-gray-300 font-bold"></span>
+                                                    <input type="number" id="pay-max" name="pay-max" placeholder="Enter maximum" class="mt-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 w-full p-2 rounded ml-1" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            
+            <!-- Supplemental Pay -->
+<div class="mb-4">
+    <label class="block text-gray-700 dark:text-gray-300 my-5 text-xl font-bold">Supplemental Pay</label>
+
+    <div class="grid grid-cols-2 gap-4">
+        <label class="supplemental-pay-item flex items-center cursor-pointer">
+            <input type="checkbox" name="supplemental_pay[]" value="signing-bonus" class="hidden" />
+            <span class="icon"></span>
+            <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Signing bonus</span>
+        </label>
+        <label class="supplemental-pay-item flex items-center cursor-pointer">
+            <input type="checkbox" name="supplemental_pay[]" value="commission-pay" class="hidden" />
+            <span class="icon"></span>
+            <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Commission pay</span>
+        </label>
+        <label class="supplemental-pay-item flex items-center cursor-pointer">
+            <input type="checkbox" name="supplemental_pay[]" value="bonus-opportunities" class="hidden" />
+            <span class="icon"></span>
+            <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Bonus opportunities</span>
+        </label>
+        <label class="supplemental-pay-item flex items-center cursor-pointer">
+            <input type="checkbox" name="supplemental_pay[]" value="tips" class="hidden" />
+            <span class="icon"></span>
+            <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Tips</span>
+        </label>
+        <label class="supplemental-pay-item flex items-center cursor-pointer">
+            <input type="checkbox" name="supplemental_pay[]" value="other" class="hidden" />
+            <span class="icon"></span>
+            <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Other</span>
+        </label>
+    </div>    
+</div>
+
+           <!-- Benefits -->
+<div class="mb-4">
+    <label class="block text-gray-700 dark:text-gray-300 my-5 text-xl font-bold">Benefits</label>
+
+    <div class="grid grid-cols-2 gap-4">
+        <label class="benefit-item flex items-center cursor-pointer">
+            <input type="checkbox" name="benefits[]" value="health-insurance" class="hidden" />
+            <span class="icon"></span>
+            <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Health insurance</span>
+        </label>
+        <label class="benefit-item flex items-center cursor-pointer">
+            <input type="checkbox" name="benefits[]" value="paid-time-off" class="hidden" />
+            <span class="icon"></span>
+            <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Paid time off</span>
+        </label>
+        <label class="benefit-item flex items-center cursor-pointer">
+            <input type="checkbox" name="benefits[]" value="dental-insurance" class="hidden" />
+            <span class="icon"></span>
+            <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Dental insurance</span>
+        </label>
+        <label class="benefit-item flex items-center cursor-pointer">
+            <input type="checkbox" name="benefits[]" value="401k" class="hidden" />
+            <span class="icon"></span>
+            <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">401(k)</span>
+        </label>
+        <label class="benefit-item flex items-center cursor-pointer">
+            <input type="checkbox" name="benefits[]" value="vision-insurance" class="hidden" />
+            <span class="icon"></span>
+            <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Vision insurance</span>
+        </label>
+        <label class="benefit-item flex items-center cursor-pointer">
+            <input type="checkbox" name="benefits[]" value="flexible-schedule" class="hidden" />
+            <span class="icon"></span>
+            <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Flexible schedule</span>
+        </label>
+        <label class="benefit-item flex items-center cursor-pointer">
+            <input type="checkbox" name="benefits[]" value="tuition-reimbursement" class="hidden" />
+            <span class="icon"></span>
+            <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Tuition reimbursement</span>
+        </label>
+        <label class="benefit-item flex items-center cursor-pointer">
+            <input type="checkbox" name="benefits[]" value="life-insurance" class="hidden" />
+            <span class="icon"></span>
+            <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Life insurance</span>
+        </label>
+        <label class="benefit-item flex items-center cursor-pointer">
+            <input type="checkbox" name="benefits[]" value="401k-matching" class="hidden" />
+            <span class="icon"></span>
+            <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">401(k) matching</span>
+        </label>
+        <label class="benefit-item flex items-center cursor-pointer">
+            <input type="checkbox" name="benefits[]" value="retirement-plan" class="hidden" />
+            <span class="icon"></span>
+            <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Retirement plan</span>
+        </label>
+        <label class="benefit-item flex items-center cursor-pointer">
+            <input type="checkbox" name="benefits[]" value="referral-program" class="hidden" />
+            <span class="icon"></span>
+            <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Referral program</span>
+        </label>
+        <label class="benefit-item flex items-center cursor-pointer">
+            <input type="checkbox" name="benefits[]" value="employee-discount" class="hidden" />
+            <span class="icon"></span>
+            <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Employee discount</span>
+        </label>
+        <label class="benefit-item flex items-center cursor-pointer">
+            <input type="checkbox" name="benefits[]" value="flexible-spending-account" class="hidden" />
+            <span class="icon"></span>
+            <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Flexible spending account</span>
+        </label>
+        <label class="benefit-item flex items-center cursor-pointer">
+            <input type="checkbox" name="benefits[]" value="health-savings-account" class="hidden" />
+            <span class="icon"></span>
+            <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Health savings account</span>
+        </label>
+        <label class="benefit-item flex items-center cursor-pointer">
+            <input type="checkbox" name="benefits[]" value="relocation-assistance" class="hidden" />
+            <span class="icon"></span>
+            <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Relocation assistance</span>
+        </label>
+        <label class="benefit-item flex items-center cursor-pointer">
+            <input type="checkbox" name="benefits[]" value="parental-leave" class="hidden" />
+            <span class="icon"></span>
+            <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Parental leave</span>
+        </label>
+        <label class="benefit-item flex items-center cursor-pointer">
+            <input type="checkbox" name="benefits[]" value="professional-development-assistance" class="hidden" />
+            <span class="icon"></span>
+            <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Professional development assistance</span>
+        </label>
+        <label class="benefit-item flex items-center cursor-pointer">
+            <input type="checkbox" name="benefits[]" value="employee-assistance-program" class="hidden" />
+            <span class="icon"></span>
+            <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Employee assistance program</span>
+        </label>
+        <label class="benefit-item flex items-center cursor-pointer">
+            <input type="checkbox" name="benefits[]" value="other" class="hidden" />
+            <span class="icon"></span>
+            <span class="text-gray-700 dark:text-gray-300 ml-2 font-bold">Other</span>
+        </label>
+    </div>    
+</div>
+
+            <div class="text-center">
+                <a href="job-details.html" class="mt-8 bg-gray-600 text-white p-4 rounded-lg hover:bg-gray-700 inline-block">Back</a>
+                <a href="job-description.html" class="mt-8 bg-gray-600 text-white p-4 rounded-lg hover:bg-gray-700 inline-block">Next</a>
+            </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+
+
+    <!-- Footer -->
+    <footer class="footer py-6">
+        <div class="container mx-auto text-center text-gray-700 dark:text-gray-300">
+            &copy; 2024 Job Compass. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        function saveThemePreference() {
+            const html = document.documentElement;
+            localStorage.setItem('theme', html.dataset.theme);
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            html.dataset.theme = html.dataset.theme === "light" ? "dark" : "light";
+            saveThemePreference();
+        }
+
+        window.onload = function () {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.dataset.theme = theme;
+            document.getElementById('toggle-dark-mode').addEventListener('click', function() {
+                toggleTheme();
+            });
+        };
+
+        // Toggle mobile menu visibility
+const menuToggle = document.getElementById('menu-toggle');
+const mobileMenu = document.getElementById('mobile-menu');
+if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+}
+
+        document.addEventListener('DOMContentLoaded', function() {
+    const showBySelect = document.getElementById('show-by');
+    const rangeInput = document.getElementById('range-input');
+    const fixedHoursInput = document.getElementById('fixed-hours-input');
+    const minInput = document.getElementById('min-input');
+    const maxInput = document.getElementById('max-input');
+
+    function updateFields() {
+        const selectedOption = showBySelect.value;
+
+        // Hide all sections
+        rangeInput.classList.add('hidden');
+        fixedHoursInput.classList.add('hidden');
+        minInput.classList.add('hidden');
+        maxInput.classList.add('hidden');
+
+        // Show relevant sections based on selection
+        if (selectedOption === 'range') {
+            rangeInput.classList.remove('hidden');
+            document.getElementById('range-text').textContent = 'Hours per week';
+        } else if (selectedOption === 'fixed') {
+            fixedHoursInput.classList.remove('hidden');
+            document.getElementById('fixed-hours-text').textContent = 'Hours per week';
+        } else if (selectedOption === 'max') {
+            maxInput.classList.remove('hidden');
+            document.getElementById('max-hours').placeholder = 'No more than';
+        } else if (selectedOption === 'min') {
+            minInput.classList.remove('hidden');
+            document.getElementById('min-hours').placeholder = 'No less than';
+        }
+    }
+
+    // Initialize with the default value
+    updateFields();
+
+    // Update fields when "Show by" selection changes
+    showBySelect.addEventListener('change', updateFields);
+});
+
+function updatePayInput() {
+        const showPayBy = document.getElementById("show-pay-by").value;
+        const payMinLabel = document.getElementById("pay-min-label");
+        const payMaxLabel = document.getElementById("pay-max-label");
+        const payMinInput = document.getElementById("pay-min");
+        const payMaxInput = document.getElementById("pay-max");
+
+        if (showPayBy === "starting-amount" || showPayBy === "maximum-amount" || showPayBy === "exact-amount") {
+            payMinLabel.textContent = "Amount";
+            payMinInput.placeholder = "1";
+            payMaxLabel.style.display = "none";
+            payMaxInput.style.display = "none";
+        } else {
+            payMinLabel.textContent = "Minimum";
+            payMinInput.placeholder = "Enter minimum";
+            payMaxLabel.style.display = "block";
+            payMaxInput.style.display = "block";
+        }
+    }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume Form</title>
+  <!-- Include Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <!-- Include Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    integrity="sha512-TRn+LpHQU+Km6ZrMiEYW14snDpNhFZ/5z15t8nCv0oC7OHoiEgXJG9jXpDf8F51G53b5OqE9b8LPeWONKxR7A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    /* Additional custom CSS for fine-tuning */
+    .form-section {
+      background-color: #ffffff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-label {
+      color: #4a4a4a;
+    }
+
+    .input-field {
+      background-color: #f3f4f6;
+      border-color: #d1d5db;
+    }
+
+    .input-field:focus {
+      border-color: #4a90e2;
+      background-color: #ffffff;
+    }
+
+    .custom-button {
+      background-color: #4a90e2;
+      color: #ffffff;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      text-transform: uppercase;
+      outline: none;
+    }
+
+    .custom-button:hover {
+      background-color: #357ABD;
+      transform: scale(1.05);
+    }
+
+    .input-field::placeholder {
+      color: #6b7280;
+      font-size: 14px;
+      font-style: italic;
+    }
+
+  </style>
+</head>
+
+<body class="bg-gray-100">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md py-4">
+    <div class="container mx-auto px-4 flex justify-between items-center">
+      <a href="Landing-Page.html" class="text-2xl font-bold text-blue-600">Job Compass™</a>
+    </div>
+  </nav>
+
+  <!-- Resume Form Section -->
+  <section class="container mx-auto py-10">
+
+    <div class="max-w-xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+
+      <div class="p-6">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Jobseeker Resume Form</h2>
+
+        <form action="#" method="POST" class="space-y-6">
+          <!-- Personal Information -->
+          <div class="grid grid-cols-1 gap-y-4 md:grid-cols-2 md:gap-x-4">
+
+            <!-- First Name -->
+            <div class="mb-4">
+              <label for="first-name" class="block text-sm font-medium text-gray-700">First Name</label>
+              <input type="text" id="first-name" name="first-name"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500 input-field"
+                placeholder="Enter first name" required>
+            </div>
+
+            <!-- Last Name -->
+            <div class="mb-4">
+              <label for="last-name" class="block text-sm font-medium text-gray-700">Last Name</label>
+              <input type="text" id="last-name" name="last-name"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500 input-field"
+                placeholder="Enter last name" required>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-4">
+              <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+              <input type="email" id="email" name="email"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500 input-field"
+                placeholder="Enter email" required>
+            </div>
+
+            <!-- Phone -->
+            <div class="mb-4 flex items-center">
+              <label for="phone" class="block text-sm font-medium text-gray-700 mr-2">Phone</label>
+              <div class="phone-input-container flex items-center">
+                <img src="https://www.countryflags.io/ph/flat/32.png" alt="PH Flag" class="mr-1">
+                <span class="mr-1">+63</span>
+                <input type="tel" id="phone" name="phone"
+                  class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500 input-field"
+                  placeholder="Enter phone number (e.g., 9XXXXXXXXX)" pattern="[0-9]{10}" maxlength="10"
+                  oninput="this.value = this.value.replace(/[^0-9]/g, ''); validatePhone()" required>
+              </div>
+              <p id="phone-error" class="text-sm text-red-600 mt-1"></p>
+            </div>
+
+            <!-- Address -->
+            <div class="mb-4">
+              <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
+              <input type="text" id="address" name="address"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500 input-field"
+                placeholder="Enter address" required>
+            </div>
+
+            <!-- Date of Birth -->
+            <div class="mb-4">
+              <label for="dob" class="block text-sm font-medium text-gray-700">Date of Birth</label>
+              <input type="date" id="dob" name="dob"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500 input-field"
+                placeholder="Enter date of birth" required>
+            </div>
+
+            <!-- Gender -->
+            <div class="mb-4">
+              <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
+              <select id="gender" name="gender"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500 input-field"
+                required>
+                <option value="">Select gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <!-- Nationality -->
+            <div class="mb-4">
+              <label for="nationality" class="block text-sm font-medium text-gray-700">Nationality</label>
+              <input type="text" id="nationality" name="nationality"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500 input-field"
+                placeholder="Enter nationality" required>
+            </div>
+
+            <!-- LinkedIn Profile -->
+            <div class="mb-4">
+              <label for="linkedin" class="block text-sm font-medium text-gray-700">LinkedIn Profile</label>
+              <input type="url" id="linkedin" name="linkedin"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500 input-field"
+                placeholder="Enter LinkedIn profile URL" required>
+            </div>
+
+            <!-- Skills -->
+            <div class="mb-4">
+              <label for="skills" class="block text-sm font-medium text-gray-700">Skills (comma-separated)</label>
+              <input type="text" id="skills" name="skills"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500 input-field"
+                placeholder="Enter skills" required>
+            </div>
+
+            <!-- Education -->
+            <div class="mb-4">
+              <label for="education" class="block text-sm font-medium text-gray-700">Education</label>
+              <input type="text" id="education" name="education"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500 input-field"
+                placeholder="Enter education" required>
+            </div>
+
+            <!-- Work Experience -->
+            <div class="mb-4">
+              <label for="work-experience" class="block text-sm font-medium text-gray-700">Work Experience</label>
+              <input type="text" id="work-experience" name="work-experience"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500 input-field"
+                placeholder="Enter work experience" required>
+            </div>
+
+          </div>
+
+          <!-- Buttons -->
+          <div class="flex justify-center space-x-4">
+            <button type="submit" class="custom-button">
+              Submit
+            </button>
+
+            <a href="Landing-Page.html"
+              class="custom-button bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+              Back
+            </a>
+          </div>
+
+          <!-- Already have an account? Link -->
+          <div class="text-center mt-6">
+            <p class="text-sm text-gray-600">Already have an account? <a href="#" class="text-blue-600">Login
+                here</a></p>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-6">
+    <div class="container mx-auto px-4 text-center">
+      <p>&copy; 2024 Job Compass. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Validate phone number input for Philippine numbers
+    function validatePhone() {
+      let input = document.getElementById('phone');
+      let phoneError = document.getElementById('phone-error');
+      let phonePattern = /^[9][0-9]{9}$/; // Philippine mobile number format: starts with 9, followed by 9 digits
+
+      if (!phonePattern.test(input.value)) {
+        phoneError.textContent = 'Please enter a valid Philippine phone number.';
+        input.focus();
+        return false;
+      } else {
+        phoneError.textContent = '';
+      }
+      return true;
+    }
+  </script>
+</body>
+
+</html>

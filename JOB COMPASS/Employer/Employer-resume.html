@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employer Sign Up</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    integrity="sha512-TRn+LpHQU+Km6ZrMiEYW14snDpNhFZ/5z15t8nCv0oC7OHoiEgXJG9jXpDf8F51G53b5OqE9b8LPeWONKxR7A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    /* Additional custom CSS for fine-tuning */
+    .form-section {
+      background-color: #ffffff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-label {
+      color: #4a4a4a;
+    }
+
+    .input-field {
+      background-color: #f3f4f6;
+      border-color: #d1d5db;
+    }
+
+    .input-field:focus {
+      border-color: #4a90e2;
+      background-color: #ffffff;
+    }
+
+    .custom-button {
+      background-color: #4a90e2;
+      color: #ffffff;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      text-transform: uppercase;
+      outline: none;
+    }
+
+    .custom-button:hover {
+      background-color: #357ABD;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md py-4">
+    <div class="container mx-auto px-4 flex justify-between items-center">
+      <a href="Landing-Page.html" class="text-2xl font-bold text-blue-600">Job Compass™</a>
+    </div>
+  </nav>
+
+  <!-- Sign Up Form Section -->
+  <section class="container mx-auto py-10">
+
+    <div class="max-w-xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+
+      <div class="p-6">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Employer Sign Up</h2>
+
+        <form action="#" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()"
+          class="space-y-6">
+
+          <!-- Company Name -->
+          <div class="mb-4">
+            <label for="company-name" class="block text-sm font-medium text-gray-700">Company Name</label>
+            <input type="text" id="company-name" name="company-name"
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500 input-field"
+              placeholder="Enter company name" required>
+          </div>
+
+          <!-- Company TIN -->
+          <div class="mb-4">
+            <label for="company-tin" class="block text-sm font-medium text-gray-700">Company TIN (Tax Identification
+              Number)</label>
+            <input type="text" id="company-tin" name="company-tin"
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500 input-field"
+              placeholder="Enter TIN number" required>
+          </div>
+
+          <!-- SEC Registration Number -->
+          <div class="mb-4">
+            <label for="sec-registration" class="block text-sm font-medium text-gray-700">SEC Registration
+              Number</label>
+            <input type="text" id="sec-registration" name="sec-registration"
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500 input-field"
+              placeholder="Enter SEC registration number" required>
+          </div>
+
+          <!-- DTI Registration Number -->
+          <div class="mb-4">
+            <label for="dti-registration" class="block text-sm font-medium text-gray-700">DTI Registration
+              Number</label>
+            <input type="text" id="dti-registration" name="dti-registration"
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500 input-field"
+              placeholder="Enter DTI registration number" required>
+          </div>
+
+          <!-- Industry -->
+          <div class="mb-4">
+            <label for="industry" class="block text-sm font-medium text-gray-700">Industry</label>
+            <input type="text" id="industry" name="industry"
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500 input-field"
+              placeholder="Enter industry" required>
+          </div>
+
+          <!-- Organization Size -->
+          <div class="mb-4">
+            <label for="organization-size" class="block text-sm font-medium text-gray-700">Organization Size</label>
+            <select id="organization-size" name="organization-size"
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500 input-field"
+              required>
+              <option value="">Select size</option>
+              <option value="0–1 employees">0–1 employees</option>
+              <option value="2–10 employees">2–10 employees</option>
+              <option value="11–50 employees">11–50 employees</option>
+              <option value="51–200 employees">51–200 employees</option>
+              <option value="201–500 employees">201–500 employees</option>
+              <option value="501–1,000 employees">501–1,000 employees</option>
+              <option value="1,001–5,000 employees">1,001–5,000 employees</option>
+              <option value="5,001–10,000 employees">5,001–10,000 employees</option>
+              <option value="10,000+ employees">10,000+ employees</option>
+            </select>
+          </div>
+
+          <!-- Organization Type -->
+          <div class="mb-4">
+            <label for="organization-type" class="block text-sm font-medium text-gray-700">Organization Type</label>
+            <select id="organization-type" name="organization-type"
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500 input-field"
+              required>
+              <option value="">Select type</option>
+              <option value="Corporation">Corporation</option>
+              <option value="Partnership">Partnership</option>
+              <option value="Sole Proprietorship">Sole Proprietorship</option>
+              <option value="Nonprofit">Nonprofit</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <!-- Tagline -->
+          <div class="mb-4">
+            <label for="tagline" class="block text-sm font-medium text-gray-700">Tagline</label>
+            <input type="text" id="tagline" name="tagline"
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500 input-field"
+              placeholder="Enter tagline" required>
+          </div>
+
+          <!-- Email -->
+          <div class="mb-4">
+            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+            <input type="email" id="email" name="email"
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500 input-field"
+              placeholder="Enter email" required>
+          </div>
+
+          <!-- Address -->
+          <div class="mb-6">
+            <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
+            <input type="text" id="address" name="address"
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500 input-field"
+              placeholder="Enter address" required>
+          </div>
+
+
+          <!-- Phone -->
+          <div class="mb-4 flex items-center">
+            <label for="phone" class="block text-sm font-medium text-gray-700 mr-2">Phone</label>
+            <div class="phone-input-container flex items-center">
+              <img src="https://www.countryflags.io/ph/flat/32.png" alt="PH Flag" class="mr-1">
+              <span class="mr-1">+63</span>
+              <input type="tel" id="phone" name="phone"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500 input-field"
+                placeholder="9XXXXXXXXX" pattern="[0-9]{10}" maxlength="10"
+                oninput="this.value = this.value.replace(/[^0-9]/g, ''); validatePhone()" required>
+            </div>
+            <p id="phone-error" class="text-sm text-red-600 mt-1"></p>
+          </div>
+
+          <!-- Buttons -->
+          <div class="flex justify-center space-x-4">
+            <button type="submit"
+              class="custom-button">
+              Sign Up
+            </button>
+
+            <a href="Landing-Page.html"
+              class="custom-button bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+              Back
+            </a>
+
+             <!-- Already have an account? Link -->
+          <div class="text-center mt-6">
+            <p class="text-sm text-gray-600">Already have an account? <a href="#" class="text-blue-600">Login
+                here</a></p>
+          </div>
+
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-6">
+    <div class="container mx-auto px-4 text-center">
+      <p>&copy; 2024 Job Compass. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function validateForm() {
+      const phoneInput = document.getElementById('phone');
+      const phoneError = document.getElementById('phone-error');
+      const phonePattern = /^[0-9]{10}$/;
+
+      if (!phonePattern.test(phoneInput.value)) {
+        phoneError.textContent = 'Please enter a valid 10-digit phone number.';
+        phoneInput.focus();
+        return false;
+      } else {
+        phoneError.textContent = '';
+      }
+      return true;
+    }
+
+    // Validate phone number input to allow only numeric characters
+    function validatePhone() {
+      let input = document.getElementById('phone');
+      input.value = input.value.replace(/[^0-9]/g, ''); // Remove non-numeric characters
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job-Seeker Login</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    .custom-button {
+      background-color: #4ae270;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .custom-button:hover {
+      background-color: #0a6e48;
+      transform: scale(1.05);
+    }
+
+    .custom-button i {
+      margin-right: 10px;
+    }
+
+    .back-button {
+      background-color: #f5f5f5;
+      color: #0cce7d;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+      border: 1px solid #01995a;
+    }
+
+    .back-button:hover {
+      background-color: #e0e0e0;
+      transform: scale(1.05);
+    }
+
+    .fade-in {
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .input-field {
+      border: 1px solid #d1d5db;
+      padding: 10px;
+      border-radius: 5px;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .input-field:focus-within {
+      border-color: #07a83c;
+      outline: none;
+      box-shadow: 0 0 10px rgba(74, 144, 226, 0.3);
+    }
+
+    .input-field i {
+      margin-right: 10px;
+      color: #4a90e2;
+    }
+
+    .form-container {
+      background: linear-gradient(to bottom right, #f8fafc, #e0e7ff);
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-header {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .footer-text {
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .navbar {
+      background-color: #ffffff;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      padding: 15px 0;
+    }
+
+    .navbar a {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #4a90e2;
+      text-decoration: none;
+    }
+
+    .navbar a:hover {
+      color: #138056;
+    }
+
+    .input-icon {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #07964e;
+    }
+
+    .forgot-password {
+      display: block;
+      margin-top: 10px;
+      text-align: right;
+      color: #0eb33f;
+      font-size: 0.875rem;
+      transition: color 0.3s ease;
+    }
+
+    .forgot-password:hover {
+      color: #05741d;
+    }
+
+    .subtitle {
+      font-size: 1.125rem;
+      font-weight: 500;
+      color: #14af5a;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container mx-auto px-4 flex justify-between items-center">
+      <a href="Landing-Page.html" class="text-2xl font-bold">Job Compass™</a>
+    </div>
+  </nav>
+
+  <!-- Employer Login Form Section -->
+  <section class="container mx-auto px-4 py-20">
+    <div class="max-w-md mx-auto p-8 rounded-lg fade-in form-container">
+      <h2 class="text-3xl font-bold mb-2 text-center form-header">Login</h2>
+      <p class="subtitle text-center mb-6">Welcome to Job Seeker</p>
+      <form action="#" method="POST" onsubmit="return validateForm()">
+        <div class="mb-4">
+          <label for="email" class="block text-gray-700">Email</label>
+          <div class="input-field">
+            <i class="fas fa-envelope"></i>
+            <input type="email" id="email" name="email" class="w-full p-3" required>
+          </div>
+        </div>
+        <div class="mb-4 relative">
+          <label for="password" class="block text-gray-700">Password</label>
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="password" name="password" class="w-full p-3" required>
+            <i class="fas fa-eye input-icon" id="togglePassword"></i>
+          </div>
+          <a href="#" class="forgot-password">Forgot Password?</a>
+          <div class="text-center mt-6">
+            <p class="text-sm text-gray-600">Don't have an account? <a href="#" class="text-blue-600">Sign-Up
+                here</a></p>
+          </div>
+        </div>
+        <button type="submit" class="w-full custom-button">
+          <i class="fas fa-sign-in-alt"></i> Login
+        </button>
+      </form>
+      <a href="Landing-Page.html" class="w-full back-button">
+        <i class="fas fa-arrow-left"></i> Back to Home
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-6">
+    <div class="container mx-auto px-4 text-center">
+      <p class="footer-text">&copy; 2024 Job Compass. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function validateForm() {
+      // Add any custom validation if needed
+      return true;
+    }
+
+    // Show/Hide Password
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('#password');
+
+    togglePassword.addEventListener('click', function () {
+      // Toggle the type attribute
+      const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+      password.setAttribute('type', type);
+
+      // Toggle the eye slash icon
+      this.classList.toggle('fa-eye-slash');
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+   <style>
+/* Default styles (light mode) */
+.profile-picture-container {
+    width: 8rem;
+    height: 8rem;
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid #a3d8f4;
+    transition: border-color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-picture-container:hover {
+    border-color: #4299e1;
+}
+
+.profile-picture-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.profile-picture-container input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.profile-picture-text {
+    position: absolute;
+    color: black;
+    font-size: 1rem;
+    text-align: center;
+    pointer-events: none;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+/* Light mode styles */
+input[type="text"],
+input[type="email"],
+textarea,
+select,
+input[type="file"],
+input[type="tel"] {
+    padding: 0.75rem;
+    width: 100%;
+    border-radius: 0.5rem;
+    border: 1px solid #d2d6dc;
+    transition: border-color 0.3s ease;
+    background-color: #ffffff; /* Light mode background color for inputs */
+    color: #111827; /* Dark text color for readability */
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus,
+select:focus,
+input[type="file"]:focus,
+input[type="tel"]:focus {
+    outline: none;
+    border-color: #4299e1;
+}
+
+input[type="tel"]::placeholder {
+    color: transparent;
+}
+
+/* Dark mode styles */
+[data-theme="dark"] input[type="text"],
+[data-theme="dark"] input[type="email"],
+[data-theme="dark"] textarea,
+[data-theme="dark"] select,
+[data-theme="dark"] input[type="file"],
+[data-theme="dark"] input[type="tel"] {
+    color: #e5e7eb; /* Light text color for readability */
+    border-color: #4a5568;
+    background-color: #2d3748; /* Dark mode background color for inputs */
+}
+
+[data-theme="dark"] input[type="text"]:focus,
+[data-theme="dark"] input[type="email"]:focus,
+[data-theme="dark"] textarea:focus,
+[data-theme="dark"] select:focus,
+[data-theme="dark"] input[type="file"]:focus,
+[data-theme="dark"] input[type="tel"]:focus {
+    border-color: #4299e1;
+}
+
+[data-theme="dark"] input[type="tel"]::placeholder {
+    color: #a0aec0; /* Ensure placeholder color is readable */
+}
+
+.bg-white {
+    color: #000000;
+    background-color: #ffffff; /* Light mode background color */
+}
+
+[data-theme="dark"] .bg-white {
+    background-color: #212327; /* Dark mode background color */
+    color: #fcfcfc; /* Dark mode text color */
+}
+
+.text-gray-100 {
+    color: #030708; /* Light color for text in light mode */
+}
+
+[data-theme="dark"] .text-gray-100 {
+    color: #f3f3f3; /* Confirm dark mode text color */
+}
+
+/* Navbar and footer */
+.navbar {
+    background-color: #e7e8f7;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.footer {
+    background-color: #f9fafb;
+    color: #4a5568;
+    border-top: 1px solid #d2d6dc;
+}
+
+.navbar a,
+.footer a {
+    color: #0f1011;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover,
+.footer a:hover {
+    color: #3182ce;
+}
+
+[data-theme="dark"] .navbar,
+[data-theme="dark"] .footer {
+    background-color: #2d3748;
+    color: #e5e7eb;
+}
+
+[data-theme="dark"] .navbar a,
+[data-theme="dark"] .footer a {
+    color: #90cdf4;
+}
+
+[data-theme="dark"] .navbar a:hover,
+[data-theme="dark"] .footer a:hover {
+    color: #e5e7eb;
+}
+
+/* Form section */
+.form-section {
+    background-color: var(--bg-color, #fff);
+    color: var(--text-color, #6f60f8);
+    border: 1px solid var(--border-color, #d2d6dc);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.form-section:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.custom-placeholder::placeholder {
+    color: #a0aec0;
+    font-style: italic;
+}
+
+.flag {
+    height: 20px;
+    width: 20px;
+}
+
+.country-code {
+    color: #fbfcff; /* Tailwind's text-gray-500 */
+}
+
+input {
+    width: 100%; /* Ensures input takes the remaining space */
+    padding-left: 0; /* Removes extra padding */
+    padding-right: 16px;
+    border: none; /* Remove default border */
+    background-color: transparent; /* Keeps the background transparent to fit in the container */
+    color: #111827; /* Tailwind's text-gray-900 */
+    outline: none;
+    box-shadow: none; /* Removes default input shadow */
+    font-size: 1rem; /* Adjust font size if needed */
+}
+
+.flex {
+    display: flex;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.border {
+    border-width: 1px;
+}
+
+.rounded-md {
+    border-radius: 0.375rem;
+}
+
+/* Profile card styling */
+.profile-card {
+    background-color: #ffffff; /* Light mode background color */
+    border: 1px solid #d2d6dc;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .profile-card {
+    color: #e5e7eb;
+    background-color: #2d3748; /* Dark mode background color */
+    border-color: #4a5568;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.profile-header img {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+}
+
+.profile-header h1 {
+    color: #03070a;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.profile-header .text-gray-500 {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.profile-details {
+    color: #05090e;
+    margin-top: 1.5rem;
+}
+
+.profile-details h2 {
+    color: #03080a;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.profile-details p {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 50;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* Black with opacity */
+    transition: opacity 0.3s ease;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+}
+
+.modal-header {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.modal-body {
+    padding: 10px 0;
+}
+
+.modal-footer {
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+    text-align: right;
+}
+
+[data-theme="dark"] .modal {
+    background-color: rgba(0, 0, 0, 0.7); /* Darker background for modal */
+}
+
+[data-theme="dark"] .modal-content {
+    background-color: #2d3748;
+    border-color: #4a5568;
+    color: #e5e7eb; /* Light text color for readability */
+}
+
+[data-theme="dark"] .modal-header,
+[data-theme="dark"] .modal-footer {
+    border-color: #4a5568;
+}
+
+
+
+
+   </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+
+     <!-- Navbar -->
+<nav class="navbar shadow-md">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <!-- Brand Name -->
+        <div class="flex items-center">
+            <a href="#" id="title" class="text-2xl font-bold text-blue-600 dark:text-blue-300">Job Compass™</a>
+        </div>
+
+        <!-- Hamburger Menu for Mobile View -->
+        <div class="lg:hidden">
+            <button id="menu-toggle" class="text-gray-700 dark:text-gray-300 focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+
+        <!-- Navigation Links -->
+        <div id="navbar-links" class="hidden lg:flex items-center space-x-4">
+            <a href="User-Homepage.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-home mr-1"></i> Home
+            </a>
+            <a href="User-Profile.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-user mr-1"></i> Profile
+            </a>
+            
+            <a href="User-notification.html" class="relative hover:text-blue-600 dark:hover:text-blue-300 mx-2">
+                <i class="fas fa-bell mr-1"></i> Notifications
+                <span class="absolute top-0 right-0 inline-flex items-center justify-center w-4 h-4 p-1 text-xs font-bold text-white bg-red-600 rounded-full transform translate-x-2/3 -translate-y-1/2">3</span>
+            </a>
+            
+            <a href="User-settings.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-cog mr-1"></i> Settings
+            </a>
+            <a href="User-Inbox.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-inbox mr-1"></i> Inbox
+            </a>
+            <a href="logout.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-sign-out-alt mr-1"></i> Logout
+            </a>
+        </div>
+    </div>
+
+   <!-- Mobile Menu -->
+<div id="mobile-menu" class="lg:hidden hidden">
+    <div class="px-4 py-2 space-y-2">
+        
+        <!-- Menu Links -->
+        <a href="User-Homepage.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+            <i class="fas fa-home mr-1"></i> Home
+        </a>
+        <a href="User-Profile.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+            <i class="fas fa-user mr-1"></i> Profile
+        </a>
+
+        <a href="User-notification.html" class="relative flex items-center hover:text-blue-600 dark:hover:text-blue-300">
+            <i class="fas fa-bell mr-2 relative">
+                <!-- Notification icon -->
+            </i>
+            Notifications
+            <span class="absolute top-0 right-0 flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-600 rounded-full -translate-y-1/2 translate-x-2">
+                3
+            </span>
+        </a>
+        
+        <a href="User-settings.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+            <i class="fas fa-cog mr-1"></i> Settings
+        </a>
+        <a href="User-Inbox.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+            <i class="fas fa-inbox mr-1"></i> Inbox
+        </a>
+        <a href="logout.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+            <i class="fas fa-sign-out-alt mr-1"></i> Logout
+        </a>
+    </div>
+</div>
+
+</nav>
+    <div class="bg-gray-100 dark:bg-gray-900">
+        <div class="container mx-auto py-8">
+            <div class="grid grid-cols-4 sm:grid-cols-12 gap-6 px-4">
+                <div class="col-span-4 sm:col-span-3">
+                    <div class="bg-white dark:bg-gray-800 shadow rounded-lg p-6">
+                        <div class="flex flex-col items-center">
+                            <img src="https://randomuser.me/api/portraits/men/94.jpg" class="w-32 h-32 bg-gray-300 dark:bg-gray-700 rounded-full mb-4 shrink-0">
+                            
+                            <h1 class="text-xl font-bold text-white-900 dark:text-white">John Doe</h1>
+    
+                            <!-- Status -->
+                            <div class="mb-4">
+                                <label for="organization-type" class="block text-sm font-medium text-white-600 dark:text-gray-300">Status</label>
+                                <select id="organization-type" name="organization-type" class="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 dark:text-gray-100 focus:outline-none focus:border-blue-500 focus:ring-blue-500" required>
+                                    <option value="">Select type</option>
+                                    <option value="Full-time">Full-time</option>
+                                    <option value="Part-time">Part-time</option>
+                                    <option value="Contract">Contract</option>
+                                </select>
+                            </div>
+                            
+                            <p class="text-white-700 dark:text-gray-300">Software Developer</p>
+    
+                            <div class="mt-6 flex flex-wrap gap-4 justify-center">
+                                <!-- Profile Section -->
+                                <div class="resume-management mt-6">
+                                    <div class="flex gap-4 mt-4">
+                                        <button id="openModalBtn" class="bg-gray-500 hover:bg-blue-600 text-white py-2 px-4 rounded">Upload Resume</button>
+                                    </div>
+                                    <div class="flex gap-4 mt-4">
+                                        <button type="button" id="openProfileModalBtn" class="bg-gray-500 hover:bg-blue-600 text-white py-2 px-8 rounded">Edit Profile</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="my-6 border-t border-gray-300 dark:border-gray-600">
+                        <div class="flex flex-col">
+                            <span class="text-white-700 dark:text-gray-300 uppercase font-bold tracking-wider mb-2">Skills</span>
+                            <ul>
+                                <li class="mb-2 text-white-700 dark:text-gray-300">JavaScript</li>
+                                <li class="mb-2 text-white-700 dark:text-gray-300">React</li>
+                                <li class="mb-2 text-white-700 dark:text-gray-300">Node.js</li>
+                                <li class="mb-2 text-white-700 dark:text-gray-300">HTML/CSS</li>
+                                <li class="mb-2 text-white-700 dark:text-gray-300">Tailwind Css</li>
+                            </ul>
+                        </div>
+                        <h3 class="text-white-700 dark:text-gray-300 uppercase font-bold tracking-wider mb-2">Contact:</h3>
+                        <p class="text-white-700 dark:text-gray-300">
+                            0912121440323
+                        </p>
+                        <h3 class="text-white-700 dark:text-gray-300 uppercase font-bold tracking-wider mb-2">Address:</h3>
+                        <p class="text-white-700 dark:text-gray-300">
+                          Lorem ipsum
+                        </p>
+                    </div>
+                </div>
+                <div class="col-span-4 sm:col-span-9">
+                    <div class="bg-white dark:bg-gray-800 shadow rounded-lg p-6">
+                        <h2 class="text-xl font-bold mb-4 text-gray-white dark:text-gray-500">About Me</h2>
+                        <p class="text-white-700 dark:text-gray-300">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus est vitae tortor ullamcorper, ut
+                            vestibulum velit convallis. Aenean posuere risus non velit egestas suscipit. Nunc finibus vel ante id
+                            euismod. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam
+                            erat volutpat. Nulla vulputate pharetra tellus, in luctus risus rhoncus id.
+                        </p>
+                        
+                        <div>
+                            <h2 class="text-xl font-bold mb-4 text-white-900 dark:text-white">School</h2>
+                            <p class="text-white-700 dark:text-gray-300">Harvard University</p>
+                        </div>
+                        
+                        <h2 class="text-xl font-bold mt-6 mb-4 text-white-900 dark:text-white">Experience</h2>
+                        <div class="mb-6">
+                            <div class="flex justify-between flex-wrap gap-2 w-full">
+                                <span class="text-white-700 font-bold dark:text-gray-300">Web Developer</span>
+                                <p>
+                                    <span class="text-white-700 mr-2 dark:text-gray-300">at ABC Company</span>
+                                    <span class="text-white-700 dark:text-gray-300">2017 - 2019</span>
+                                </p>
+                            </div>
+                            <p class="mt-2 text-white-700 dark:text-gray-300">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus est vitae tortor ullamcorper, ut
+                                vestibulum velit convallis. Aenean posuere risus non velit egestas suscipit.
+                            </p>
+                        </div>
+                        <div class="mb-6">
+                            <div class="flex justify-between flex-wrap gap-2 w-full">
+                                <span class="text-white-700 font-bold dark:text-gray-300">Web Developer</span>
+                                <p>
+                                    <span class="text-white-700 mr-2 dark:text-gray-300">at ABC Company</span>
+                                    <span class="text-white-700 dark:text-gray-300">2017 - 2019</span>
+                                </p>
+                            </div>
+                            <p class="mt-2 text-white-700 dark:text-gray-300">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus est vitae tortor ullamcorper, ut
+                                vestibulum velit convallis. Aenean posuere risus non velit egestas suscipit.
+                            </p>
+                        </div>
+                        <div class="mb-6">
+                            <div class="flex justify-between flex-wrap gap-2 w-full">
+                                <span class="text-white-700 font-bold dark:text-gray-300">Web Developer</span>
+                                <p>
+                                    <span class="text-white-700 mr-2 dark:text-gray-300">at ABC Company</span>
+                                    <span class="text-white-700 dark:text-gray-300">2017 - 2019</span>
+                                </p>
+                            </div>
+                            <p class="mt-2 text-white-700 dark:text-gray-300">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus est vitae tortor ullamcorper, ut
+                                vestibulum velit convallis. Aenean posuere risus non velit egestas suscipit.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+<!-- Modal -->
+<div id="resumeModal" class="modal">
+    <div class="modal-content relative">
+        <span class="modal-close">&times;</span>
+        <div class="modal-header">
+            <h2 class="text-xl font-semibold">Upload Resume</h2>
+        </div>
+        <div class="modal-body">
+            <label for="resumeFile" class="block text-sm font-medium">Upload Resume</label>
+            <input type="file" id="resumeFile" accept=".pdf,.doc,.docx" class="border border-gray-300 rounded p-2 w-full">
+        </div>
+        <div class="modal-footer flex justify-end">
+            <button id="closeModalBtn" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg">Close</button>
+            <button id="uploadResumeBtn" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg ml-2">Upload</button>
+        </div>
+    </div>
+</div>
+
+<!-- Profile Modal -->
+<div id="profileModal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close" id="closeModalBtn">&times;</span>
+        <h2 class="text-3xl font-bold mb-8 text-center text-gray-900 dark:text-gray-100">Edit Profile</h2>
+        <form id="profileForm" enctype="multipart/form-data">
+            <div class="mb-8 flex items-center justify-center">
+                <div class="profile-picture-container">
+                    <img id="profile-img" src="default-profile.jpg" alt="" class="rounded-full object-cover object-center" loading="lazy">
+                    <input type="file" id="profile-picture" name="profile-picture" accept="image/*" onchange="handleFileInputChange(event)">
+                    <div class="profile-picture-text text-gray-900 dark:text-gray-100">Upload Image</div>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="first-name" class="block text-gray-900 dark:text-gray-100">First Name</label>
+                <input type="text" id="first-name" name="first-name" class="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 dark:text-gray-100 focus:outline-none focus:border-blue-500 focus:ring-blue-500" placeholder="Enter first name" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="last-name" class="block text-gray-900 dark:text-gray-100">Last Name</label>
+                <input type="text" id="last-name" name="last-name" class="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 dark:text-gray-100 focus:outline-none focus:border-blue-500 focus:ring-blue-500" placeholder="Enter last name" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="email" class="block text-gray-900 dark:text-gray-100">Email</label>
+                <input type="email" id="email" name="email" class="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 dark:text-gray-100 focus:outline-none focus:border-blue-500 focus:ring-blue-500" placeholder="Enter email address" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="phone" class="block text-gray-900 dark:text-gray-100">Phone Number</label>
+                <div class="flex items-center border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700">
+                    <div class="phone-prefix flex items-center pl-3">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Flag_of_the_Philippines.svg/30px-Flag_of_the_Philippines.svg.png" alt="Philippine Flag" class="flag">
+                        <span class="country-code ml-2">+63</span>
+                    </div>
+                    <input type="tel" id="phone" name="phone" class="flex-1 px-3 py-2 border-0 bg-transparent dark:bg-gray-700 dark:text-gray-100 focus:ring-0" placeholder="Enter phone number" required>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="address" class="block text-gray-900 dark:text-gray-100">Address</label>
+                <input type="text" id="address" name="address" class="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 dark:text-gray-100 focus:outline-none focus:border-blue-500 focus:ring-blue-500" placeholder="Enter address" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="education" class="block text-gray-900 dark:text-gray-100">Education</label>
+                <textarea id="education" name="education" class="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 dark:text-gray-100 focus:outline-none focus:border-blue-500 focus:ring-blue-500" placeholder="Enter education details" required></textarea>
+            </div>
+
+            <div class="mb-4">
+                <label for="experience" class="block text-gray-900 dark:text-gray-100">Experience</label>
+                <textarea id="experience" name="experience" class="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 dark:text-gray-100 focus:outline-none focus:border-blue-500 focus:ring-blue-500" placeholder="Enter work experience" required></textarea>
+            </div>
+
+            <div class="mb-4">
+                <label for="bio" class="block text-gray-900 dark:text-gray-100">Bio</label>
+                <textarea id="bio" name="bio" class="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 dark:text-gray-100 focus:outline-none focus:border-blue-500 focus:ring-blue-500" placeholder="Enter short bio" required></textarea>
+            </div>
+
+            <div class="mb-4">
+                <label for="skills" class="block text-gray-900 dark:text-gray-100">Skills</label>
+                <input type="text" id="skills" name="skills" class="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 dark:text-gray-100 focus:outline-none focus:border-blue-500 focus:ring-blue-500" placeholder="Enter skills" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="profession" class="block text-gray-900 dark:text-gray-100">Profession</label>
+                <input type="text" id="profession" name="profession" class="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 dark:text-gray-100 focus:outline-none focus:border-blue-500 focus:ring-blue-500" placeholder="Enter profession" required>
+            </div>
+
+            <div class="mb-4 text-center">
+                <button type="submit" class="py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-lg">Save Changes</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+    <!-- Footer -->
+    <footer class="footer py-4">
+        <div class="container mx-auto text-center">
+            <p class="text-gray-600 dark:text-gray-400">© 2024 Job Compass™. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for handling interactions -->
+    <script>
+        window.onload = function () {
+            const savedTheme = localStorage.getItem('theme') || 'light'; // Default to 'light'
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        };
+       // On the settings page, save the user's preference
+function saveThemePreference(theme) {
+    localStorage.setItem('theme', theme);
+}
+
+// Toggle mobile menu visibility
+const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+// On the profile page, apply the saved preference
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+});
+        function handleFileInputChange(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profile-img').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+    const uploadResumeBtn = document.getElementById('uploadResumeBtn');
+    const createResumeBtn = document.getElementById('createResumeBtn');
+    const uploadResumeSection = document.getElementById('uploadResumeSection');
+    const createResumeSection = document.getElementById('createResumeSection');
+
+    uploadResumeBtn.addEventListener('click', function() {
+        uploadResumeSection.classList.toggle('hidden');
+        createResumeSection.classList.add('hidden');
+    });
+
+    createResumeBtn.addEventListener('click', function() {
+        createResumeSection.classList.toggle('hidden');
+        uploadResumeSection.classList.add('hidden');
+    });
+});
+
+        document.addEventListener('DOMContentLoaded', function () {
+    const phoneInput = document.getElementById('phone');
+
+    phoneInput.addEventListener('input', function () {
+        // Remove non-numeric characters
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
+});
+ // Get the modal
+ var modal = document.getElementById("resumeModal");
+        // Get the button that opens the modal
+        var openModalBtn = document.getElementById("openModalBtn");
+        // Get the <span> element that closes the modal
+        var closeModalBtn = document.getElementById("closeModalBtn");
+
+        // When the user clicks the button, open the modal 
+        openModalBtn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        closeModalBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        // Open Modal
+        document.getElementById('openProfileModalBtn').addEventListener('click', function() {
+            document.getElementById('profileModal').style.display = 'block';
+        });
+
+        // Close Modal
+        document.getElementById('closeModalBtn').addEventListener('click', function() {
+            document.getElementById('profileModal').style.display = 'none';
+        });
+
+        // Close Modal when clicking outside of it
+        window.addEventListener('click', function(event) {
+            if (event.target === document.getElementById('profileModal')) {
+                document.getElementById('profileModal').style.display = 'none';
+            }
+        });
+
+        // Handle file input change
+        function handleFileInputChange(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profile-img').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+</body>
+</html>

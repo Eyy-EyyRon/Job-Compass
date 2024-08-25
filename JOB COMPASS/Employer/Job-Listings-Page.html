@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Listings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Shared styles for both light and dark modes */
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .navbar,
+        .footer {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .navbar {
+            background-color: #ffffff;
+            color: #1a202c;
+        }
+
+        .footer {
+            background-color: #f9fafb;
+            color: #4a5568;
+        }
+
+        .navbar a,
+        .footer a {
+            color: #4299e1;
+            transition: color 0.3s ease;
+        }
+
+        .navbar a:hover,
+        .footer a:hover {
+            color: #3182ce;
+        }
+
+        /* Dark mode specific styles */
+        [data-theme="dark"] {
+            --bg-color: #1a202c;
+            --text-color: #cbd5e0;
+            --accent-color: #4299e1;
+        }
+
+        [data-theme="dark"] body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        [data-theme="dark"] .navbar,
+        [data-theme="dark"] .footer {
+            background-color: #2d3748;
+            color: #a0aec0;
+        }
+
+        [data-theme="dark"] .navbar a,
+        [data-theme="dark"] .footer a {
+            color: var(--accent-color);
+        }
+
+        [data-theme="dark"] .navbar a:hover,
+        [data-theme="dark"] .footer a:hover {
+            color: #90cdf4;
+        }
+
+        [data-theme="dark"] .bg-white {
+            background-color: #2d3748;
+            color: #cbd5e0;
+        }
+
+        [data-theme="dark"] .text-gray-700 {
+            color: #a0aec0;
+        }
+
+        [data-theme="dark"] .border {
+            border-color: #4a5568;
+        }
+
+        [data-theme="dark"] .hover\:text-blue-600:hover {
+            color: #90cdf4;
+        }
+
+        [data-theme="dark"] .hover\:underline:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-900">
+
+ 
+    <!-- Navbar -->
+    <nav class="navbar shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <!-- Brand Name -->
+            <div class="flex items-center">
+                <a href="#" id="title" class="text-2xl font-bold text-blue-600 dark:text-blue-300">Job Compass™</a>
+            </div>
+    
+            <!-- Hamburger Menu for Mobile View -->
+            <div class="lg:hidden">
+                <button id="menu-toggle" class="text-gray-700 dark:text-gray-300 focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+    
+    
+            <!-- Navigation Links -->
+            <div id="navbar-links" class="hidden lg:flex items-center space-x-4">
+                <a href="Job-Posting-Page.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                    <i class="fas fa-briefcase mr-1"></i> Post A Job
+                </a>
+                <a href="Job-Listings-Page.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                    <i class="fas fa-list mr-1"></i> Job Listings
+                </a>
+                <a href="Inbox.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                    <i class="fas fa-inbox mr-1"></i> Inbox
+                </a>
+                <a href="Employer-Profile.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                    <i class="fas fa-user mr-1"></i> Profile
+                </a>
+                <a href="Notification.html"class="relative hover:text-blue-600 dark:hover:text-blue-300 mx-2">
+                    <i class="fas fa-bell mr-1"></i> Notifications
+                    <span class="absolute top-0 right-0 inline-flex items-center justify-center w-4 h-4 p-1 text-xs font-bold text-white bg-red-600 rounded-full transform translate-x-2/3 -translate-y-1/2">3</span>
+                </a>
+                <a href="Employer-Homepage.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                    <i class="fas fa-home mr-1"></i> Home
+                </a>
+                <a href="Employer_Settings-Page.html"class="hover:text-blue-600 dark:hover:text-blue-300">
+                    <i class="fas fa-cog mr-1"></i> Settings
+                </a>
+                <a href="C:\Users\HP 348\OneDrive\Desktop\Capstone1-2\Landing,signup,login\Landing-Page.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                    <i class="fas fa-sign-out-alt mr-1"></i> Logout
+                </a>
+            </div>
+        </div>
+    
+        
+    
+       <!-- Mobile Menu -->
+    <div id="mobile-menu" class="lg:hidden hidden">
+        <div class="px-4 py-2 space-y-2">
+            
+            <!-- Menu Links -->
+            <a href="Employer-Homepage.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-home mr-1"></i> Home
+            </a>
+            <a href="Employer-Profile.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-user mr-1"></i> Profile
+            </a>
+    
+            <a href="Notification.html" class="relative flex items-center hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-bell mr-2 relative">
+                    <!-- Notification icon -->
+                </i>
+                Notifications
+                <span class="absolute top-0 right-0 flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-600 rounded-full -translate-y-1/2 translate-x-2">
+                    3
+                </span>
+            </a>
+            
+            <a href="Employer_Settings-Page.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-cog mr-1"></i> Settings
+            </a>
+            <a href="Inbox.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-inbox mr-1"></i> Inbox
+            </a>
+    
+            <a href="Job-Posting-Page.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-briefcase mr-1"></i> Post A Job
+            </a>
+    
+            <a href="Job-Listings-Page.html"  class="block hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-list mr-1"></i> Job Listings
+            </a>
+            <a href="C:\Users\HP 348\OneDrive\Desktop\Capstone1-2\Landing,signup,login\Landing-Page.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-sign-out-alt mr-1"></i> Logout
+            </a>
+        </div>
+    </div>
+    
+    </nav>
+
+    <!-- Job Listings Section -->
+    <section class="container mx-auto px-4 py-20">
+        <div class="max-w-3xl mx-auto">
+
+            <!-- Job Card Example (Filled Out with Edit and Delete Options) -->
+<div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md border dark:border-gray-700 mb-8">
+    <div class="flex justify-between items-center mb-4">
+        <h2 class="text-xl font-bold">Web Developer</h2>
+        <div class="flex space-x-2">
+            <!-- Edit Button -->
+            <button type="button" class="bg-green-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 transition-colors duration-200" onclick="openModal('editJobModal')">Edit</button>
+            <!-- Delete Button -->
+            <button type="button" class="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 transition-colors duration-200" onclick="confirmDelete('jobCardId')">Delete</button>
+        </div>
+    </div>
+    <p class="text-gray-700 dark:text-gray-300 mb-4">Company Inc. - Full-time - San Francisco, CA</p>
+
+    <!-- Job Details -->
+    <p class="text-gray-700 dark:text-gray-300 mb-4"><strong>Number of Openings:</strong> 3 Openings</p>
+    <p class="text-gray-700 dark:text-gray-300 mb-4"><strong>Job Type:</strong> Full-time</p>
+    <p class="text-gray-700 dark:text-gray-300 mb-4"><strong>Expected Hours per Week:</strong> 40 Hours</p>
+    <p class="text-gray-700 dark:text-gray-300 mb-4"><strong>Schedule:</strong> Monday to Friday, 9 AM - 5 PM</p>
+    <p class="text-gray-700 dark:text-gray-300 mb-4"><strong>Pay:</strong> $70,000 - $90,000 annually</p>
+    <p class="text-gray-700 dark:text-gray-300 mb-4"><strong>Supplemental Pay:</strong> Annual bonus and stock options</p>
+    <p class="text-gray-700 dark:text-gray-300 mb-4"><strong>Benefits:</strong> Health, Dental, Vision Insurance, and 401(k)</p>
+    <p class="text-gray-700 dark:text-gray-300 mb-4"><strong>Job Description:</strong> Develop and maintain web applications. Work with the team to design and implement new features.</p>
+    <p class="text-gray-700 dark:text-gray-300 mb-4"><strong>Application Method:</strong> Apply through our website or send a resume to jobs@company.com</p>
+    <p class="text-gray-700 dark:text-gray-300 mb-4"><strong>Candidates Contact You (Email):</strong> Yes</p>
+    <p class="text-gray-700 dark:text-gray-300 mb-4"><strong>Candidates Contact You (Phone):</strong> Yes</p>
+    <p class="text-gray-700 dark:text-gray-300 mb-4"><strong>Fair Chance Hiring:</strong> People with criminal record are allowed to apply</p>
+    <p class="text-gray-700 dark:text-gray-300 mb-4"><strong>Hiring Timeline:</strong> Enter Hiring Timeline</p>
+
+    <!-- View Tags -->
+    <div class="flex flex-wrap gap-2 mt-4">
+        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors duration-200 cursor-pointer" onclick="openModal('jobTitleModal')">Job Title</span>
+        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors duration-200 cursor-pointer" onclick="openModal('companyModal')">Company</span>
+        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors duration-200 cursor-pointer" onclick="openModal('openingsModal')">Openings</span>
+        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors duration-200 cursor-pointer" onclick="openModal('locationModal')">Location</span>
+        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors duration-200 cursor-pointer" onclick="openModal('jobTypeModal')">Job Type</span>
+        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors duration-200 cursor-pointer" onclick="openModal('hoursPerWeekModal')">Hours Per Week</span>
+        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors duration-200 cursor-pointer" onclick="openModal('scheduleModal')">Schedule</span>
+        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors duration-200 cursor-pointer" onclick="openModal('payModal')">Pay</span>
+        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors duration-200 cursor-pointer" onclick="openModal('supplementalPayModal')">Supplemental Pay</span>
+        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors duration-200 cursor-pointer" onclick="openModal('benefitsModal')">Benefits</span>
+        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors duration-200 cursor-pointer" onclick="openModal('jobDescriptionModal')">Job Description</span>
+        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors duration-200 cursor-pointer" onclick="openModal('applicationMethodModal')">Application Method</span>
+        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors duration-200 cursor-pointer" onclick="openModal('candidatesContactEmailModal')">Candidates Contact Email</span>
+        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors duration-200 cursor-pointer" onclick="openModal('candidatesContactPhoneModal')">Candidates Contact Phone</span>
+        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors duration-200 cursor-pointer" onclick="openModal('fairChanceHiringModal')">Fair Chance Hiring</span>
+        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors duration-200 cursor-pointer" onclick="openModal('hiringTimelineModal')">Hiring Timeline</span>
+    </div>
+</div>
+
+
+            <!-- Another Job Card Example -->
+           <!-- Job Card Example (Filled Out with Edit and Delete Options) -->
+<div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md border dark:border-gray-700 mb-8">
+    <div class="flex justify-between items-center mb-4">
+        <h2 class="text-xl font-bold">Web Developer</h2>
+        <div class="flex space-x-2">
+            <!-- Edit Button -->
+            <button type="button" class="bg-green-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 transition-colors duration-200" onclick="openModal('editJobModal')">Edit</button>
+            <!-- Delete Button -->
+            <button type="button" class="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 transition-colors duration-200" onclick="confirmDelete('jobCardId')">Delete</button>
+        </div>
+    </div>
+    <p class="text-gray-700 dark:text-gray-300 mb-4">Company Inc. - Full-time - San Francisco, CA</p>
+
+    <!-- Job Details -->
+    <p class="text-gray-700 dark:text-gray-300 mb-4"><strong>Number of Openings:</strong> 3 Openings</p>
+    <p class="text-gray-700 dark:text-gray-300 mb-4"><strong>Job Type:</strong> Full-time</p>
+    <p class="text-gray-700 dark:text-gray-300 mb-4"><strong>Expected Hours per Week:</strong> 40 Hours</p>
+    <p class="text-gray-700 dark:text-gray-300 mb-4"><strong>Schedule:</strong> Monday to Friday, 9 AM - 5 PM</p>
+    <p class="text-gray-700 dark:text-gray-300 mb-4"><strong>Pay:</strong> $70,000 - $90,000 annually</p>
+    <p class="text-gray-700 dark:text-gray-300 mb-4"><strong>Supplemental Pay:</strong> Annual bonus and stock options</p>
+    <p class="text-gray-700 dark:text-gray-300 mb-4"><strong>Benefits:</strong> Health, Dental, Vision Insurance, and 401(k)</p>
+    <p class="text-gray-700 dark:text-gray-300 mb-4"><strong>Job Description:</strong> Develop and maintain web applications. Work with the team to design and implement new features.</p>
+    <p class="text-gray-700 dark:text-gray-300 mb-4"><strong>Application Method:</strong> Apply through our website or send a resume to jobs@company.com</p>
+    <p class="text-gray-700 dark:text-gray-300 mb-4"><strong>Candidates Contact You (Email):</strong> Yes</p>
+    <p class="text-gray-700 dark:text-gray-300 mb-4"><strong>Candidates Contact You (Phone):</strong> Yes</p>
+    <p class="text-gray-700 dark:text-gray-300 mb-4"><strong>Fair Chance Hiring:</strong> People with criminal record are allowed to apply</p>
+    <p class="text-gray-700 dark:text-gray-300 mb-4"><strong>Hiring Timeline:</strong> Enter Hiring Timeline</p>
+
+    <!-- View Tags -->
+    <div class="flex flex-wrap gap-2 mt-4">
+        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors duration-200 cursor-pointer" onclick="openModal('jobTitleModal')">Job Title</span>
+        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors duration-200 cursor-pointer" onclick="openModal('companyModal')">Company</span>
+        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors duration-200 cursor-pointer" onclick="openModal('openingsModal')">Openings</span>
+        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors duration-200 cursor-pointer" onclick="openModal('locationModal')">Location</span>
+        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors duration-200 cursor-pointer" onclick="openModal('jobTypeModal')">Job Type</span>
+        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors duration-200 cursor-pointer" onclick="openModal('hoursPerWeekModal')">Hours Per Week</span>
+        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors duration-200 cursor-pointer" onclick="openModal('scheduleModal')">Schedule</span>
+        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors duration-200 cursor-pointer" onclick="openModal('payModal')">Pay</span>
+        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors duration-200 cursor-pointer" onclick="openModal('supplementalPayModal')">Supplemental Pay</span>
+        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors duration-200 cursor-pointer" onclick="openModal('benefitsModal')">Benefits</span>
+        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors duration-200 cursor-pointer" onclick="openModal('jobDescriptionModal')">Job Description</span>
+        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors duration-200 cursor-pointer" onclick="openModal('applicationMethodModal')">Application Method</span>
+        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors duration-200 cursor-pointer" onclick="openModal('candidatesContactEmailModal')">Candidates Contact Email</span>
+        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors duration-200 cursor-pointer" onclick="openModal('candidatesContactPhoneModal')">Candidates Contact Phone</span>
+        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors duration-200 cursor-pointer" onclick="openModal('fairChanceHiringModal')">Fair Chance Hiring</span>
+        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors duration-200 cursor-pointer" onclick="openModal('hiringTimelineModal')">Hiring Timeline</span>
+    </div>
+</div>
+
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer py-6">
+        <div class="container mx-auto text-center text-gray-700 dark:text-gray-300">
+            &copy; 2024 Job Compass. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        function saveThemePreference(theme) {
+            localStorage.setItem('theme', theme);
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === "light" ? "dark" : "light";
+            html.setAttribute('data-theme', newTheme);
+            saveThemePreference(newTheme);
+        }
+
+        window.addEventListener('load', function () {
+            const theme = localStorage.getItem('theme') || 'light';
+            const html = document.documentElement;
+            html.setAttribute('data-theme', theme);
+            document.getElementById('toggle-dark-mode').addEventListener('click', toggleTheme);
+        });
+                // Toggle mobile menu visibility
+const menuToggle = document.getElementById('menu-toggle');
+const mobileMenu = document.getElementById('mobile-menu');
+if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+}
+
+    </script>
+
+</body>
+
+</html>

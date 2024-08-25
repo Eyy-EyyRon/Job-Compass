@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employer Homepage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS styles for input, textarea, and select */
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        textarea,
+        select {
+            padding: 0.75rem;
+            width: 100%;
+            border-radius: 0.5rem;
+            border: 1px solid #e2e8f0;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="number"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #4299e1;
+        }
+
+        /* Placeholder color handling */
+        ::placeholder {
+            color: #a0aec0; /* Default placeholder color for light mode */
+        }
+
+        /* Dark mode specific styles */
+        [data-theme="dark"] {
+            --bg-color: #1a202c;
+            --text-color: #cbd5e0; /* Light text color on dark background */
+            --accent-color: #4299e1;
+            --border-color: #2d3748;
+            --placeholder-color: #a0aec0; /* Placeholder color in dark mode */
+        }
+
+        [data-theme="dark"] body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        [data-theme="dark"] .navbar,
+        [data-theme="dark"] .footer {
+            background-color: #2d3748;
+            color: #a0aec0;
+        }
+
+        [data-theme="dark"] input[type="text"],
+        [data-theme="dark"] input[type="email"],
+        [data-theme="dark"] input[type="number"],
+        [data-theme="dark"] textarea,
+        [data-theme="dark"] select {
+            background-color: #2d3748;
+            color: var(--text-color); /* Text color in dark mode */
+            border-color: #4a5568;
+        }
+
+        [data-theme="dark"] input[type="text"]:focus,
+        [data-theme="dark"] input[type="email"]:focus,
+        [data-theme="dark"] input[type="number"]:focus,
+        [data-theme="dark"] textarea:focus,
+        [data-theme="dark"] select:focus {
+            border-color: #4299e1;
+        }
+
+        /* Placeholder color adjustment for dark mode */
+        [data-theme="dark"] ::placeholder {
+            color: #a0aec0; /* Adjusted placeholder color in dark mode */
+        }
+
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .navbar,
+        .footer {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .navbar {
+            background-color: #ffffff;
+            color: #1a202c;
+        }
+
+        .footer {
+            background-color: #f9fafb;
+            color: #4a5568;
+        }
+
+        .navbar a,
+        .footer a {
+            color: #16181a;
+            transition: color 0.3s ease;
+        }
+
+        .navbar a:hover,
+        .footer a:hover {
+            color: #3182ce;
+        }
+
+        /* Dark mode specific styles */
+        [data-theme="dark"] {
+            --bg-color: #1a202c;
+            --text-color: #1961af;
+            --accent-color: #4299e1;
+        }
+
+        [data-theme="dark"] body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        [data-theme="dark"] .navbar,
+        [data-theme="dark"] .footer {
+            background-color: #2d3748;
+            color: #a0aec0;
+        }
+
+        [data-theme="dark"] .navbar a,
+        [data-theme="dark"] .footer a {
+            color: var(--accent-color);
+        }
+
+        [data-theme="dark"] .navbar a:hover,
+        [data-theme="dark"] .footer a:hover {
+            color: #90cdf4;
+        }
+
+        [data-theme="dark"] .bg-white {
+            background-color: #2d3748;
+            color: #cbd5e0;
+        }
+
+        [data-theme="dark"] .text-gray-700 {
+            color: #325d96;
+        }
+
+        [data-theme="dark"] .border {
+            border-color: #4a5568;
+        }
+
+        [data-theme="dark"] .hover\:text-blue-600:hover {
+            color: #90cdf4;
+        }
+
+        [data-theme="dark"] .hover\:underline:hover {
+            text-decoration: underline;
+        }
+
+        .dark\:bg-gray-700 {
+            background-color: #4a5568; /* Dark gray background */
+        }
+
+        .dark\:text-white {
+            color: #ffffff; /* White text color */
+        }
+
+        .dark\:hover\:bg-gray-600 {
+            background-color: #2d3748; /* Darker gray background on hover */
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+
+    <!-- Navbar -->
+<nav class="navbar shadow-md">
+   <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+       <!-- Brand Name -->
+       <div class="flex items-center">
+           <a href="#" id="title" class="text-2xl font-bold text-blue-600 dark:text-blue-300">Job Compass™</a>
+       </div>
+
+       <!-- Hamburger Menu for Mobile View -->
+       <div class="lg:hidden">
+           <button id="menu-toggle" class="text-gray-700 dark:text-gray-300 focus:outline-none">
+               <i class="fas fa-bars"></i>
+           </button>
+       </div>
+
+
+       <!-- Navigation Links -->
+       <div id="navbar-links" class="hidden lg:flex items-center space-x-4">
+           <a href="Job-Posting-Page.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+               <i class="fas fa-briefcase mr-1"></i> Post A Job
+           </a>
+           <a href="Job-Listings-Page.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+               <i class="fas fa-list mr-1"></i> Job Listings
+           </a>
+           <a href="Inbox.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+               <i class="fas fa-inbox mr-1"></i> Inbox
+           </a>
+           <a href="Employer-Profile.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+               <i class="fas fa-user mr-1"></i> Profile
+           </a>
+           <a href="Notification.html"class="relative hover:text-blue-600 dark:hover:text-blue-300 mx-2">
+               <i class="fas fa-bell mr-1"></i> Notifications
+               <span class="absolute top-0 right-0 inline-flex items-center justify-center w-4 h-4 p-1 text-xs font-bold text-white bg-red-600 rounded-full transform translate-x-2/3 -translate-y-1/2">3</span>
+           </a>
+           <a href="Employer-Homepage.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+               <i class="fas fa-home mr-1"></i> Home
+           </a>
+           <a href="Employer_Settings-Page.html"class="hover:text-blue-600 dark:hover:text-blue-300">
+               <i class="fas fa-cog mr-1"></i> Settings
+           </a>
+           <a href="C:\Users\HP 348\OneDrive\Desktop\Capstone1-2\Landing,signup,login\Landing-Page.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+               <i class="fas fa-sign-out-alt mr-1"></i> Logout
+           </a>
+       </div>
+   </div>
+
+   
+
+  <!-- Mobile Menu -->
+<div id="mobile-menu" class="lg:hidden hidden">
+   <div class="px-4 py-2 space-y-2">
+       
+       <!-- Menu Links -->
+       <a href="Employer-Homepage.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+           <i class="fas fa-home mr-1"></i> Home
+       </a>
+       <a href="Employer-Profile.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+           <i class="fas fa-user mr-1"></i> Profile
+       </a>
+
+       <a href="Notification.html" class="relative flex items-center hover:text-blue-600 dark:hover:text-blue-300">
+           <i class="fas fa-bell mr-2 relative">
+               <!-- Notification icon -->
+           </i>
+           Notifications
+           <span class="absolute top-0 right-0 flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-600 rounded-full -translate-y-1/2 translate-x-2">
+               3
+           </span>
+       </a>
+       
+       <a href="Employer_Settings-Page.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+           <i class="fas fa-cog mr-1"></i> Settings
+       </a>
+       <a href="Inbox.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+           <i class="fas fa-inbox mr-1"></i> Inbox
+       </a>
+
+       <a href="Job-Posting-Page.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+           <i class="fas fa-briefcase mr-1"></i> Post A Job
+       </a>
+
+       <a href="Job-Listings-Page.html"  class="block hover:text-blue-600 dark:hover:text-blue-300">
+           <i class="fas fa-list mr-1"></i> Job Listings
+       </a>
+       <a href="C:\Users\HP 348\OneDrive\Desktop\Capstone1-2\Landing,signup,login\Landing-Page.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+           <i class="fas fa-sign-out-alt mr-1"></i> Logout
+       </a>
+   </div>
+</div>
+
+</nav>
+
+
+    <!-- Dashboard Section -->
+    <div class="w-screen">
+        <div class="mx-auto grid max-w-screen-lg gap-4 p-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div class="max-w-md rounded-lg border px-6 pt-6 pb-10">
+            <div class="inline-block rounded-full border-8 border-emerald-50 bg-emerald-200 p-2 text-emerald-500">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="float-right h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+            </svg>
+            <p class="text-sm font-medium text-white-500">Vistors</p>
+            <p class="text-4xl font-medium text-white-800">24,430</p>
+            <span class="float-right rounded-full bg-rose-100 px-1 text-sm font-medium text-rose-600">
+              <svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4 pb-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 13l-5 5m0 0l-5-5m5 5V6" />
+              </svg>
+              3%</span
+            >
+          </div>
+      
+          <div class="max-w-md rounded-lg border px-6 pt-6 pb-10">
+            <div class="inline-block rounded-full border-8 border-emerald-50 bg-emerald-200 p-2 text-emerald-500">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="float-right h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+            </svg>
+            <p class="text-sm font-medium text-white-500">Members</p>
+            <p class="text-4xl font-medium text-white-800">3,405</p>
+            <span class="float-right rounded-full bg-emerald-100 px-1 text-sm font-medium text-emerald-600">
+              <svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4 pb-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 11l5-5m0 0l5 5m-5-5v12" />
+              </svg>
+              23%</span
+            >
+          </div>
+      
+          <div class="max-w-md rounded-lg border px-6 pt-6 pb-10">
+            <div class="inline-block rounded-full border-8 border-emerald-50 bg-emerald-200 p-2 text-emerald-500">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="float-right h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+            </svg>
+            <p class="text-sm font-medium text-white-500">Active Now</p>
+            <p class="text-4xl font-medium text-white-800">405</p>
+            <div class="float-right flex -space-x-2">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+          <!-- Hero Section -->
+    <section class="container mx-auto px-4 py-12 md:py-20">
+        <div class="max-w-3xl mx-auto bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md border dark:border-gray-700">
+            <h2 class="text-3xl font-bold mb-6 text-center text-gray-800 dark:text-gray-300">Welcome to Job Compass</h2>
+            <p class="mb-6 text-gray-700 dark:text-gray-300 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut gravida erat id augue consectetur, in feugiat purus consectetur. Integer at nisl et lectus posuere posuere.</p>
+            <div class="flex justify-center">
+                <a href="Job-Posting-Page.html" class="bg-blue-600 text-white py-3 px-8 rounded-lg hover:bg-blue-700">Post a Job</a>
+                <a href="Job-Listings-Page.html" class="ml-4 bg-gray-300 dark:bg-gray-700 dark:text-white py-3 px-8 rounded-lg hover:bg-gray-400 dark:hover:bg-gray-600">View Job Listings</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-gray-800 py-6">
+        <div class="container mx-auto text-center text-gray-300">
+            &copy; 2024 Job Compass. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- JavaScript for Counter Simulation (Dummy) -->
+    <script>
+         // Run when the window loads
+window.onload = function () {
+    const savedTheme = localStorage.getItem('theme') || 'light'; // Default to 'light'
+    document.documentElement.setAttribute('data-theme', savedTheme);
+};
+
+// Save the user's theme preference
+function saveThemePreference(theme) {
+    localStorage.setItem('theme', theme);
+}
+
+// Toggle mobile menu visibility
+const menuToggle = document.getElementById('menu-toggle');
+const mobileMenu = document.getElementById('mobile-menu');
+if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+}
+    </script>
+
+</body>
+
+</html>
+

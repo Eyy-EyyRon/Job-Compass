@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post a Job</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+
+        input[type="text"],
+        input[type="email"],
+        textarea,
+        select,
+        input[type="file"],
+        input[type="number"] {
+            padding: 0.75rem;
+            width: 100%;
+            border-radius: 0.5rem;
+            border: 1px solid #3666a5; /* Default border color */
+            transition: border-color 0.3s ease;
+            background-color: #ffffff; /* Light mode background color */
+            color: #1a202c; /* Light mode text color */
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus,
+        select:focus,
+        input[type="file"]:focus,
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #4299e1; /* Focus border color */
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a202c;
+            --text-color: #cbd5e0;
+            --border-color: #2d3748;
+        }
+
+        [data-theme="dark"] body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        [data-theme="dark"] .navbar,
+        [data-theme="dark"] .footer {
+            background-color: #2d3748;
+            color: #a0aec0;
+        }
+
+        [data-theme="dark"] .profile-picture-container {
+            border-color: #2d3748;
+        }
+
+        [data-theme="dark"] input[type="text"],
+        [data-theme="dark"] input[type="email"],
+        [data-theme="dark"] textarea,
+        [data-theme="dark"] select,
+        [data-theme="dark"] input[type="file"],
+        [data-theme="dark"] input[type="number"] {
+            background-color: #2d3748; /* Dark mode background color */
+            color: #cbd5e0; /* Dark mode text color */
+            border-color: #4a5568; /* Dark mode border color */
+        }
+
+        [data-theme="dark"] input[type="text"]:focus,
+        [data-theme="dark"] input[type="email"]:focus,
+        [data-theme="dark"] textarea:focus,
+        [data-theme="dark"] select:focus,
+        [data-theme="dark"] input[type="file"]:focus,
+        [data-theme="dark"] input[type="number"]:focus {
+            border-color: #4299e1; /* Dark mode focus border color */
+        }
+
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .navbar,
+        .footer {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .navbar {
+            background-color: #ffffff; /* Light mode navbar background color */
+            color: #1a202c; /* Light mode navbar text color */
+        }
+
+        .footer {
+            background-color: #f9fafb; /* Light mode footer background color */
+            color: #4a5568; /* Light mode footer text color */
+        }
+
+        .navbar a,
+        .footer a {
+            color: #4299e1; /* Link color in light mode */
+            transition: color 0.3s ease;
+        }
+
+        .navbar a:hover,
+        .footer a:hover {
+            color: #3182ce; /* Hover color for links in light mode */
+        }
+
+        /* Dark mode specific styles */
+        [data-theme="dark"] .navbar a,
+        [data-theme="dark"] .footer a {
+            color: #4299e1; /* Link color in dark mode */
+        }
+
+        [data-theme="dark"] .navbar a:hover,
+        [data-theme="dark"] .footer a:hover {
+            color: #90cdf4; /* Hover color for links in dark mode */
+        }
+
+        [data-theme="dark"] .bg-white {
+            background-color: #2d3748; /* Dark mode background color for elements with bg-white class */
+            color: #cbd5e0; /* Dark mode text color for elements with bg-white class */
+        }
+
+        [data-theme="dark"] .text-gray-700 {
+            color: #a0aec0; /* Dark mode text color for elements with text-gray-700 class */
+        }
+
+        [data-theme="dark"] .border {
+            border-color: #4a5568; /* Dark mode border color for elements with border class */
+        }
+
+        [data-theme="dark"] .hover\:text-blue-600:hover {
+            color: #90cdf4; /* Hover color in dark mode for elements with hover:text-blue-600 class */
+        }
+
+        [data-theme="dark"] .hover\:underline:hover {
+            text-decoration: underline; /* Underline effect in dark mode for elements with hover:underline class */
+        }
+
+    </style>
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-900">
+
+     <!-- Navbar -->
+     <nav class="navbar shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <!-- Brand Name -->
+            <div class="flex items-center">
+                <a href="#" id="title" class="text-2xl font-bold text-blue-600 dark:text-blue-300">Job Compass™</a>
+            </div>
+    
+            <!-- Hamburger Menu for Mobile View -->
+            <div class="lg:hidden">
+                <button id="menu-toggle" class="text-gray-700 dark:text-gray-300 focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+    
+    
+            <!-- Navigation Links -->
+            <div id="navbar-links" class="hidden lg:flex items-center space-x-4">
+                <a href="Job-Posting-Page.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                    <i class="fas fa-briefcase mr-1"></i> Post A Job
+                </a>
+                <a href="Job-Listings-Page.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                    <i class="fas fa-list mr-1"></i> Job Listings
+                </a>
+                <a href="Inbox.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                    <i class="fas fa-inbox mr-1"></i> Inbox
+                </a>
+                <a href="Employer-Profile.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                    <i class="fas fa-user mr-1"></i> Profile
+                </a>
+                <a href="Notification.html"class="relative hover:text-blue-600 dark:hover:text-blue-300 mx-2">
+                    <i class="fas fa-bell mr-1"></i> Notifications
+                    <span class="absolute top-0 right-0 inline-flex items-center justify-center w-4 h-4 p-1 text-xs font-bold text-white bg-red-600 rounded-full transform translate-x-2/3 -translate-y-1/2">3</span>
+                </a>
+                <a href="Employer-Homepage.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                    <i class="fas fa-home mr-1"></i> Home
+                </a>
+                <a href="Employer_Settings-Page.html"class="hover:text-blue-600 dark:hover:text-blue-300">
+                    <i class="fas fa-cog mr-1"></i> Settings
+                </a>
+                <a href="C:\Users\HP 348\OneDrive\Desktop\Capstone1-2\Landing,signup,login\Landing-Page.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                    <i class="fas fa-sign-out-alt mr-1"></i> Logout
+                </a>
+            </div>
+        </div>
+    
+        
+    
+       <!-- Mobile Menu -->
+    <div id="mobile-menu" class="lg:hidden hidden">
+        <div class="px-4 py-2 space-y-2">
+            
+            <!-- Menu Links -->
+            <a href="Employer-Homepage.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-home mr-1"></i> Home
+            </a>
+            <a href="Employer-Profile.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-user mr-1"></i> Profile
+            </a>
+    
+            <a href="Notification.html" class="relative flex items-center hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-bell mr-2 relative">
+                    <!-- Notification icon -->
+                </i>
+                Notifications
+                <span class="absolute top-0 right-0 flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-600 rounded-full -translate-y-1/2 translate-x-2">
+                    3
+                </span>
+            </a>
+            
+            <a href="Employer_Settings-Page.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-cog mr-1"></i> Settings
+            </a>
+            <a href="Inbox.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-inbox mr-1"></i> Inbox
+            </a>
+    
+            <a href="Job-Posting-Page.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-briefcase mr-1"></i> Post A Job
+            </a>
+    
+            <a href="Job-Listings-Page.html"  class="block hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-list mr-1"></i> Job Listings
+            </a>
+            <a href="C:\Users\HP 348\OneDrive\Desktop\Capstone1-2\Landing,signup,login\Landing-Page.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-sign-out-alt mr-1"></i> Logout
+            </a>
+        </div>
+    </div>
+    
+    </nav>
+
+<!-- Main Section -->
+<section class="p-4 max-w-3xl mx-auto bg-white rounded-lg shadow-md dark:bg-gray-800">
+    <!-- Set Preferences -->
+    <div class="mb-4">
+        <h2 class="text-xl font-bold mb-3">Set Preferences</h2>
+        
+        <!-- Communication Preferences -->
+        <div class="mb-4">
+            <h3 class="text-lg font-semibold mb-2">Communication Preferences</h3>
+            <label for="daily-updates" class="block text-gray-700 dark:text-gray-300">Send daily updates to</label>
+            <input type="email" id="daily-updates" placeholder="Enter email address" class="w-full mt-1 p-1.5 border rounded dark:bg-gray-800 dark:text-gray-300">
+            <div id="additional-emails" class="mt-2">
+                <!-- Dynamic email fields will be added here -->
+            </div>
+            <button type="button" id="add-email-btn" class="text-blue-600 dark:text-blue-300 mt-1 text-sm">+ Add another email</button>
+        </div>
+
+        <!-- Let Potential Candidates Contact -->
+        <div class="mb-4">
+            <h3 class="text-lg font-semibold mb-2">Let potential candidates contact you about this job</h3>
+            <label class="block text-sm">
+                <input type="checkbox" id="contact-by-email" class="mr-1">
+                By email to the address provided
+            </label>
+            <label class="block text-sm">
+                <input type="checkbox" id="contact-by-phone" class="mr-1">
+                By phone
+            </label>
+        </div>
+
+         <!-- Application Preferences -->
+         <div class="mb-4">
+            <h3 class="text-lg font-semibold mb-2">Application Preferences</h3>
+            <label for="resume-request" class="block text-gray-700 dark:text-gray-300 text-sm">Ask potential candidates for a resume?</label>
+            <select id="resume-request" class="w-full mt-1 p-1.5 border rounded dark:bg-gray-800 dark:text-gray-300">
+                <option value="yes">Yes, require a resume</option>
+                <option value="no">No, don’t require a resume</option>
+                <option value="optional">Give the option to include a resume</option>
+            </select>
+
+            <label class="block mt-2 text-sm">
+                <input type="checkbox" id="criminal-record" class="mr-1">
+                People with a criminal record are encouraged to apply
+            </label>
+            
+            <label for="background-check" class="block mt-2 text-gray-700 dark:text-gray-300 text-sm">Do you require a background check for this job?</label>
+            <select id="background-check" class="w-full mt-1 p-1.5 border rounded dark:bg-gray-800 dark:text-gray-300">
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+        </div>
+
+        <!-- Hire Settings -->
+        <div>
+            <h3 class="text-lg font-semibold mb-2">Hire Settings</h3>
+            <label for="hiring-timeline" class="block text-gray-700 dark:text-gray-300 text-sm">Hiring timeline for this job</label>
+            <select id="hiring-timeline" class="w-full mt-1 p-1.5 border rounded dark:bg-gray-800 dark:text-gray-300">
+                <option value="1-week">3 Days</option>
+                <option value="2-weeks">1 Week</option>
+                <option value="1-month">1 Month</option>
+                <option value="more">More than 1 Month</option>
+            </select>
+        </div>
+    </div>
+
+     <!-- Save Preferences Button -->
+     <button type="submit" class="bg-blue-600 text-white py-2 px-3 rounded hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400">Save Preferences</button>
+
+    <div class="text-center mt-4">
+        <a href="job-details.html" class="bg-gray-600 text-white p-3 rounded-lg hover:bg-gray-700 inline-block text-sm">Back</a>
+        <a href="preview.html" class="bg-gray-600 text-white p-3 rounded-lg hover:bg-gray-700 inline-block text-sm ml-4">Next</a>
+    </div>
+</section>
+
+
+    <!-- Footer -->
+    <footer class="footer py-6">
+        <div class="container mx-auto text-center text-gray-700 dark:text-gray-300">
+            &copy; 2024 Job Compass. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        function saveThemePreference() {
+            const html = document.documentElement;
+            localStorage.setItem('theme', html.dataset.theme);
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            html.dataset.theme = html.dataset.theme === "light" ? "dark" : "light";
+            saveThemePreference();
+        }
+
+        window.onload = function () {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.dataset.theme = theme;
+            document.getElementById('toggle-dark-mode').addEventListener('click', function() {
+                toggleTheme();
+            });
+        };
+
+        // Toggle mobile menu visibility
+const menuToggle = document.getElementById('menu-toggle');
+const mobileMenu = document.getElementById('mobile-menu');
+if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const addEmailBtn = document.getElementById('add-email-btn');
+    const additionalEmails = document.getElementById('additional-emails');
+
+    addEmailBtn.addEventListener('click', () => {
+        const emailField = document.createElement('input');
+        emailField.type = 'email';
+        emailField.placeholder = 'Enter additional email address';
+        emailField.className = 'w-full mt-2 p-2 border rounded dark:bg-gray-800 dark:text-gray-300';
+        additionalEmails.appendChild(emailField);
+    });
+});
+
+
+    </script>
+
+</body>
+
+</html>

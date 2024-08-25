@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Homepage - Job Compass</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+   
+    <style>
+        /* Dark mode specific styles */
+        [data-theme="dark"] {
+            --bg-color: #1a202c;
+            --text-color: #cbd5e0;
+            --accent-color: #4299e1;
+        }
+    
+        [data-theme="dark"] body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+    
+        [data-theme="dark"] .navbar,
+        [data-theme="dark"] .footer {
+            background-color: #2d3748;
+            color: #3d82dd;
+        }
+    
+        [data-theme="dark"] .navbar a,
+        [data-theme="dark"] .footer a {
+            color: var(--accent-color); 
+        }
+    
+        [data-theme="dark"] .navbar a:hover,
+        [data-theme="dark"] .footer a:hover {
+            color: #90cdf4;
+        }
+    
+        [data-theme="dark"] .bg-white {
+            background-color: #2d3748;
+            color: #cbd5e0;
+        }
+    
+        [data-theme="dark"] .text-gray-700 {
+            color: #dde5ee;
+        }
+    
+        [data-theme="dark"] .border {
+            border-color: #4a5568;
+        }
+    
+        [data-theme="dark"] .hover\:text-blue-600:hover {
+            color: #90cdf4;
+        }
+    
+        [data-theme="dark"] .hover\:underline:hover {
+            text-decoration: underline;
+        }
+    
+        .job-list,
+        .recommended-job-list {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        }
+    
+        .job-card {
+            padding: 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    
+        .job-card.dark {
+            background-color: #2d3748;
+            border-color: #4a5568;
+            color: #cbd5e0;
+        }
+    
+        .job-card h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #4299e1; /* Adjusted title color for better visibility in both modes */
+        }
+    
+        .job-card h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #4c566a; /* Grayish blue color for titles */
+        }
+    
+        .job-card p {
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            color: #718096; /* Adjusted description text color for better visibility in dark mode */
+        }
+    
+        .job-card.dark p {
+            color: #cbd5e0; /* Lighter description text color in dark mode */
+        }
+    
+        .job-card .tags {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+    
+        .job-card .tags .tag {
+            background-color: #234f7c;
+            color: #eef1f7;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            border-radius: 0.25rem;
+        }
+    
+        .job-card.dark .tags .tag {
+            background-color: #4a5568;
+            color: #cbd5e0;
+        }
+    
+        .job-card .contact-info {
+            margin-top: 0.75rem;
+            font-size: 0.875rem;
+            color: #a0aec0; /* Adjusted contact info color for better visibility in dark mode */
+        }
+    
+        .job-card.dark .contact-info {
+            color: #cbd5e0; /* Lighter contact info color in dark mode */
+        }
+    
+        .job-card .contact-info .email {
+            margin-right: 1rem;
+        }
+    
+        .job-card .salary {
+            margin-top: 0.75rem;
+            font-size: 0.875rem;
+            color: #718096; /* Adjusted salary text color for better visibility in dark mode */
+        }
+    
+        .job-card.dark .salary {
+            color: #cbd5e0; /* Lighter salary text color in dark mode */
+        }
+        /*search bar styles */
+        .custom-width {
+        width: 500px; /* Adjust to desired width */
+    }
+    
+    /* recommended jobs and job listing color*/
+    .text-light-mode {
+        color: #2563eb; /* Light mode color */
+    }
+    .dark .text-light-mode {
+        color: #4299e1; /* Dark mode color equivalent */
+    }
+
+   
+
+
+    </style>
+    
+    
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-900">
+
+  <!-- Navbar -->
+<nav class="navbar shadow-md">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <!-- Brand Name -->
+        <div class="flex items-center">
+            <a href="#" id="title" class="text-2xl font-bold text-blue-600 dark:text-blue-300">Job Compass™</a>
+        </div>
+
+        <!-- Hamburger Menu for Mobile View -->
+        <div class="lg:hidden">
+            <button id="menu-toggle" class="text-gray-700 dark:text-gray-300 focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Search Bar (Hidden on Mobile) -->
+        <div class="relative hidden lg:block">
+            <input type="text" placeholder="Search..." class="custom-width pl-10 pr-4 py-2 border rounded-lg text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600 dark:focus:ring-blue-300">
+            <i class="fas fa-search absolute top-2 left-3 text-gray-500 dark:text-gray-400"></i>
+        </div>
+
+        <!-- Navigation Links -->
+        <div id="navbar-links" class="hidden lg:flex items-center space-x-4">
+            <a href="User-Homepage.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-home mr-1"></i> Home
+            </a>
+            <a href="User-Profile.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-user mr-1"></i> Profile
+            </a>
+
+            <a href="User-notification.html" class="relative hover:text-blue-600 dark:hover:text-blue-300 mx-2">
+                <i class="fas fa-bell mr-1"></i> Notifications
+                <span class="absolute top-0 right-0 inline-flex items-center justify-center w-4 h-4 p-1 text-xs font-bold text-white bg-red-600 rounded-full transform translate-x-2/3 -translate-y-1/2">3</span>
+            </a>
+            
+            <a href="User-settings.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-cog mr-1"></i> Settings
+            </a>
+            <a href="User-Inbox.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-inbox mr-1"></i> Inbox
+            </a>
+            <a href="logout.html" class="hover:text-blue-600 dark:hover:text-blue-300">
+                <i class="fas fa-sign-out-alt mr-1"></i> Logout
+            </a>
+        </div>
+    </div>
+
+   <!-- Mobile Menu -->
+<div id="mobile-menu" class="lg:hidden hidden">
+    <div class="px-4 py-2 space-y-2">
+        <!-- Search Bar -->
+        <div class="relative mb-4">
+            <input type="text" placeholder=" Search..." class="w-full px-4 py-2 border rounded-lg text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600 dark:focus:ring-blue-300">
+            <i class="fas fa-search absolute top-3 left-0 text-gray-500 dark:text-gray-400"></i>
+        </div>
+        
+        <!-- Menu Links -->
+        <a href="User-Homepage.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+            <i class="fas fa-home mr-1"></i> Home
+        </a>
+        <a href="User-Profile.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+            <i class="fas fa-user mr-1"></i> Profile
+        </a>
+
+       <a href="User-notification.html" class="relative flex items-center hover:text-blue-600 dark:hover:text-blue-300">
+    <i class="fas fa-bell mr-2 relative">
+        <!-- Notification icon -->
+    </i>
+    Notifications
+    <span class="absolute top-0 right-0 flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-600 rounded-full -translate-y-1/2 translate-x-2">
+        3
+    </span>
+</a>
+        
+        <a href="User-settings.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+            <i class="fas fa-cog mr-1"></i> Settings
+        </a>
+        <a href="User-Inbox.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+            <i class="fas fa-inbox mr-1"></i> Inbox
+        </a>
+        <a href="logout.html" class="block hover:text-blue-600 dark:hover:text-blue-300">
+            <i class="fas fa-sign-out-alt mr-1"></i> Logout
+        </a>
+    </div>
+</div>
+
+</nav>
+
+
+   <!-- Main Content -->
+<section class="container mx-auto px-4 py-8">
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+        <!-- Recommended Jobs -->
+        <div class="recommended-jobs">
+            <h2 class="text-2xl font-bold text-light-mode mb-4">Recommended Jobs</h2>
+            <div class="recommended-job-list grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-1">
+                <!-- Recommended job listings will be populated here -->
+            </div>
+        </div>
+
+        <!-- Job Listings -->
+        <div class="job-listings">
+            <h2 class="text-2xl font-bold text-light-mode mb-4">Available Jobs</h2>
+            <div class="job-list grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-1">
+                <!-- General job listings will be populated here -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer py-6 bg-gray-100 dark:bg-gray-800">
+    <div class="container mx-auto text-center text-gray-700 dark:text-gray-300">
+        &copy; 2024 Job Compass. All rights reserved.
+    </div>
+</footer>
+
+<script>
+    window.onload = function () {
+        const savedTheme = localStorage.getItem('theme') || 'light'; // Default to 'light'
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    };
+
+    // Toggle mobile menu visibility
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    // Dummy data for jobs
+    const jobs = [
+        { title: 'Frontend Developer', description: 'Build responsive websites using HTML, CSS, and JavaScript.', skills: ['HTML', 'CSS', 'JavaScript'], salary: '$60,000 - $80,000 per year', location: 'Remote', email: 'contact@example.com' },
+        { title: 'Marketing Manager', description: 'Lead marketing campaigns and analyze market trends.', skills: ['Marketing Strategy', 'Analytics', 'Campaign Management'], salary: '$70,000 - $90,000 per year', location: 'New York, NY', email: 'contact@example.com' },
+        { title: 'Data Scientist', description: 'Analyze large datasets and develop machine learning models.', skills: ['Machine Learning', 'Python', 'Statistics'], salary: '$80,000 - $100,000 per year', location: 'San Francisco, CA', email: 'contact@example.com' },
+        // Add more jobs as needed
+    ];
+
+    const recommendedJobs = [
+        { title: 'UX Designer', description: 'Create user-friendly interfaces and improve user experiences.', skills: ['Design Thinking', 'Wireframing', 'User Research'], salary: '$65,000 - $85,000 per year', location: 'Chicago, IL', email: 'contact@example.com' },
+        { title: 'Full Stack Developer', description: 'Develop both front-end and back-end components of web applications.', skills: ['JavaScript', 'Node.js', 'React'], salary: '$75,000 - $95,000 per year', location: 'Seattle, WA', email: 'contact@example.com' },
+        // Add more recommended jobs as needed
+    ];
+
+    // Function to populate job listings
+    function populateJobListings() {
+        const jobListContainer = document.querySelector('.job-list');
+        jobs.forEach(job => {
+            const jobCard = document.createElement('div');
+            jobCard.className = 'job-card p-4 border rounded-lg bg-white dark:bg-gray-700 shadow-md';
+            jobCard.innerHTML = `
+                <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">${job.title}</h2>
+                <p class="text-gray-600 dark:text-gray-400 mb-4">${job.description}</p>
+                <div class="tags mb-4">
+                    ${job.skills.map(skill => `<span class="tag inline-block bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded-full px-2 py-1 text-xs font-semibold mr-2">${skill}</span>`).join('')}
+                </div>
+                <div class="contact-info flex justify-between text-sm">
+                    <span class="email flex items-center"><i class="fas fa-envelope mr-2"></i>${job.email}</span>
+                    <span class="salary text-gray-800 dark:text-gray-300">${job.salary}</span>
+                </div>
+            `;
+            jobListContainer.appendChild(jobCard);
+        });
+    }
+
+    // Function to populate recommended job listings
+    function populateRecommendedJobs() {
+        const recommendedJobListContainer = document.querySelector('.recommended-job-list');
+        recommendedJobs.forEach(job => {
+            const jobCard = document.createElement('div');
+            jobCard.className = 'job-card p-4 border rounded-lg bg-white dark:bg-gray-700 shadow-md';
+            jobCard.innerHTML = `
+                <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">${job.title}</h2>
+                <p class="text-gray-600 dark:text-gray-400 mb-4">${job.description}</p>
+                <div class="tags mb-4">
+                    ${job.skills.map(skill => `<span class="tag inline-block bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded-full px-2 py-1 text-xs font-semibold mr-2">${skill}</span>`).join('')}
+                </div>
+                <div class="contact-info flex justify-between text-sm">
+                    <span class="email flex items-center"><i class="fas fa-envelope mr-2"></i>${job.email}</span>
+                    <span class="salary text-gray-800 dark:text-gray-300">${job.salary}</span>
+                </div>
+            `;
+            recommendedJobListContainer.appendChild(jobCard);
+        });
+    }
+
+    // Call functions to populate job listings
+    populateJobListings();
+    populateRecommendedJobs();
+</script>
+
+
+</body>
+
+</html>

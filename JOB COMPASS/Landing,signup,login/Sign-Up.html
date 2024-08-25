@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selection Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    /* Custom Styles */
+    .hero-section {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: white;
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+    }
+    .hero-section h1 {
+      font-size: 4rem;
+      margin-bottom: 2rem;
+    }
+    .hero-section p {
+      font-size: 1.25rem;
+      margin-bottom: 3rem;
+    }
+    .card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      padding: 2rem;
+      border-radius: 1rem;
+      background-color: white;
+      color: #333;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+    .btn-animate {
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      font-size: 1.125rem;
+    }
+    .btn-animate:hover {
+      background-color: #004aad;
+      transform: scale(1.05);
+    }
+    .fade-in {
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .icon-animation {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      transition: transform 0.3s ease;
+      color: #6a11cb;
+    }
+    .card:hover .icon-animation {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="Landing-Page.html" class="text-2xl font-bold text-blue-600">Job Compass™</a> <!-- Link to Landing Page -->
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section container mx-auto px-4 text-center fade-in">
+    <h1 class="text-4xl font-bold mb-8">Welcome to Job Compass™</h1>
+    <p class="text-lg mb-12">Your one-stop platform for job seekers and employers. Choose your path to get started.</p>
+    
+    <div class="flex justify-center space-x-8">
+      <!-- Job Seekers Section -->
+      <div class="max-w-sm p-8 rounded-lg shadow-md card">
+        <div class="icon-animation">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-16 h-16 mx-auto mb-4">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 19.121a1.503 1.503 0 01-.3-1.43A5.002 5.002 0 005 12a5.002 5.002 0 00-1.794 7.69c.188.215.392.413.611.601l1.414-1.414a3.508 3.508 0 01-.11-.856zM12 8a4 4 0 110-8 4 4 0 010 8zm2 12a2 2 0 002-2H8a2 2 0 002 2h4zm0-2H8a2 2 0 012-2h2a2 2 0 012 2zm-6-6a2 2 0 100-4 2 2 0 000 4zm8 0a2 2 0 100-4 2 2 0 000 4z" />
+          </svg>
+        </div>
+        <h2 class="text-2xl font-bold mb-6">Job Seeker</h2>
+        <p class="mb-6">Find your dream job and take your career to the next level.</p>
+        <a href="C:\Users\HP 348\OneDrive\Desktop\Capstone1-2\JOB COMPASS\Job-Seeker\Job-Seeker-signup.html" class="block bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 btn-animate">I'm a Job Seeker</a>
+      </div>
+
+      <!-- Employers Section -->
+      <div class="max-w-sm p-8 rounded-lg shadow-md card">
+        <div class="icon-animation">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-16 h-16 mx-auto mb-4">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21l-7-3-7 3V5a2 2 0 012-2h10a2 2 0 012 2z" />
+          </svg>
+        </div>
+        <h2 class="text-2xl font-bold mb-6">Employer</h2>
+        <p class="mb-6">Post jobs and find the perfect candidates for your company.</p>
+        <a href="C:\Users\HP 348\OneDrive\Desktop\Capstone1-2\JOB COMPASS\Employer\Employer-signup.html" class="block bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 btn-animate">I'm an Employer</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-6">
+    <div class="container mx-auto px-4 text-center">
+      <p>&copy; 2024 Job Compass. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

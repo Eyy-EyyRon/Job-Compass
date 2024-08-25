@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <!-- Include Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <!-- Include Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    integrity="sha512-TRn+LpHQU+Km6ZrMiEYW14snDpNhFZ/5z15t8nCv0oC7OHoiEgXJG9jXpDf8F51G53b5OqE9b8LPeWONKxR7A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    /* Additional custom CSS for fine-tuning */
+    .dashboard-section {
+      background-color: #ffffff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .dashboard-heading {
+      color: #4a4a4a;
+    }
+
+    .card {
+      background-color: #f3f4f6;
+      border-color: #d1d5db;
+    }
+
+    .card:hover {
+      background-color: #ffffff;
+    }
+
+    .dashboard-icon {
+      color: #4a90e2;
+    }
+
+    .user-type {
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    .user-count {
+      font-size: 24px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md py-4">
+    <div class="container mx-auto px-4 flex justify-between items-center">
+      <a href="#" class="text-2xl font-bold text-blue-600">Admin Dashboard</a>
+    </div>
+  </nav>
+
+  <!-- Dashboard Section -->
+  <section class="container mx-auto py-10">
+
+    <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+
+      <div class="p-6">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Dashboard Overview</h2>
+
+        <!-- Job Seekers and Employers Overview -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <!-- Job Seekers Card -->
+          <div class="card p-6 rounded-lg shadow-md">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">Job Seekers</h3>
+            <div class="flex items-center">
+              <i class="fas fa-user-tie text-3xl dashboard-icon"></i>
+              <div class="ml-4">
+                <p class="user-count">500</p>
+                <p class="user-type">Total job seekers</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Employers Card -->
+          <div class="card p-6 rounded-lg shadow-md">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">Employers</h3>
+            <div class="flex items-center">
+              <i class="fas fa-building text-3xl dashboard-icon"></i>
+              <div class="ml-4">
+                <p class="user-count">100</p>
+                <p class="user-type">Total employers</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Recent Activities -->
+        <div class="mt-8">
+          <h3 class="text-xl font-semibold text-gray-800 mb-4">Recent Activities</h3>
+          <div class="overflow-x-auto">
+            <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+              <thead class="bg-gray-200 text-gray-700 uppercase text-sm leading-normal">
+                <tr>
+                  <th class="py-3 px-6 text-left">User</th>
+                  <th class="py-3 px-6 text-left">Action</th>
+                  <th class="py-3 px-6 text-left">Timestamp</th>
+                </tr>
+              </thead>
+              <tbody class="text-gray-600 text-sm font-light">
+                <tr>
+                  <td class="py-3 px-6 text-left whitespace-nowrap">John Doe</td>
+                  <td class="py-3 px-6 text-left">Updated profile</td>
+                  <td class="py-3 px-6 text-left">2024-07-10 09:30 AM</td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-6 text-left whitespace-nowrap">Jane Smith</td>
+                  <td class="py-3 px-6 text-left">Created job listing</td>
+                  <td class="py-3 px-6 text-left">2024-07-09 02:15 PM</td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-6 text-left whitespace-nowrap">Mark Johnson</td>
+                  <td class="py-3 px-6 text-left">Reviewed applications</td>
+                  <td class="py-3 px-6 text-left">2024-07-08 11:45 AM</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-6">
+    <div class="container mx-auto px-4 text-center">
+      <p>&copy; 2024 Job Compass. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+
+</html>
