@@ -533,32 +533,49 @@ input {
 </div>
 
 </nav>
+
+
 <div class="container mx-auto py-8">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
         <!-- Left Section: Profile Overview -->
         <div class="md:col-span-1">
-            <div class="bg-white dark:bg-gray-800 shadow rounded-lg p-6">
+            <div class="bg-white dark:bg-gray-800 shadow rounded-lg p-6 relative">
+                
+                 <!-- Dropdown Button -->
+                 <div class="flex justify-end px-4 pt-4 absolute top-0 right-0">
+                    <button id="dropdownButton" class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
+                        <span class="sr-only">Open dropdown</span>
+                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
+                            <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
+                        </svg>
+                    </button>
+                    <!-- Dropdown menu -->
+                    <div id="dropdown" class="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                        <ul class="py-2">
+                            <button id="openModalBtn"  class="block px-4 py-2 text-sm text-blue-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                Upload Credentials
+                            </button>
+
+                            <button type="button" id="openProfileModalBtn"  class="block px-4 py-2 text-sm text-blue-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                Edit Profile
+                            </button>
+                            <li>
+                                <a href="Employer_Settings-Page.html" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+        
                 <div class="flex flex-col items-center">
                     <!-- Profile Picture -->
                     <div class="profile-picture-container mb-4">
                         <img src="https://robohash.org/company-logo.png?set=set1&size=128x128" class="w-32 h-32 bg-gray-300 dark:bg-gray-700 rounded-full" alt="Company Logo">
                         <input type="file" id="profile-picture" name="profile-picture" accept="image/*">
                     </div>
-
+        
                     <!-- Profile Info -->
                     <h1 class="text-2xl font-bold text-blue-900 dark:text-white">Job Compass™</h1>
                     <p class="text-white-500 dark:text-gray-300">Corporation</p>
-
-                    <!-- Action Buttons -->
-                    <div class="mt-6 flex flex-col items-center gap-4">
-                        <button id="openModalBtn" class="bg-gray-500 hover:bg-blue-600 text-white py-2 px-4 rounded w-full max-w-xs">
-                            Upload Credentials
-                        </button>
-                        <button type="button" id="openProfileModalBtn" class="bg-gray-500 hover:bg-blue-600 text-white py-2 px-4 rounded w-full max-w-xs">
-                            Edit Profile
-                        </button>
-                    </div>
-                    
                 </div>
                 <hr class="my-6 border-t border-gray-300 dark:border-gray-600">
                 <!-- Contact and Address -->
@@ -570,7 +587,7 @@ input {
                 </div>
             </div>
         </div>
-
+        
         <!-- Right Section: Company Details -->
         <div class="md:col-span-2">
             <div class="bg-white dark:bg-gray-800 shadow rounded-lg p-6">
@@ -876,6 +893,26 @@ document.getElementById('profileForm')?.addEventListener('submit', (event) => {
     .catch(error => {
         console.error('Error updating profile:', error);
     });
+});
+
+// Dropdown button
+document.getElementById('dropdownButton').addEventListener('click', function(event) {
+    const dropdownMenu = document.getElementById('dropdown');
+    dropdownMenu.classList.toggle('hidden');
+    
+    // Prevent the click event from propagating to the document
+    event.stopPropagation();
+});
+
+// Close dropdown menu when clicking outside
+document.addEventListener('click', function(event) {
+    const dropdownMenu = document.getElementById('dropdown');
+    const dropdownButton = document.getElementById('dropdownButton');
+
+    // Check if the click is outside the dropdown button and menu
+    if (!dropdownMenu.classList.contains('hidden') && !dropdownMenu.contains(event.target) && !dropdownButton.contains(event.target)) {
+        dropdownMenu.classList.add('hidden');
+    }
 });
 
     </script>
