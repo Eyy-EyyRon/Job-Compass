@@ -8,180 +8,116 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        .profile-picture-container {
-            width: 10rem;
-            height: 10rem;
-            position: relative;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 4px solid #a3d8f4; /* Light blue border color */
-            transition: border-color 0.3s ease;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    /* Form input fields - Light Mode */
+input[type="text"],
+input[type="email"],
+textarea,
+select,
+input[type="file"],
+input[type="number"] {
+    padding: 0.75rem;
+    width: 100%;
+    border-radius: 0.5rem;
+    border: 1px solid #3666a5; /* Default border color (Blue) */
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    background-color: #ffffff; /* Light mode background color */
+    color: #1a202c; /* Light mode text color */
+}
 
-        .profile-picture-container:hover {
-            border-color: #4299e1; /* Blue border color on hover */
-        }
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus,
+select:focus,
+input[type="file"]:focus,
+input[type="number"]:focus {
+    outline: none;
+    border-color: #FFB84D; /* Yellow-Orange border on focus */
+}
 
-        .profile-picture-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Ensures the image covers the container */
-            object-position: center; /* Ensures the image is centered */
-        }
+/* Dark Mode */
+[data-theme="dark"] {
+    --bg-color: #1a202c;
+    --text-color: #cbd5e0;
+    --border-color: #2d3748;
+}
 
-        .profile-picture-container input {
-            position: absolute;
-            inset: 0;
-            opacity: 0;
-            cursor: pointer;
-        }
+[data-theme="dark"] body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
 
-        .profile-picture-text {
-            position: absolute;
-            color: black; /* Changed to black for better visibility */
-            font-size: 1rem;
-            text-align: center;
-            pointer-events: none;
-            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7); /* Optional for better visibility */
-        }
+[data-theme="dark"] input[type="text"],
+[data-theme="dark"] input[type="email"],
+[data-theme="dark"] textarea,
+[data-theme="dark"] select,
+[data-theme="dark"] input[type="file"],
+[data-theme="dark"] input[type="number"] {
+    background-color: #2d3748; /* Dark mode background color */
+    color: #cbd5e0; /* Dark mode text color */
+    border-color: #4a5568; /* Dark mode border color */
+}
 
-        input[type="text"],
-        input[type="email"],
-        textarea,
-        select,
-        input[type="file"],
-        input[type="number"] {
-            padding: 0.75rem;
-            width: 100%;
-            border-radius: 0.5rem;
-            border: 1px solid #3666a5; /* Default border color */
-            transition: border-color 0.3s ease;
-            background-color: #ffffff; /* Light mode background color */
-            color: #1a202c; /* Light mode text color */
-        }
+[data-theme="dark"] input[type="text"]:focus,
+[data-theme="dark"] input[type="email"]:focus,
+[data-theme="dark"] textarea:focus,
+[data-theme="dark"] select:focus,
+[data-theme="dark"] input[type="file"]:focus,
+[data-theme="dark"] input[type="number"]:focus {
+    border-color: #FFB84D; /* Yellow-Orange border on focus in dark mode */
+}
 
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        textarea:focus,
-        select:focus,
-        input[type="file"]:focus,
-        input[type="number"]:focus {
-            outline: none;
-            border-color: #4299e1; /* Focus border color */
-        }
+/* Navbar styles */
+.navbar {
+    background-color: #007BFF; /* Blue base color */
+    color: white;
+}
 
-        [data-theme="dark"] {
-            --bg-color: #1a202c;
-            --text-color: #cbd5e0;
-            --border-color: #2d3748;
-        }
+.navbar a {
+    color: white;
+    transition: color 0.3s ease;
+}
 
-        [data-theme="dark"] body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-        }
+.navbar a:hover {
+    color: #FF4D4D; /* Red-Orange hover effect */
+}
 
-        [data-theme="dark"] .navbar,
-        [data-theme="dark"] .footer {
-            background-color: #2d3748;
-            color: #a0aec0;
-        }
+/* Footer styles */
+.footer {
+    background-color: #f9fafb; /* Light mode footer background */
+    color: #FFB84D;
+}
 
-        [data-theme="dark"] .profile-picture-container {
-            border-color: #2d3748;
-        }
+.footer a {
+    color: #007BFF; /* Blue link color */
+}
 
-        [data-theme="dark"] input[type="text"],
-        [data-theme="dark"] input[type="email"],
-        [data-theme="dark"] textarea,
-        [data-theme="dark"] select,
-        [data-theme="dark"] input[type="file"],
-        [data-theme="dark"] input[type="number"] {
-            background-color: #2d3748; /* Dark mode background color */
-            color: #cbd5e0; /* Dark mode text color */
-            border-color: #4a5568; /* Dark mode border color */
-        }
+.footer a:hover {
+    color: #FF4D4D; /* Red-Orange hover effect */
+}
 
-        [data-theme="dark"] input[type="text"]:focus,
-        [data-theme="dark"] input[type="email"]:focus,
-        [data-theme="dark"] textarea:focus,
-        [data-theme="dark"] select:focus,
-        [data-theme="dark"] input[type="file"]:focus,
-        [data-theme="dark"] input[type="number"]:focus {
-            border-color: #4299e1; /* Dark mode focus border color */
-        }
+/* Dark Mode for Navbar and Footer */
+[data-theme="dark"] .navbar,
+[data-theme="dark"] .footer {
+    background-color: #2d3748; /* Dark mode background */
+    color: #a0aec0;
+}
 
-        body {
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
+[data-theme="dark"] .navbar a,
+[data-theme="dark"] .footer a {
+    color: #FFB84D; /* Yellow-Orange links in dark mode */
+}
 
-        .navbar,
-        .footer {
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .navbar {
-            background-color: #ffffff; /* Light mode navbar background color */
-            color: #1a202c; /* Light mode navbar text color */
-        }
-
-        .footer {
-            background-color: #f9fafb; /* Light mode footer background color */
-            color: #4a5568; /* Light mode footer text color */
-        }
-
-        .navbar a,
-        .footer a {
-            color: #4299e1; /* Link color in light mode */
-            transition: color 0.3s ease;
-        }
-
-        .navbar a:hover,
-        .footer a:hover {
-            color: #3182ce; /* Hover color for links in light mode */
-        }
-
-        /* Dark mode specific styles */
-        [data-theme="dark"] .navbar a,
-        [data-theme="dark"] .footer a {
-            color: #4299e1; /* Link color in dark mode */
-        }
-
-        [data-theme="dark"] .navbar a:hover,
-        [data-theme="dark"] .footer a:hover {
-            color: #90cdf4; /* Hover color for links in dark mode */
-        }
-
-        [data-theme="dark"] .bg-white {
-            background-color: #2d3748; /* Dark mode background color for elements with bg-white class */
-            color: #cbd5e0; /* Dark mode text color for elements with bg-white class */
-        }
-
-        [data-theme="dark"] .text-gray-700 {
-            color: #a0aec0; /* Dark mode text color for elements with text-gray-700 class */
-        }
-
-        [data-theme="dark"] .border {
-            border-color: #4a5568; /* Dark mode border color for elements with border class */
-        }
-
-        [data-theme="dark"] .hover\:text-blue-600:hover {
-            color: #90cdf4; /* Hover color in dark mode for elements with hover:text-blue-600 class */
-        }
-
-        [data-theme="dark"] .hover\:underline:hover {
-            text-decoration: underline; /* Underline effect in dark mode for elements with hover:underline class */
-        }
+[data-theme="dark"] .navbar a:hover,
+[data-theme="dark"] .footer a:hover {
+    color: #FF4D4D; /* Red-Orange hover in dark mode */
+}
     </style>
 </head>
 
 <body class="bg-gray-100 dark:bg-gray-900">
 
     <!-- Navbar -->
-    <nav class="navbar shadow-md">
+    <nav class="navbar  bg-gradient-to-r from-blue-900 via-amber-500 to-yellow-900 dark:from-gray-700 dark:via-gray-800 dark:to-black shadow-md">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <!-- Brand Name -->
             <div class="flex items-center">
@@ -190,7 +126,7 @@
     
             <!-- Hamburger Menu for Mobile View -->
             <div class="lg:hidden">
-                <button id="menu-toggle" class="text-gray-700 dark:text-gray-300 focus:outline-none">
+                <button id="menu-toggle" class="text-yellow-700 dark:text-gray-300 focus:outline-none">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -274,21 +210,21 @@
 
   <!-- Job Posting Section -->
 <section class="container mx-auto px-4 py-20">
-    <div class="max-w-3xl mx-auto bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md border dark:border-gray-700">
-        <h2 class="text-3xl font-bold mb-8 text-center">Post a Job</h2>
+    <div class="max-w-3xl mx-auto bg-white  p-8 rounded-lg shadow-md border dark:border-gray-700 bg-gradient-to-r from-blue-900 via-amber-500 to-yellow-900 dark:from-gray-700 dark:via-gray-800 dark:to-black shadow-md ">
+        <h2 class="text-3xl font-bold mb-8 text-center text-yellow-400 ">Post a Job</h2>
         <form>
 
             
             <div class="mb-4">
-                <label for="job-title" class="block text-gray-700 dark:text-gray-300 font-bold">Job Title </label>
+                <label for="job-title" class="block text-green-700 dark:text-gray-300 font-bold">Job Title </label>
                 <input type="text" id="job-title" name="job-title" class="mt-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-300" value="Intern">
             </div>
             <div class="mb-4">
-                <label for="number-of-hires" class="block text-gray-700 dark:text-gray-300 font-bold">Number of people to hire for this job</label>
+                <label for="number-of-hires" class="block text-green-700 dark:text-gray-300 font-bold">Number of people to hire for this job</label>
                 <input type="number" id="number-of-hires" name="number-of-hires" class="mt-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-300" value="2">
             </div>
             <div class="mb-4">
-                <label for="job-location-type" class="block text-gray-700 dark:text-gray-300 font-bold">Job Location Type</label>
+                <label for="job-location-type" class="block text-green-700 dark:text-gray-300 font-bold">Job Location Type</label>
                 <select id="job-location-type" name="job-location-type" class="mt-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-300">
                     <option value="required">In person-precise location</option>
                     <option value="required">In person, within a limited area</option>
@@ -298,28 +234,28 @@
                 </select>
             </div>
             <div class="mb-4">
-                <label for="street-address" class="block text-gray-700 dark:text-gray-300 font-bold mb-2">Street Address</label>
+                <label for="street-address" class="block text-green-700 dark:text-gray-300 font-bold mb-2">Street Address</label>
                 <input type="text" id="street-address" name="street-address" class="w-full p-2 border border-gray-300 rounded-md bg-gray-100 dark:bg-gray-700 dark:text-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" value="1157 Test Add, Naples, ID 83847">
             </div>
             
             <div class="mb-4 flex items-center">
                 <input type="checkbox" id="display-address" name="display-address" class="h-5 w-5 text-blue-600 focus:ring-2 focus:ring-blue-500 border-gray-300 rounded">
-                <label for="display-address" class="ml-3 text-gray-700 dark:text-gray-300 font-bold">Display the street address on the job post.</label>
+                <label for="display-address" class="ml-3 text-yellow-700 dark:text-gray-300 font-bold">Display the street address on the job post.</label>
             </div>
             
             <div class="mb-4">
-                <label for="job-location-requirements" class="block text-gray-700 dark:text-gray-300 font-bold mb-2">Job Location Requirements</label>
+                <label for="job-location-requirements" class="block text-green-700 dark:text-gray-300 font-bold mb-2">Job Location Requirements</label>
                 
                 
                 <div class="flex items-center">
-                    <input type="checkbox" id="willingness-to-relocate" name="willingness-to-relocate" class="h-5 w-5 text-blue-600 focus:ring-2 focus:ring-blue-500 border-gray-300 rounded">
-                    <label for="willingness-to-relocate" class="ml-3 text-gray-700 dark:text-gray-300 font-bold">Require that applicants from outside a reasonable commute distance are willing to relocate.</label>
+                    <input type="checkbox" id="willingness-to-relocate" name="willingness-to-relocate" class="h-5 w-5 text-yellow-700 focus:ring-2 focus:ring-blue-500 border-gray-300 rounded">
+                    <label for="willingness-to-relocate" class="ml-3 text-yellow-700 dark:text-gray-300 font-bold">Require that applicants from outside a reasonable commute distance are willing to relocate.</label>
                 </div>
             </div>
             
 
             <div class="flex justify-center">
-                <a href="job-details.html" class="mt-8 bg-gray-600 text-white p-4 rounded-lg hover:bg-gray-700 flex items-center">
+                <a href="job-details.html" class="mt-8 bg-green-700 text-white p-4 rounded-lg hover:bg-yellow-700 flex items-center">
                     <span class="font-bold">Continue</span>
                     <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
@@ -334,8 +270,8 @@
 
 
     <!-- Footer -->
-    <footer class="footer py-6">
-        <div class="container mx-auto text-center text-gray-700 dark:text-gray-300">
+    <footer class="footer py-6 bg-gradient-to-r from-blue-900 via-amber-500 to-yellow-900 dark:from-gray-700 dark:via-gray-800 dark:to-black shadow-md">
+        <div class="container mx-auto text-center text-white-900 dark:text-gray-300 font-bold ">
             &copy; 2024 Job Compass. All rights reserved.
         </div>
     </footer>
