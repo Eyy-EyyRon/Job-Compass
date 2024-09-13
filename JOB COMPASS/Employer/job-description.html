@@ -8,134 +8,109 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+/* Form input fields - Light Mode */
+input[type="text"],
+input[type="email"],
+textarea,
+select,
+input[type="file"],
+input[type="number"] {
+padding: 0.75rem;
+width: 100%;
+border-radius: 0.5rem;
+border: 1px solid #3666a5; /* Default border color (Blue) */
+transition: border-color 0.3s ease, background-color 0.3s ease;
+background-color: #ffffff; /* Light mode background color */
+color: #1a202c; /* Light mode text color */
+}
 
-        input[type="text"],
-        input[type="email"],
-        textarea,
-        select,
-        input[type="file"],
-        input[type="number"] {
-            padding: 0.75rem;
-            width: 100%;
-            border-radius: 0.5rem;
-            border: 1px solid #3666a5; /* Default border color */
-            transition: border-color 0.3s ease;
-            background-color: #ffffff; /* Light mode background color */
-            color: #1a202c; /* Light mode text color */
-        }
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus,
+select:focus,
+input[type="file"]:focus,
+input[type="number"]:focus {
+outline: none;
+border-color: #FFB84D; /* Yellow-Orange border on focus */
+}
 
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        textarea:focus,
-        select:focus,
-        input[type="file"]:focus,
-        input[type="number"]:focus {
-            outline: none;
-            border-color: #4299e1; /* Focus border color */
-        }
+/* Dark Mode */
+[data-theme="dark"] {
+--bg-color: #1a202c;
+--text-color: #cbd5e0;
+--border-color: #2d3748;
+}
 
-        [data-theme="dark"] {
-            --bg-color: #1a202c;
-            --text-color: #cbd5e0;
-            --border-color: #2d3748;
-        }
+[data-theme="dark"] body {
+background-color: var(--bg-color);
+color: var(--text-color);
+}
 
-        [data-theme="dark"] body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-        }
+[data-theme="dark"] input[type="text"],
+[data-theme="dark"] input[type="email"],
+[data-theme="dark"] textarea,
+[data-theme="dark"] select,
+[data-theme="dark"] input[type="file"],
+[data-theme="dark"] input[type="number"] {
+background-color: #2d3748; /* Dark mode background color */
+color: #cbd5e0; /* Dark mode text color */
+border-color: #FF4D4D; /* Dark mode border color */
+}
 
-        [data-theme="dark"] .navbar,
-        [data-theme="dark"] .footer {
-            background-color: #2d3748;
-            color: #a0aec0;
-        }
+[data-theme="dark"] input[type="text"]:focus,
+[data-theme="dark"] input[type="email"]:focus,
+[data-theme="dark"] textarea:focus,
+[data-theme="dark"] select:focus,
+[data-theme="dark"] input[type="file"]:focus,
+[data-theme="dark"] input[type="number"]:focus {
+border-color: #FFB84D; /* Yellow-Orange border on focus in dark mode */
+}
 
-        [data-theme="dark"] .profile-picture-container {
-            border-color: #2d3748;
-        }
+/* Navbar styles */
+.navbar {
+background-color: #007BFF; /* Blue base color */
+color: white;
+}
 
-        [data-theme="dark"] input[type="text"],
-        [data-theme="dark"] input[type="email"],
-        [data-theme="dark"] textarea,
-        [data-theme="dark"] select,
-        [data-theme="dark"] input[type="file"],
-        [data-theme="dark"] input[type="number"] {
-            background-color: #2d3748; /* Dark mode background color */
-            color: #cbd5e0; /* Dark mode text color */
-            border-color: #4a5568; /* Dark mode border color */
-        }
+.navbar a {
+color: white;
+transition: color 0.3s ease;
+}
 
-        [data-theme="dark"] input[type="text"]:focus,
-        [data-theme="dark"] input[type="email"]:focus,
-        [data-theme="dark"] textarea:focus,
-        [data-theme="dark"] select:focus,
-        [data-theme="dark"] input[type="file"]:focus,
-        [data-theme="dark"] input[type="number"]:focus {
-            border-color: #4299e1; /* Dark mode focus border color */
-        }
+.navbar a:hover {
+color: #FF4D4D; /* Red-Orange hover effect */
+}
 
-        body {
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
+/* Footer styles */
+.footer {
+background-color: #f9fafb; /* Light mode footer background */
+color: #FFB84D;
+}
 
-        .navbar,
-        .footer {
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
+.footer a {
+color: #007BFF; /* Blue link color */
+}
 
-        .navbar {
-            background-color: #ffffff; /* Light mode navbar background color */
-            color: #1a202c; /* Light mode navbar text color */
-        }
+.footer a:hover {
+color: #FF4D4D; /* Red-Orange hover effect */
+}
 
-        .footer {
-            background-color: #f9fafb; /* Light mode footer background color */
-            color: #4a5568; /* Light mode footer text color */
-        }
+/* Dark Mode for Navbar and Footer */
+[data-theme="dark"] .navbar,
+[data-theme="dark"] .footer {
+background-color: #2d3748; /* Dark mode background */
+color: #a0aec0;
+}
 
-        .navbar a,
-        .footer a {
-            color: #4299e1; /* Link color in light mode */
-            transition: color 0.3s ease;
-        }
+[data-theme="dark"] .navbar a,
+[data-theme="dark"] .footer a {
+color: #FFB84D; /* Yellow-Orange links in dark mode */
+}
 
-        .navbar a:hover,
-        .footer a:hover {
-            color: #3182ce; /* Hover color for links in light mode */
-        }
-
-        /* Dark mode specific styles */
-        [data-theme="dark"] .navbar a,
-        [data-theme="dark"] .footer a {
-            color: #4299e1; /* Link color in dark mode */
-        }
-
-        [data-theme="dark"] .navbar a:hover,
-        [data-theme="dark"] .footer a:hover {
-            color: #90cdf4; /* Hover color for links in dark mode */
-        }
-
-        [data-theme="dark"] .bg-white {
-            background-color: #2d3748; /* Dark mode background color for elements with bg-white class */
-            color: #cbd5e0; /* Dark mode text color for elements with bg-white class */
-        }
-
-        [data-theme="dark"] .text-gray-700 {
-            color: #a0aec0; /* Dark mode text color for elements with text-gray-700 class */
-        }
-
-        [data-theme="dark"] .border {
-            border-color: #4a5568; /* Dark mode border color for elements with border class */
-        }
-
-        [data-theme="dark"] .hover\:text-blue-600:hover {
-            color: #90cdf4; /* Hover color in dark mode for elements with hover:text-blue-600 class */
-        }
-
-        [data-theme="dark"] .hover\:underline:hover {
-            text-decoration: underline; /* Underline effect in dark mode for elements with hover:underline class */
-        }
+[data-theme="dark"] .navbar a:hover,
+[data-theme="dark"] .footer a:hover {
+color: #FF4D4D; /* Red-Orange hover in dark mode */
+}
         /* Compact Styles for the Description Form */
 
 .editor-container {
@@ -146,7 +121,9 @@
 }
 
 .toolbar {
-    background-color: #b7c0d1;
+    border-radius: 5px;
+    border: 2.5px solid #040505;
+    background-color: #ffffff;
     color: #3666a5;
     display: flex;
     gap: 0.5rem;
@@ -160,7 +137,7 @@
 }
 
 .text-editor {
-    min-height: 100px;
+    min-height: 200px;
     outline: none;
     padding: 0.5rem;
     font-size: 1rem;
@@ -168,13 +145,13 @@
     line-height: 1.5;
     white-space: pre-wrap;
     overflow-wrap: break-word;
-    background-color: #bee6e6; /* Editor background color */
+    background-color: #f1f5f5; /* Editor background color */
     border-radius: 0.375rem; /* Rounded corners */
 }
 
 .text-editor:empty:before {
     content: attr(placeholder);
-    color: #9ca3af;
+    color: #435675;
 }
 
 .text-editor h-40 {
@@ -225,7 +202,7 @@
 <body class="bg-gray-100 dark:bg-gray-900">
 
      <!-- Navbar -->
-     <nav class="navbar shadow-md">
+     <nav class="navbar bg-gradient-to-r from-blue-900 via-amber-500 to-yellow-900 dark:from-gray-700 dark:via-gray-800 dark:to-black shadow-md">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <!-- Brand Name -->
             <div class="flex items-center">
@@ -234,7 +211,7 @@
     
             <!-- Hamburger Menu for Mobile View -->
             <div class="lg:hidden">
-                <button id="menu-toggle" class="text-gray-700 dark:text-gray-300 focus:outline-none">
+                <button id="menu-toggle" class="text-yellow-700 dark:text-gray-300 focus:outline-none">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -328,8 +305,8 @@
     </div>
 
             <div class="text-center">
-                <a href="job-details.html" class="mt-8 bg-gray-600 text-white p-4 rounded-lg hover:bg-gray-700 inline-block">Back</a>
-                <a href="application-settings.html" class="mt-8 bg-gray-600 text-white p-4 rounded-lg hover:bg-gray-700 inline-block">Next</a>
+                <a href="compensation-details.html" class="mt-8 bg-green-700 text-white p-4 rounded-lg hover:bg-yellow-700 inline-block font-bold">Back</a>
+                <a href="application-settings.html" class="mt-8 bg-green-700 text-white p-4 rounded-lg hover:bg-yellow-700 inline-block font-bold">Next</a>
             </div>
             </div>
         </form>
@@ -338,12 +315,7 @@
 
 
 
-    <!-- Footer -->
-    <footer class="footer py-6">
-        <div class="container mx-auto text-center text-gray-700 dark:text-gray-300">
-            &copy; 2024 Job Compass. All rights reserved.
-        </div>
-    </footer>
+
 
     <script>
         function saveThemePreference() {
