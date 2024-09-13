@@ -11,135 +11,126 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
 
-        input[type="text"],
-        input[type="email"],
-        textarea,
-        select,
-        input[type="file"],
-        input[type="number"] {
-            padding: 0.75rem;
-            width: 100%;
-            border-radius: 0.5rem;
-            border: 1px solid #3666a5; /* Default border color */
-            transition: border-color 0.3s ease;
-            background-color: #ffffff; /* Light mode background color */
-            color: #1a202c; /* Light mode text color */
-        }
+          /* Form input fields - Light Mode */
+input[type="text"],
+input[type="email"],
+textarea,
+select,
+input[type="file"],
+input[type="number"] {
+    padding: 0.75rem;
+    width: 100%;
+    border-radius: 0.5rem;
+    border: 1px solid #3666a5; /* Default border color (Blue) */
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    background-color: #ffffff; /* Light mode background color */
+    color: #1a202c; /* Light mode text color */
+}
 
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        textarea:focus,
-        select:focus,
-        input[type="file"]:focus,
-        input[type="number"]:focus {
-            outline: none;
-            border-color: #4299e1; /* Focus border color */
-        }
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus,
+select:focus,
+input[type="file"]:focus,
+input[type="number"]:focus {
+    outline: none;
+    border-color: #FFB84D; /* Yellow-Orange border on focus */
+}
 
-        [data-theme="dark"] {
-            --bg-color: #1a202c;
-            --text-color: #cbd5e0;
-            --border-color: #2d3748;
-        }
+/* Dark Mode */
+[data-theme="dark"] {
+    --bg-color: #1a202c;
+    --text-color: #cbd5e0;
+    --border-color: #2d3748;
+}
 
-        [data-theme="dark"] body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-        }
+[data-theme="dark"] body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
 
-        [data-theme="dark"] .navbar,
-        [data-theme="dark"] .footer {
-            background-color: #2d3748;
-            color: #a0aec0;
-        }
+[data-theme="dark"] input[type="text"],
+[data-theme="dark"] input[type="email"],
+[data-theme="dark"] textarea,
+[data-theme="dark"] select,
+[data-theme="dark"] input[type="file"],
+[data-theme="dark"] input[type="number"] {
+    background-color: #2d3748; /* Dark mode background color */
+    color: #cbd5e0; /* Dark mode text color */
+    border-color: #4a5568; /* Dark mode border color */
+}
 
-        [data-theme="dark"] .profile-picture-container {
-            border-color: #2d3748;
-        }
+[data-theme="dark"] input[type="text"]:focus,
+[data-theme="dark"] input[type="email"]:focus,
+[data-theme="dark"] textarea:focus,
+[data-theme="dark"] select:focus,
+[data-theme="dark"] input[type="file"]:focus,
+[data-theme="dark"] input[type="number"]:focus {
+    border-color: #FFB84D; /* Yellow-Orange border on focus in dark mode */
+}
 
-        [data-theme="dark"] input[type="text"],
-        [data-theme="dark"] input[type="email"],
-        [data-theme="dark"] textarea,
-        [data-theme="dark"] select,
-        [data-theme="dark"] input[type="file"],
-        [data-theme="dark"] input[type="number"] {
-            color: #0d69c4; /* Dark mode text color */
-            border-color: #4a5568; /* Dark mode border color */
-            background-color: white;
-            font-weight: bold;
-        }
+/* Navbar styles */
+.navbar {
+    background-color: #007BFF; /* Blue base color */
+    color: white;
+}
 
-        [data-theme="dark"] input[type="text"]:focus,
-        [data-theme="dark"] input[type="email"]:focus,
-        [data-theme="dark"] textarea:focus,
-        [data-theme="dark"] select:focus,
-        [data-theme="dark"] input[type="file"]:focus,
-        [data-theme="dark"] input[type="number"]:focus {
-            border-color: #4299e1; /* Dark mode focus border color */
-        }
+.navbar a {
+    color: white;
+    transition: color 0.3s ease;
+}
 
-        body {
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
+.navbar a:hover {
+    color: #FF4D4D; /* Red-Orange hover effect */
+}
 
-        .navbar,
-        .footer {
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
+/* Footer styles */
+.footer {
+    background-color: #f9fafb; /* Light mode footer background */
+    color: #FFB84D;
+}
 
-        .navbar {
-            background-color: #ffffff; /* Light mode navbar background color */
-            color: #1a202c; /* Light mode navbar text color */
-        }
+.footer a {
+    color: #007BFF; /* Blue link color */
+}
 
-        .footer {
-            background-color: #f9fafb; /* Light mode footer background color */
-            color: #4a5568; /* Light mode footer text color */
-        }
+.footer a:hover {
+    color: #FF4D4D; /* Red-Orange hover effect */
+}
 
-        .navbar a,
-        .footer a {
-            color: #4299e1; /* Link color in light mode */
-            transition: color 0.3s ease;
-        }
+/* Dark Mode for Navbar and Footer */
+[data-theme="dark"] .navbar,
+[data-theme="dark"] .footer {
+    background-color: #2d3748; /* Dark mode background */
+    color: #a0aec0;
+}
 
-        .navbar a:hover,
-        .footer a:hover {
-            color: #3182ce; /* Hover color for links in light mode */
-        }
+[data-theme="dark"] .navbar a,
+[data-theme="dark"] .footer a {
+    color: #FFB84D; /* Yellow-Orange links in dark mode */
+}
 
-        /* Dark mode specific styles */
-        [data-theme="dark"] .navbar a,
-        [data-theme="dark"] .footer a {
-            color: #4299e1; /* Link color in dark mode */
-        }
+[data-theme="dark"] .navbar a:hover,
+[data-theme="dark"] .footer a:hover {
+    color: #FF4D4D; /* Red-Orange hover in dark mode */
+}
 
-        [data-theme="dark"] .navbar a:hover,
-        [data-theme="dark"] .footer a:hover {
-            color: #90cdf4; /* Hover color for links in dark mode */
-        }
+/* Buttons */
+button {
+    color: white;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
 
-        [data-theme="dark"] .bg-white {
-            background-color: #2d3748; /* Dark mode background color for elements with bg-white class */
-            color: #cbd5e0; /* Dark mode text color for elements with bg-white class */
-        }
 
-        [data-theme="dark"] .text-gray-700 {
-            color: #a0aec0; /* Dark mode text color for elements with text-gray-700 class */
-        }
+/* Dark mode specific styles */
+[data-theme="dark"] .bg-white {
+    background-color: #2d3748; /* Dark mode bg-white equivalent */
+    color: #cbd5e0;
+}
 
-        [data-theme="dark"] .border {
-            border-color: #4a5568; /* Dark mode border color for elements with border class */
-            background-color: #1752b86c;
-        }
-
-        [data-theme="dark"] .hover\:text-blue-600:hover {
-            color: #90cdf4; /* Hover color in dark mode for elements with hover:text-blue-600 class */
-        }
-
-        [data-theme="dark"] .hover\:underline:hover {
-            text-decoration: underline; /* Underline effect in dark mode for elements with hover:underline class */
-        }
+[data-theme="dark"] .border {
+    border-color: #4a5568; /* Dark mode border color */
+}
 /* Modal Styles */
 .modal {
 color: #112d66;
@@ -155,7 +146,7 @@ color: #112d66;
 }
 
 .modal-content {
-    background: white;
+    background: rgb(34, 33, 33);
     padding: 20px;
     border-radius: 8px;
     max-width: 600px;
@@ -186,36 +177,36 @@ color: #112d66;
 }
 /* Base styles for job type items */
 .job-type-item {
-    color: #1a202c;
     display: flex;
     align-items: center;
     padding: 0.5rem;
-    border: 1px solid #d1d5db; /* Gray border */
+    border: 1px solid #FF4D4D; /* orange red */
     border-radius: 0.375rem; /* Rounded corners */
-    background-color: #2d374800; /* Dark gray background */
+    background-color: #00000015; /* Background color */
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 /* Style for the icon span */
 .job-type-item .icon {
+    border: 1px solid #040505;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 2rem;
     height: 2rem;
-    background-color: #e5e7eb; /* Gray background for the icon */
+    background-color: #FFB84D; /* Gray background for the icon */
     border-radius: 50%;
     font-weight: bold;
     font-size: 1.50rem; /* Size of the plus symbol */
-    color: #083a91; /* Dark gray color for the plus symbol */
+    color: #000000; /* Color for the plus symbol */
     transition: background-color 0.3s ease, color 0.3s ease;
     text-align: center;
-    line-height: 2rem;
+    line-height: 2.5rem;
 }
 
 /* Change icon when the checkbox is selected */
 .job-type-item input:checked ~ .icon {
-    background-color: #4ade80; /* Green background for checked */
+    background-color:#149914; /* Green background for checked */
     color: white; /* White checkmark */
 }
 
@@ -233,32 +224,33 @@ color: #112d66;
     display: flex;
     align-items: center;
     padding: 0.5rem;
-    border: 1px solid #d1d5db; /* Gray border */
+    border: 1px solid #FF4D4D; /* orange red */
     border-radius: 0.375rem; /* Rounded corners */
-    background-color: #2d374800; /* Background color */
+    background-color: #00000015; /* Background color */
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 /* Style for the icon span */
 .benefit-item .icon, .supplemental-pay-item .icon {
+    border: 1px solid #040505;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 2rem;
     height: 2rem;
-    background-color: #e5e7eb; /* Gray background for the icon */
+    background-color: #FFB84D; /* Gray background for the icon */
     border-radius: 50%;
     font-weight: bold;
     font-size: 1.50rem; /* Size of the plus symbol */
-    color: #083a91; /* Color for the plus symbol */
+    color: #000000; /* Color for the plus symbol */
     transition: background-color 0.3s ease, color 0.3s ease;
     text-align: center;
-    line-height: 2rem;
+    line-height: 2.5rem;
 }
 
 /* Change icon when the checkbox is selected */
 .benefit-item input:checked ~ .icon, .supplemental-pay-item input:checked ~ .icon {
-    background-color: #4ade80; /* Green background for checked */
+    background-color: #149914; /* Green background for checked */
     color: white; /* White checkmark */
 }
 
@@ -366,7 +358,7 @@ color: #112d66;
 <body class="bg-gray-100 dark:bg-gray-900">
 
      <!-- Navbar -->
-     <nav class="navbar shadow-md">
+     <nav class="navbar  bg-gradient-to-r from-blue-900 via-amber-500 to-yellow-900 dark:from-gray-700 dark:via-gray-800 dark:to-black shadow-md">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <!-- Brand Name -->
             <div class="flex items-center">
@@ -375,7 +367,7 @@ color: #112d66;
     
             <!-- Hamburger Menu for Mobile View -->
             <div class="lg:hidden">
-                <button id="menu-toggle" class="text-gray-700 dark:text-gray-300 focus:outline-none">
+                <button id="menu-toggle" class="text-yellow-700 dark:text-gray-300 focus:outline-none">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -458,14 +450,14 @@ color: #112d66;
     </nav>
 
 <!-- Review Section -->
-<section class="p-6 max-w-4xl mx-auto bg-white rounded-lg shadow-md dark:bg-gray-800">
+<section class="mt-10 p-6 max-w-4xl mx-auto  rounded-lg  bg-gradient-to-r from-blue-900 via-amber-500 to-yellow-900 dark:from-gray-700 dark:via-gray-800 dark:to-black shadow-md">
     <!-- Review Header -->
     <div class="mb-6">
-        <h2 class="text-2xl font-bold mb-4">Review Section</h2>
+        <h2 class="text-2xl font-bold mb-4 text-yellow-400 font-bold">Review Section</h2>
         
         <!-- Job Details -->
         <div class="mb-6">
-            <h3 class="text-xl font-semibold mb-3">Job Details</h3>
+            <h3 class="text-xl font-semibold mb-3 text-green-700">Job Details</h3>
             <div class="grid grid-cols-2 gap-4">
 
                
@@ -473,10 +465,10 @@ color: #112d66;
 <div class="mb-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border dark:border-gray-600">
     <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
         <div class="flex-1 mb-4 md:mb-0">
-            <p class="text-gray-800 dark:text-gray-200 font-semibold text-lg">Job Title:</p>
-            <p id="jobTitleDisplay" class="text-gray-900 dark:text-gray-100 mt-1">Title of the job here</p>
+            <p class="text-yellow-700 dark:text-gray-200 font-semibold text-lg">Job Title:</p>
+            <p id="jobTitleDisplay" class="text-green-700 font-bold dark:text-gray-100 mt-1">Title of the job here</p>
         </div>
-        <button type="button" class="text-blue-600 dark:text-blue-300 ml-4" onclick="openModal('jobTitleModal')">View</button>
+        <button type="button" class="text-yellow-600 underline dark:text-blue-300 ml-4" onclick="openModal('jobTitleModal')">View</button>
     </div>
 </div>
 
@@ -486,14 +478,14 @@ color: #112d66;
 <div id="jobTitleModal" class="modal hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
     <div class="modal-content bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-11/12 md:w-2/3 lg:w-1/2">
         <span class="close text-gray-700 dark:text-gray-300 cursor-pointer text-xl float-right" onclick="closeModal('jobTitleModal')">&times;</span>
-        <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Edit Job Title</h2>
+        <h2 class="text-2xl font-bold mb-4 text-yellow-700 dark:text-gray-100">Edit Job Title</h2>
         
         <div class="mb-4">
-            <label for="job-title" class="block text-gray-700 dark:text-gray-300 font-bold">Job Title</label>
-            <input type="text" id="job-title" name="job-title" class="mt-1 w-full p-2 border rounded bg-white dark:bg-gray-800 dark:text-gray-300 placeholder-gray-400" value="Intern">
+            <label for="job-title" class="block text-green-700 dark:text-gray-300 font-bold">Job Title</label>
+            <input type="text" id="job-title" name="job-title" class="mt-1 w-full p-2 border rounded bg-white dark:bg-gray-800 dark:text-yellow-300 placeholder-gray-400" value="Intern">
         </div>
         
-        <button type="button" class="bg-black-600 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700 dark:bg-white-500 dark:hover:bg-white-400" onclick="saveJobTitle()">Save</button>
+        <button type="button" class="bg-green-700 font-bold text-white py-2 px-4 rounded mt-4 hover:bg-yellow-700 dark:bg-white-500 dark:hover:bg-white-400" onclick="saveJobTitle()">Save</button>
     </div>
 </div>
 
@@ -502,10 +494,10 @@ color: #112d66;
 <div class="mb-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border dark:border-gray-600">
     <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
         <div class="flex-1 mb-4 md:mb-0">
-            <p class="text-gray-800 dark:text-gray-200 font-semibold text-lg">Company for this Job:</p>
-            <p id="companyDisplay" class="text-gray-900 dark:text-gray-100 mt-1">Company Name Here</p>
+            <p class="text-yellow-700 dark:text-gray-200 font-semibold text-lg">Company for this Job:</p>
+            <p id="companyDisplay" class="text-green-700 dark:text-gray-100 font-bold mt-1">Company Name Here</p>
         </div>
-        <button type="button" class="text-blue-600 dark:text-blue-300 ml-4" onclick="openModal('companyModal')">View</button>
+        <button type="button"  class="text-yellow-600 underline dark:text-blue-300 ml-4" onclick="openModal('companyModal')">View</button>
     </div>
 </div>
 
@@ -515,14 +507,14 @@ color: #112d66;
 <div id="companyModal" class="modal hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
     <div class="modal-content bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-11/12 md:w-2/3 lg:w-1/2">
         <span class="close text-gray-700 dark:text-gray-300 cursor-pointer text-xl float-right" onclick="closeModal('companyModal')">&times;</span>
-        <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Edit Company Name</h2>
+        <h2 class="text-2xl font-bold mb-4 text-yellow-900 dark:text-gray-100">Edit Company Name</h2>
         
         <div>
-            <label for="companyInput" class="block text-gray-700 dark:text-gray-300 font-bold">Company for this Job:</label>
-            <input type="text" id="companyInput" placeholder="Enter Company Name" class="mt-1 w-full p-2 border rounded bg-white dark:bg-gray-800 dark:text-gray-300 placeholder-gray-400" value="Company Name Here">
+            <label for="companyInput" class="block text-green-700 dark:text-gray-300 font-bold">Company for this Job:</label>
+            <input type="text" id="companyInput" placeholder="Enter Company Name" class="mt-1 w-full p-2 border rounded bg-white dark:bg-gray-800 dark:text-gray-300 placeholder-yellow-400" value="Company Name Here">
         </div>
         
-        <button type="button" class="bg-blue-600 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveCompanyName()">Save</button>
+        <button type="button" class="bg-green-700 text-white py-2 px-4 rounded mt-4 hover:bg-yellow-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveCompanyName()">Save</button>
     </div>
 </div>
 
@@ -530,10 +522,10 @@ color: #112d66;
 <div class="mb-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border dark:border-gray-600">
     <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
         <div class="flex-1 mb-4 md:mb-0">
-            <p class="text-gray-800 dark:text-gray-200 font-semibold text-lg">Number of Openings:</p>
-            <p id="openingsDisplay" class="text-gray-900 dark:text-gray-100 mt-1">Number of Openings Here</p>
+            <p class="text-yellow-700 dark:text-gray-200 font-semibold text-lg">Number of Openings:</p>
+            <p id="openingsDisplay" class="text-green-700 font-bold dark:text-gray-100 mt-1">Number of Openings Here</p>
         </div>
-        <button type="button" class="text-blue-600 dark:text-blue-300 ml-4" onclick="openModal('openingsModal')">View</button>
+        <button type="button"  class="text-yellow-600 underline dark:text-blue-300 ml-4" onclick="openModal('openingsModal')">View</button>
     </div>
 </div>
 
@@ -544,14 +536,14 @@ color: #112d66;
 <div id="openingsModal" class="modal hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
     <div class="modal-content bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-11/12 md:w-2/3 lg:w-1/2">
         <span class="close text-gray-700 dark:text-gray-300 cursor-pointer text-xl float-right" onclick="closeModal('openingsModal')">&times;</span>
-        <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Edit Number of Openings</h2>
+        <h2 class="text-2xl font-bold mb-4 text-yellow-700 dark:text-gray-100">Edit Number of Openings</h2>
         
         <div class="mb-4">
-            <label for="number-of-hires" class="block text-gray-700 dark:text-gray-300 font-bold">Number of people to hire for this job:</label>
-            <input type="number" id="number-of-hires" name="number-of-hires" class="mt-1 w-full p-2 border rounded bg-white dark:bg-gray-800 dark:text-gray-300 placeholder-gray-400" value="2">
+            <label for="number-of-hires" class="block text-green-700 dark:text-gray-300 font-bold">Number of people to hire for this job:</label>
+            <input type="number" id="number-of-hires" name="number-of-hires" class="mt-1 w-full p-2 border rounded bg-white dark:bg-gray-800 dark:text-gray-300 placeholder-yellow-400" value="2">
         </div>
         
-        <button type="button" class="bg-blue-600 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveNumberOfOpenings()">Save</button>
+        <button type="button" class="bg-green-700 text-white py-2 px-4 rounded mt-4 hover:bg-yellow-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveNumberOfOpenings()">Save</button>
     </div>
 </div>
 
@@ -560,10 +552,10 @@ color: #112d66;
 <div class="mb-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border dark:border-gray-600">
     <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
         <div class="flex-1 mb-4 md:mb-0">
-            <p class="text-gray-800 dark:text-gray-200 font-semibold text-lg">Location:</p>
-            <p id="locationDisplay" class="text-gray-900 dark:text-gray-100 mt-1">Location Here</p>
+            <p class="text-yellow-700 dark:text-gray-200 font-semibold text-lg">Location:</p>
+            <p id="locationDisplay" class="text-green-700 font-bold dark:text-gray-100 mt-1">Location Here</p>
         </div>
-        <button type="button" class="text-blue-600 dark:text-blue-300 ml-4" onclick="openModal('locationModal')">View</button>
+        <button type="button"  class="text-yellow-600 underline dark:text-blue-300 ml-4" onclick="openModal('locationModal')">View</button>
     </div>
 </div>
 
@@ -573,11 +565,11 @@ color: #112d66;
 <div id="locationModal" class="modal hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
     <div class="modal-content bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-11/12 md:w-2/3 lg:w-1/2">
         <span class="close text-gray-700 dark:text-gray-300 cursor-pointer text-xl float-right" onclick="closeModal('locationModal')">&times;</span>
-        <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Edit Location</h2>
+        <h2 class="text-2xl font-bold mb-4 text-yellow-700 dark:text-gray-100">Edit Location</h2>
         
         <div class="mb-4">
-            <label for="job-location-type" class="block text-gray-700 dark:text-gray-300 font-bold">Job Location Type</label>
-            <select id="job-location-type" name="job-location-type" class="mt-1 w-full p-2 border rounded bg-white dark:bg-gray-700 dark:text-gray-300">
+            <label for="job-location-type" class="block text-green-700 dark:text-gray-300 font-bold">Job Location Type</label>
+            <select id="job-location-type" name="job-location-type" class="mt-1 w-full p-2 border rounded bg-white dark:bg-green-700 dark:text-gray-300">
                 <option value="required">In person - precise location</option>
                 <option value="limited">In person, within a limited area</option>
                 <option value="remote">Fully remote: no on-site work required</option>
@@ -586,7 +578,7 @@ color: #112d66;
             </select>
         </div>
         
-        <button type="button" class="bg-blue-600 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveLocation()">Save</button>
+        <button type="button" class="bg-green-700 text-white py-2 px-4 rounded mt-4 hover:bg-yellow-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveLocation()">Save</button>
     </div>
 </div>
 
@@ -595,10 +587,10 @@ color: #112d66;
 <div class="mb-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border dark:border-gray-600">
     <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
         <div class="flex-1 mb-4 md:mb-0">
-            <p class="text-gray-800 dark:text-gray-200 font-semibold text-lg">Job Type:</p>
-            <p id="jobTypeDisplay" class="text-gray-900 dark:text-gray-100 mt-1">Job Type Here</p>
+            <p class="text-yellow-700 dark:text-gray-200 font-semibold text-lg">Job Type:</p>
+            <p id="jobTypeDisplay" class="text-green-700 font-bold dark:text-gray-100 mt-1">Job Type Here</p>
         </div>
-        <button type="button" class="text-blue-600 dark:text-blue-300 ml-4" onclick="openModal('jobTypeModal')">View</button>
+        <button type="button" class="text-yellow-600 underline dark:text-blue-300 ml-4" onclick="openModal('jobTypeModal')">View</button>
     </div>
 </div>
 
@@ -608,7 +600,7 @@ color: #112d66;
 <div id="jobTypeModal" class="modal hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
     <div class="modal-content bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-md w-full">
         <span class="close text-gray-600 dark:text-gray-300 text-2xl cursor-pointer float-right" onclick="closeModal('jobTypeModal')">&times;</span>
-        <h2 class="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200">Edit Job Type</h2>
+        <h2 class="text-2xl font-bold mb-4 text-yellow-700 font-bold dark:text-gray-200">Edit Job Type</h2>
         <div>
             <div class="grid grid-cols-2 gap-4">
                 <label class="job-type-item flex items-center cursor-pointer">
@@ -648,7 +640,7 @@ color: #112d66;
                 </label>
             </div>
         </div>
-        <button type="button" class="bg-blue-600 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveJobType()">Save</button>
+        <button type="button" class="bg-green-700 text-white py-2 px-4 rounded mt-4 hover:bg-yellow-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveJobType()">Save</button>
     </div>
 </div>
 
@@ -657,10 +649,10 @@ color: #112d66;
 <div class="mb-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border dark:border-gray-600">
     <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
         <div class="flex-1 mb-4 md:mb-0">
-            <p class="text-gray-800 dark:text-gray-200 font-semibold text-lg">Expected Hours per Week:</p>
-            <p id="hoursPerWeekDisplay" class="text-gray-900 dark:text-gray-100 mt-1">Hours per Week Here</p>
+            <p class="text-yellow-700 dark:text-gray-200 font-semibold text-lg">Expected Hours per Week:</p>
+            <p id="hoursPerWeekDisplay" class="text-green-700 font-bold dark:text-gray-100 mt-1">Hours per Week Here</p>
         </div>
-        <button type="button" class="text-blue-600 dark:text-blue-300 ml-4" onclick="openModal('hoursPerWeekModal')">View</button>
+        <button type="button" class="text-yellow-600 underline dark:text-blue-300 ml-4" onclick="openModal('hoursPerWeekModal')">View</button>
     </div>
 </div>
 
@@ -670,17 +662,17 @@ color: #112d66;
 <div id="hoursPerWeekModal" class="modal hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
     <div class="modal-content bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-lg w-full">
         <span class="close text-gray-600 dark:text-gray-300 text-2xl cursor-pointer float-right" onclick="closeModal('hoursPerWeekModal')">&times;</span>
-        <h2 class="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200">Edit Expected Hours per Week</h2>
+        <h2 class="text-2xl font-bold mb-4 text-yellow-700 dark:text-gray-200">Edit Expected Hours per Week</h2>
         <!-- Expected Hours Section -->
         <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border dark:border-gray-700">
             <form>
                 <!-- Expected Hours -->
                 <div class="mb-4">
-                    <label class="block text-gray-700 dark:text-gray-300 mb-2 text-xl font-bold">Expected Hours</label>
+                    <label class="block text-yellow-700 dark:text-gray-300 mb-2 text-xl font-bold">Expected Hours</label>
 
                     <!-- Show by Dropdown -->
                     <div class="mb-4">
-                        <label class="block text-gray-700 dark:text-gray-300 mb-2 text-lg font-bold">Show by</label>
+                        <label class="block text-green-700 dark:text-gray-300 mb-2 text-lg font-bold">Show by</label>
                         <select id="show-by" name="show-by" class="mt-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 w-full p-2 rounded font-bold">
                             <option value="range">Range</option>
                             <option value="fixed">Fixed hours</option>
@@ -691,35 +683,35 @@ color: #112d66;
 
                     <!-- Range Input -->
                     <div id="range-input" class="hidden mb-4">
-                        <label class="block text-gray-700 dark:text-gray-300 mb-2 font-bold">From</label>
-                        <input type="number" id="range-from" name="range-from" placeholder="0" class="mt-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 w-full p-2 rounded" />
-                        <label class="block text-gray-700 dark:text-gray-300 mt-4 mb-2 font-bold">To</label>
-                        <input type="number" id="range-to" name="range-to" placeholder="0" class="mt-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 w-full p-2 rounded" />
-                        <span id="range-text" class="block text-gray-700 dark:text-gray-300 mt-2 font-bold">Hours per week</span>
+                        <label class="block text-green-700 dark:text-gray-300 mb-2 font-bold">From</label>
+                        <input type="number" id="range-from" name="range-from" placeholder="0" class="mt-1 bg-gray-100 font-bold dark:bg-gray-700 dark:text-gray-300 w-full p-2 rounded" />
+                        <label class="block text-green-700 dark:text-gray-300 mt-4 mb-2 font-bold">To</label>
+                        <input type="number" id="range-to" name="range-to" placeholder="0" class="mt-1 bg-gray-100 font-bold dark:bg-gray-700 dark:text-gray-300 w-full p-2 rounded" />
+                        <span id="range-text" class="block text-green-700 dark:text-gray-300 mt-2 font-bold">Hours per week</span>
                     </div>
 
                     <!-- Fixed Hours Input -->
                     <div id="fixed-hours-input" class="hidden mb-4">
-                        <label class="block text-gray-700 dark:text-gray-300 mb-2 font-bold">Fixed Hours</label>
-                        <input type="number" id="fixed-hours" name="fixed-hours" placeholder="Enter fixed hours" class="mt-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 w-full p-2 rounded" />
-                        <span id="fixed-hours-text" class="block text-gray-700 dark:text-gray-300 mt-2 font-bold">Hours per week</span>
+                        <label class="block text-green-700 dark:text-gray-300 mb-2 font-bold">Fixed Hours</label>
+                        <input type="number" id="fixed-hours" name="fixed-hours" placeholder="Enter fixed hours" class="mt-1 font-bold bg-gray-100 dark:bg-gray-700 dark:text-gray-300 w-full p-2 rounded" />
+                        <span id="fixed-hours-text" class="block text-green-700 dark:text-gray-300 mt-2 font-bold">Hours per week</span>
                     </div>
 
                     <!-- Minimum Input -->
                     <div id="min-input" class="hidden mb-4">
-                        <label class="block text-gray-700 dark:text-gray-300 mb-2 font-bold">Minimum</label>
-                        <input type="number" id="min-hours" name="min-hours" placeholder="No less than" class="mt-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 w-full p-2 rounded font-bold" />
+                        <label class="block text-green-700 dark:text-gray-300 mb-2 font-bold">Minimum</label>
+                        <input type="number" id="min-hours" name="min-hours" placeholder="No less than" class="mt-1 bg-gray-100 font-bold dark:bg-gray-700 dark:text-gray-300 w-full p-2 rounded font-bold" />
                     </div>
 
                     <!-- Maximum Input -->
                     <div id="max-input" class="hidden mb-4">
-                        <label class="block text-gray-700 dark:text-gray-300 mb-2 font-bold">Maximum</label>
-                        <input type="number" id="max-hours" name="max-hours" placeholder="No more than" class="mt-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 w-full p-2 rounded font-bold" />
+                        <label class="block text-green-700 dark:text-gray-300 mb-2 font-bold">Maximum</label>
+                        <input type="number" id="max-hours" name="max-hours" placeholder="No more than" class="mt-1 bg-gray-100 font-bold dark:bg-gray-700 dark:text-gray-300 w-full p-2 rounded font-bold" />
                     </div>
                 </div>
             </form>
         </div>
-        <button type="button" class="bg-blue-600 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveHoursPerWeek()">Save</button>
+        <button type="button" class="bg-green-700 text-white py-2 px-4 rounded mt-4 hover:bg-yellow-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveHoursPerWeek()">Save</button>
     </div>
 </div>
 
@@ -728,10 +720,10 @@ color: #112d66;
 <div class="mb-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border dark:border-gray-600">
     <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
         <div class="flex-1 mb-4 md:mb-0">
-            <p class="text-gray-800 dark:text-gray-200 font-semibold text-lg">Schedule:</p>
-            <p id="scheduleDisplay" class="text-gray-900 dark:text-gray-100 mt-1">Schedule Here</p>
+            <p class="text-yellow-700 dark:text-gray-200 font-semibold text-lg">Schedule:</p>
+            <p id="scheduleDisplay" class="text-green-700 font-bold dark:text-gray-100 mt-1">Schedule Here</p>
         </div>
-        <button type="button" class="text-blue-600 dark:text-blue-300 ml-4" onclick="openModal('scheduleModal')">View</button>
+        <button type="button" class="text-yellow-600 underline dark:text-blue-300 ml-4" onclick="openModal('scheduleModal')">View</button>
     </div>
 </div>
 
@@ -741,7 +733,7 @@ color: #112d66;
 <div id="scheduleModal" class="modal hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
     <div class="modal-content bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-11/12 md:w-2/3 lg:w-1/2">
         <span class="close text-gray-700 dark:text-gray-300 cursor-pointer text-xl float-right" onclick="closeModal('scheduleModal')">&times;</span>
-        <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Edit Schedule</h2>
+        <h2 class="text-2xl font-bold mb-4 text-yellow-700 dark:text-gray-100">Edit Schedule</h2>
         <div class="grid grid-cols-1 gap-4">
             <!-- Job Type Options with Vertical Scrollbar -->
             <div class="col-span-2 flex flex-col overflow-y-auto max-h-60 pr-2">
@@ -850,7 +842,7 @@ color: #112d66;
         </div>
         
         <div class="flex justify-end mt-6">
-            <button type="button" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600" onclick="saveSchedule()">Save</button>
+            <button type="button" class="bg-green-700 text-white py-2 px-4 rounded hover:bg-yellow-700 dark:bg-blue-500 dark:hover:bg-blue-600" onclick="saveSchedule()">Save</button>
         </div>
     </div>
 </div>
@@ -859,10 +851,10 @@ color: #112d66;
 <div class="mb-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border dark:border-gray-600">
     <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
         <div class="flex-1 mb-4 md:mb-0">
-            <p class="text-gray-800 dark:text-gray-200 font-semibold text-lg">Pay:</p>
-            <p id="payDisplay" class="text-gray-900 dark:text-gray-100 mt-1">Enter Pay Here</p>
+            <p class="text-yellow-700 dark:text-gray-200 font-semibold text-lg">Pay:</p>
+            <p id="payDisplay" class="text-green-700 font-bold dark:text-gray-100 mt-1">Enter Pay Here</p>
         </div>
-        <button type="button" class="text-blue-600 dark:text-blue-300 ml-4" onclick="openModal('payModal')">View</button>
+        <button type="button" class="text-yellow-600 underline dark:text-blue-300 ml-4" onclick="openModal('payModal')">View</button>
     </div>
 </div>
 
@@ -871,13 +863,13 @@ color: #112d66;
 <div id="payModal" class="modal hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
     <div class="modal-content bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-11/12 md:w-2/3 lg:w-1/2">
         <span class="close text-gray-700 dark:text-gray-300 cursor-pointer text-xl float-right" onclick="closeModal('payModal')">&times;</span>
-        <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Edit Pay</h2>
+        <h2 class="text-2xl font-bold mb-4 text-yellow-700 dark:text-gray-100">Edit Pay</h2>
         
         <div class="max-w-3xl mx-auto bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md border dark:border-gray-700">
             <form>
                 <!-- Show Pay By -->
                 <div class="mb-4">
-                    <label class="block text-gray-700 dark:text-gray-300 mb-2 text-xl font-bold">Show Pay By</label>
+                    <label class="block text-green-700 dark:text-gray-300 mb-2 text-xl font-bold">Show Pay By</label>
                     <select id="show-pay-by" name="show-pay-by" class="mt-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 w-full p-2 rounded font-bold" onchange="updatePayInput()">
                         <option value="range">Range</option>
                         <option value="starting-amount">Starting amount</option>
@@ -890,17 +882,17 @@ color: #112d66;
                 <div id="pay-range-input" class="mb-4">
                     <div class="flex space-x-4">
                         <div class="w-1/2">
-                            <label id="pay-min-label" class="block text-gray-700 dark:text-gray-300 mb-2 font-bold">Minimum</label>
+                            <label id="pay-min-label" class="block text-green-700 dark:text-gray-300 mb-2 font-bold">Minimum</label>
                             <div class="flex items-center">
-                                <span class="text-gray-700 dark:text-gray-300 font-bold">₱</span>
-                                <input type="number" id="pay-min" name="pay-min" placeholder="Enter minimum" class="mt-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 w-full p-2 rounded ml-1" />
+                                <span class="text-green-700 dark:text-gray-300 font-bold">₱</span>
+                                <input type="number" id="pay-min" name="pay-min" placeholder="Enter minimum" class="mt-1 font-bold bg-gray-100 dark:bg-gray-700 dark:text-gray-300 w-full p-2 rounded ml-1" />
                             </div>
                         </div>
                         <div class="w-1/2">
-                            <label id="pay-max-label" class="block text-gray-700 dark:text-gray-300 mb-2 font-bold">Maximum</label>
+                            <label id="pay-max-label" class="block text-green-700 dark:text-gray-300 mb-2 font-bold">Maximum</label>
                             <div class="flex items-center">
                                 <span class="text-gray-700 dark:text-gray-300 font-bold"></span>
-                                <input type="number" id="pay-max" name="pay-max" placeholder="Enter maximum" class="mt-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 w-full p-2 rounded ml-1" />
+                                <input type="number" id="pay-max" name="pay-max" placeholder="Enter maximum" class="mt-1 font-bold bg-gray-100 dark:bg-gray-700 dark:text-gray-300 w-full p-2 rounded ml-1" />
                             </div>
                         </div>
                     </div>
@@ -908,7 +900,7 @@ color: #112d66;
             </form>
         </div>
         
-        <button type="button" class="bg-blue-600 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="savePay()">Save</button>
+        <button type="button" class="bg-green-700 text-white py-2 px-4 rounded mt-4 hover:bg-yellow-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="savePay()">Save</button>
     </div>
 </div>
 
@@ -916,10 +908,10 @@ color: #112d66;
 <div class="mb-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border dark:border-gray-600">
     <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
         <div class="flex-1 mb-4 md:mb-0">
-            <p class="text-gray-800 dark:text-gray-200 font-semibold text-lg">Supplemental Pay:</p>
-            <p id="supplementalPayDisplay" class="text-gray-900 dark:text-gray-100 mt-1">Enter Supplemental Pay Here</p>
+            <p class="text-yellow-700 dark:text-gray-200 font-semibold text-lg">Supplemental Pay:</p>
+            <p id="supplementalPayDisplay" class="text-green-700 font-bold dark:text-gray-100 mt-1">Enter Supplemental Pay Here</p>
         </div>
-        <button type="button" class="text-blue-600 dark:text-blue-300 ml-4" onclick="openModal('supplementalPayModal')">View</button>
+        <button type="button" class="text-yellow-600 underline dark:text-blue-300 ml-4" onclick="openModal('supplementalPayModal')">View</button>
     </div>
 </div>
 
@@ -929,7 +921,7 @@ color: #112d66;
 <div id="supplementalPayModal" class="modal hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
     <div class="modal-content bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-11/12 md:w-2/3 lg:w-1/2">
         <span class="close text-gray-700 dark:text-gray-300 cursor-pointer text-xl float-right" onclick="closeModal('supplementalPayModal')">&times;</span>
-        <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Edit Supplemental Pay</h2>
+        <h2 class="text-2xl font-bold mb-4 text-yellow-700 dark:text-gray-100">Edit Supplemental Pay</h2>
         
         <div class="grid grid-cols-2 gap-4">
             <label class="supplemental-pay-item flex items-center cursor-pointer">
@@ -959,7 +951,7 @@ color: #112d66;
             </label>
         </div>
         
-        <button type="button" class="bg-blue-600 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveSupplementalPay()">Save</button>
+        <button type="button" class="bg-green-700 text-white py-2 px-4 rounded mt-4 hover:bg-yellow-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveSupplementalPay()">Save</button>
     </div>
 </div>
 
@@ -967,10 +959,10 @@ color: #112d66;
 <div class="mb-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border dark:border-gray-600">
     <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
         <div class="flex-1 mb-4 md:mb-0">
-            <p class="text-gray-800 dark:text-gray-200 font-semibold text-lg">Benefits:</p>
-            <p id="benefitsDisplay" class="text-gray-900 dark:text-gray-100 mt-1">Enter Benefits Here</p>
+            <p class="text-yellow-700 dark:text-gray-200 font-semibold text-lg">Benefits:</p>
+            <p id="benefitsDisplay" class="text-green-700 font-bold dark:text-gray-100 mt-1">Enter Benefits Here</p>
         </div>
-        <button type="button" class="text-blue-600 dark:text-blue-300 ml-4" onclick="openModal('benefitsModal')">View</button>
+        <button type="button" class="text-yellow-600 underline dark:text-blue-300 ml-4" onclick="openModal('benefitsModal')">View</button>
     </div>
 </div>
 
@@ -1080,18 +1072,18 @@ color: #112d66;
                 </label>
             </div>
         </div>
-        <button type="button" class="bg-blue-600 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveBenefits()">Save</button>
+        <button type="button" class="bg-green-700 text-white py-2 px-4 rounded mt-4 hover:bg-yellow-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveBenefits()">Save</button>
     </div>
 </div>
 
 <!-- Job Description Section -->
-<div class="mb-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border dark:border-gray-600">
+<div class="mb-6 p-4 bg-white dark:bg-gray-700 rounded-lg shadow-md border dark:border-gray-600">
     <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
         <div class="flex-1 mb-4 md:mb-0">
-            <p class="text-gray-800 dark:text-gray-200 font-semibold text-lg">Job Description:</p>
-            <p id="jobDescriptionDisplay" class="text-gray-900 dark:text-gray-100 mt-1">Enter Job Description Here</p>
+            <p class="text-yellow-700 dark:text-gray-200 font-semibold text-lg">Job Description:</p>
+            <p id="jobDescriptionDisplay" class="text-green-700 font-bold dark:text-gray-100 mt-1">Enter Job Description Here</p>
         </div>
-        <button type="button" class="text-blue-600 dark:text-blue-300 ml-4" onclick="openModal('jobDescriptionModal')">View</button>
+        <button type="button" class="text-yellow-600 underline dark:text-blue-300 ml-4" onclick="openModal('jobDescriptionModal')">View</button>
     </div>
 </div>
 
@@ -1099,9 +1091,9 @@ color: #112d66;
 
 <!-- Modal for Job Description -->
 <div id="jobDescriptionModal" class="modal hidden">
-    <div class="modal-content">
+    <div class="modal-content bg-gray">
         <span class="close" onclick="closeModal('jobDescriptionModal')">&times;</span>
-        <h2 class="text-2xl font-bold mb-4">Edit Job Description</h2>
+        <h2 class="text-2xl font-bold mb-4 text-yellow-700">Edit Job Description</h2>
         <section class="max-w-2xl mx-auto my-8">
             <div class="editor-container">
                 <div class="toolbar">
@@ -1111,7 +1103,7 @@ color: #112d66;
                 </div>
                 <div class="text-editor" contenteditable="true" placeholder="Type your description here..."></div>
             </div>
-        <button type="button" class="bg-blue-600 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveJobDescription()">Save</button>
+        <button type="button" class="bg-green-700 text-white py-2 px-4 rounded mt-4 hover:bg-yellow-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveJobDescription()">Save</button>
     </div>
 </div>
 
@@ -1120,17 +1112,17 @@ color: #112d66;
 
         <!-- Settings -->
         <div>
-            <h3 class="text-xl font-semibold mb-3">Settings</h3>
+            <h3 class="text-xl font-semibold mb-3 font-bold text-yellow-700">Settings</h3>
             <div class="grid grid-cols-2 gap-4">
 
 <!-- Application Method Section -->
 <div class="mb-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border dark:border-gray-600">
     <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
         <div class="flex-1 mb-4 md:mb-0">
-            <p class="text-gray-800 dark:text-gray-200 font-semibold text-lg">Application Method:</p>
-            <p id="applicationMethodDisplay" class="text-gray-900 dark:text-gray-100 mt-1">Enter Application Method Here</p>
+            <p class="text-yellow-700 dark:text-gray-200 font-semibold text-lg">Application Method:</p>
+            <p id="applicationMethodDisplay" class="text-green-700 font-bold dark:text-gray-100 mt-1">Enter Application Method Here</p>
         </div>
-        <button type="button" class="text-blue-600 dark:text-blue-300 ml-4" onclick="openModal('applicationMethodModal')">View</button>
+        <button type="button" class="text-yellow-600 underline dark:text-blue-300 ml-4" onclick="openModal('applicationMethodModal')">View</button>
     </div>
 </div>
 
@@ -1139,41 +1131,41 @@ color: #112d66;
 <div id="applicationMethodModal" class="modal hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
     <div class="modal-content bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-11/12 md:w-2/3 lg:w-1/2">
         <span class="close text-gray-700 dark:text-gray-300 cursor-pointer text-xl float-right" onclick="closeModal('applicationMethodModal')">&times;</span>
-        <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Edit Application Method</h2>
+        <h2 class="text-2xl font-bold mb-4 text-yellow-700 font-bold dark:text-gray-100">Edit Application Method</h2>
         
         <!-- Communication Preferences -->
         <div class="mb-4">
-            <h3 class="text-lg font-semibold mb-2">Communication Preferences</h3>
-            <label for="daily-updates" class="block text-gray-700 dark:text-gray-300">Send daily updates to</label>
+            <h3 class="text-lg font-semibold mb-2 text-yellow-700 font-bold">Communication Preferences</h3>
+            <label for="daily-updates" class="block text-green-700  font-bold dark:text-gray-300">Send daily updates to</label>
             <input type="email" id="daily-updates" placeholder="Enter email address" class="w-full mt-1 p-2 border rounded dark:bg-gray-800 dark:text-gray-300">
             <div id="additional-emails" class="mt-2">
                 <!-- Dynamic email fields will be added here -->
             </div>
-            <button type="button" id="add-email-btn" class="text-blue-600 dark:text-blue-300 mt-1 text-sm">+ Add another email</button>
+            <button type="button" id="add-email-btn" class="text-yellow-700 font-bold dark:text-blue-300 mt-1 text-sm">+ Add another email</button>
         </div>
 
         <!-- Application Preferences -->
         <div class="mb-4">
-            <h3 class="text-lg font-semibold mb-2">Application Preferences</h3>
-            <label for="resume-request" class="block text-gray-700 dark:text-gray-300 text-sm">Ask potential candidates for a resume?</label>
+            <h3 class="text-lg font-semibold mb-2 text-yellow-700 font-bold">Application Preferences</h3>
+            <label for="resume-request" class="block text-green-700 font-bold dark:text-gray-300 text-sm">Ask potential candidates for a resume?</label>
             <select id="resume-request" class="w-full mt-1 p-2 border rounded dark:bg-gray-800 dark:text-gray-300">
                 <option value="yes">Yes, require a resume</option>
                 <option value="no">No, don’t require a resume</option>
                 <option value="optional">Give the option to include a resume</option>
             </select>
 
-            <label class="block mt-2 text-sm">
-                <input type="checkbox" id="criminal-record" class="mr-1">
+            <label class="block mt-2 text-sm text-yellow-700 font-bold">
+                <input type="checkbox" id="criminal-record" class="mr-1 font-bold">
                 People with a criminal record are encouraged to apply
             </label>
             
-            <label for="background-check" class="block mt-2 text-gray-700 dark:text-gray-300 text-sm">Do you require a background check for this job?</label>
+            <label for="background-check" class="block mt-2 text-green-700 font-bold dark:text-gray-300 text-sm">Do you require a background check for this job?</label>
             <select id="background-check" class="w-full mt-1 p-2 border rounded dark:bg-gray-800 dark:text-gray-300">
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
             </select>
         </div>
-        <button type="button" class="bg-blue-600 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveApplicationMethod()">Save</button>
+        <button type="button" class="bg-green-700 text-white py-2 px-4 rounded mt-4 hover:bg-yellow-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveApplicationMethod()">Save</button>
     </div>
 </div>
 
@@ -1182,10 +1174,10 @@ color: #112d66;
 <div class="mb-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border dark:border-gray-600">
     <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
         <div class="flex-1 mb-4 md:mb-0">
-            <p class="text-gray-800 dark:text-gray-200 font-semibold text-lg">Candidates Contact You (Email):</p>
-            <p id="candidatesContactEmailDisplay" class="text-gray-900 dark:text-gray-100 mt-1">Candidates Contact You (Email)</p>
+            <p class="text-yellow-700 dark:text-gray-200 font-semibold text-lg">Candidates Contact You (Email):</p>
+            <p id="candidatesContactEmailDisplay" class="text-green-700 font-bold dark:text-gray-100 mt-1">Candidates Contact You (Email)</p>
         </div>
-        <button type="button" class="text-blue-600 dark:text-blue-300 ml-4" onclick="openModal('candidatesContactEmailModal')">View</button>
+        <button type="button"  class="text-yellow-600 underline dark:text-blue-300 ml-4" onclick="openModal('candidatesContactEmailModal')">View</button>
     </div>
 </div>
 
@@ -1194,15 +1186,15 @@ color: #112d66;
 <div id="candidatesContactEmailModal" class="modal hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
     <div class="modal-content bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-11/12 md:w-2/3 lg:w-1/2">
         <span class="close text-gray-700 dark:text-gray-300 cursor-pointer text-xl float-right" onclick="closeModal('candidatesContactEmailModal')">&times;</span>
-        <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Edit Candidates Contact You (Email)</h2>
+        <h2 class="text-2xl font-bold mb-4 text-yellow-700 dark:text-gray-100">Edit Candidates Contact You (Email)</h2>
         
         <div class="mt-4">
             <label class="flex items-center cursor-pointer">
                 <input type="checkbox" id="contactByEmail" class="form-checkbox text-blue-600 dark:text-blue-300">
-                <span class="ml-2 text-gray-700 dark:text-gray-300">By email to the address provided</span>
+                <span class="ml-2 text-green-700 font-bold dark:text-gray-300">By email to the address provided</span>
             </label>
         </div>
-        <button type="button" class="bg-blue-600 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveCandidatesContactEmail()">Save</button>
+        <button type="button" class="bg-green-700 text-white py-2 px-4 rounded mt-4 hover:bg-yellow-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveCandidatesContactEmail()">Save</button>
     </div>
 </div>
 
@@ -1212,10 +1204,10 @@ color: #112d66;
 <div class="mb-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border dark:border-gray-600">
     <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
         <div class="flex-1 mb-4 md:mb-0">
-            <p class="text-gray-800 dark:text-gray-200 font-semibold text-lg">Candidates Contact You (Phone):</p>
-            <p id="candidatesContactPhoneDisplay" class="text-gray-900 dark:text-gray-100 mt-1">Yes/No</p>
+            <p class="text-yellow-700 dark:text-gray-200 font-semibold text-lg">Candidates Contact You (Phone):</p>
+            <p id="candidatesContactPhoneDisplay" class="text-green-700 font-bold dark:text-gray-100 mt-1">Yes/No</p>
         </div>
-        <button type="button" class="text-blue-600 dark:text-blue-300 ml-4" onclick="openModal('candidatesContactPhoneModal')">View</button>
+        <button type="button"  class="text-yellow-600 underline dark:text-blue-300 ml-4" onclick="openModal('candidatesContactPhoneModal')">View</button>
     </div>
 </div>
 
@@ -1224,16 +1216,16 @@ color: #112d66;
 <div id="candidatesContactPhoneModal" class="modal hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
     <div class="modal-content bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-11/12 md:w-2/3 lg:w-1/2">
         <span class="close text-gray-700 dark:text-gray-300 cursor-pointer text-xl float-right" onclick="closeModal('candidatesContactPhoneModal')">&times;</span>
-        <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Edit Candidates Contact You (Phone)</h2>
+        <h2 class="text-2xl font-bold mb-4 text-yellow-700 dark:text-gray-100">Edit Candidates Contact You (Phone)</h2>
         
         <div class="mb-4">
-            <label for="candidatesContactPhoneSelect" class="block text-gray-700 dark:text-gray-300">Candidates Contact You (Phone):</label>
+            <label for="candidatesContactPhoneSelect" class="block text-green-700 font-bold dark:text-gray-300">Candidates Contact You (Phone):</label>
             <select id="candidatesContactPhoneSelect" class="w-full p-2 border rounded dark:bg-gray-800 dark:text-gray-300">
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
             </select>
         </div>
-        <button type="button" class="bg-blue-600 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveCandidatesContactPhone()">Save</button>
+        <button type="button" class="bg-green-700 text-white py-2 px-4 rounded mt-4 hover:bg-yellow-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveCandidatesContactPhone()">Save</button>
     </div>
 </div>
 
@@ -1242,10 +1234,10 @@ color: #112d66;
 <div class="mb-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border dark:border-gray-600">
     <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
         <div class="flex-1 mb-4 md:mb-0">
-            <p class="text-gray-800 dark:text-gray-200 font-semibold text-lg">Fair Chance Hiring:</p>
-            <p id="fairChanceHiringDisplay" class="text-gray-900 dark:text-gray-100 mt-1">People with criminal record are allowed to apply</p>
+            <p class="text-yellow-700 dark:text-gray-200 font-semibold text-lg">Fair Chance Hiring:</p>
+            <p id="fairChanceHiringDisplay" class="text-green-700 font-bold dark:text-gray-100 mt-1">People with criminal record are allowed to apply</p>
         </div>
-        <button type="button" class="text-blue-600 dark:text-blue-300 ml-4" onclick="openModal('fairChanceHiringModal')">View</button>
+        <button type="button" class="text-yellow-600 underline dark:text-blue-300 ml-4" onclick="openModal('fairChanceHiringModal')">View</button>
     </div>
 </div>
 
@@ -1254,16 +1246,16 @@ color: #112d66;
 <div id="fairChanceHiringModal" class="modal hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
     <div class="modal-content bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-11/12 md:w-2/3 lg:w-1/2">
         <span class="close text-gray-700 dark:text-gray-300 cursor-pointer text-xl float-right" onclick="closeModal('fairChanceHiringModal')">&times;</span>
-        <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Edit Fair Chance Hiring</h2>
+        <h2 class="text-2xl font-bold mb-4 text-yellow-700 dark:text-gray-100">Edit Fair Chance Hiring</h2>
         
         <div class="mb-4">
-            <label for="fairChanceHiringSelect" class="block text-gray-700 dark:text-gray-300">Fair Chance Hiring:</label>
+            <label for="fairChanceHiringSelect" class="block text-green-700 font-bold dark:text-gray-300">Fair Chance Hiring:</label>
             <select id="fairChanceHiringSelect" class="w-full p-2 border rounded dark:bg-gray-800 dark:text-gray-300">
                 <option value="allowed">People with criminal record are allowed to apply</option>
                 <option value="not-allowed">People with criminal record are not allowed to apply</option>
             </select>
         </div>
-        <button type="button" class="bg-blue-600 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveFairChanceHiring()">Save</button>
+        <button type="button" class="bg-green-700 text-white py-2 px-4 rounded mt-4 hover:bg-yellow-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveFairChanceHiring()">Save</button>
     </div>
 </div>
 
@@ -1272,10 +1264,10 @@ color: #112d66;
 <div class="mb-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border dark:border-gray-600">
     <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
         <div class="flex-1 mb-4 md:mb-0">
-            <p class="text-gray-800 dark:text-gray-200 font-semibold text-lg">Hiring Timeline:</p>
-            <p id="hiringTimelineDisplay" class="text-gray-900 dark:text-gray-100 mt-1">Enter Hiring Timeline</p>
+            <p class="text-yellow-700 dark:text-gray-200 font-semibold text-lg">Hiring Timeline:</p>
+            <p id="hiringTimelineDisplay" class="text-green-700 font-bold dark:text-gray-100 mt-1">Enter Hiring Timeline</p>
         </div>
-        <button type="button" class="text-blue-600 dark:text-blue-300 ml-4" onclick="openModal('hiringTimelineModal')">View</button>
+        <button type="button" class="text-yellow-600 underline dark:text-blue-300 ml-4" onclick="openModal('hiringTimelineModal')">View</button>
     </div>
 </div>
 
@@ -1284,11 +1276,11 @@ color: #112d66;
 <div id="hiringTimelineModal" class="modal hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
     <div class="modal-content bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-11/12 md:w-2/3 lg:w-1/2">
         <span class="close text-gray-700 dark:text-gray-300 cursor-pointer text-xl float-right" onclick="closeModal('hiringTimelineModal')">&times;</span>
-        <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Edit Hiring Timeline</h2>
+        <h2 class="text-2xl font-bold mb-4 text-green-700 dark:text-gray-100">Edit Hiring Timeline</h2>
         
         <div>
-            <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">Hire Settings</h3>
-            <label for="hiring-timeline" class="block text-gray-700 dark:text-gray-300 text-sm">Hiring timeline for this job</label>
+            <h3 class="text-lg font-semibold mb-2 text-yellow-700 dark:text-gray-100">Hire Settings</h3>
+            <label for="hiring-timeline" class="block text-green-700 font-bold dark:text-gray-300 text-sm">Hiring timeline for this job</label>
             <select id="hiring-timeline" class="w-full mt-1 p-1.5 border rounded dark:bg-gray-800 dark:text-gray-300">
                 <option value="3-days">3 Days</option>
                 <option value="1-week">1 Week</option>
@@ -1296,15 +1288,15 @@ color: #112d66;
                 <option value="more">More than 1 Month</option>
             </select>
         </div>
-        <button type="button" class="bg-blue-600 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveHiringTimeline()">Save</button>
+        <button type="button" class="bg-green-700 text-white py-2 px-4 rounded mt-4 hover:bg-yellow-700 dark:bg-blue-500 dark:hover:bg-blue-400" onclick="saveHiringTimeline()">Save</button>
     </div>
 </div>
 
 
    
 <div class="text-center mt-6">
-    <a href="application-settings.html" class="bg-gray-600 text-white p-3 rounded-lg hover:bg-gray-700 inline-block text-sm ml-4 transition duration-300 ease-in-out">Back</a>
-    <a href="" class="bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 inline-block text-sm ml-4 transition duration-300 ease-in-out">Submit Job</a>
+    <a href="application-settings.html" class="bg-green-700 text-white p-3 rounded-lg hover:bg-yellow-700 inline-block text-sm ml-4 transition duration-300 ease-in-out">Back</a>
+    <a href="" class="bg-green-700 text-white p-3 rounded-lg hover:bg-yellow-700 inline-block text-sm ml-4 transition duration-300 ease-in-out">Submit Job</a>
 </div>
 
 </section>
@@ -1312,11 +1304,12 @@ color: #112d66;
 
 
     <!-- Footer -->
-    <footer class="footer py-6">
-        <div class="container mx-auto text-center text-gray-700 dark:text-gray-300">
+    <footer class="mt-10 footer py-6 bg-gradient-to-r from-blue-900 via-amber-500 to-yellow-900">
+        <div class="container mx-auto text-center text-white-900 dark:text-gray-300 font-bold ">
             &copy; 2024 Job Compass. All rights reserved.
         </div>
     </footer>
+
 
     <script>
         function saveThemePreference() {
