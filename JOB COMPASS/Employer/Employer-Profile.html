@@ -49,20 +49,20 @@
     text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
 }
 
-/* Light mode styles */
-input[type="text"],
+           /* Form input fields - Light Mode */
+           input[type="text"],
 input[type="email"],
 textarea,
 select,
 input[type="file"],
-input[type="tel"] {
+input[type="number"] {
     padding: 0.75rem;
     width: 100%;
     border-radius: 0.5rem;
-    border: 1px solid #d2d6dc;
-    transition: border-color 0.3s ease;
-    background-color: #ffffff; /* Light mode background color for inputs */
-    color: #111827; /* Dark text color for readability */
+    border: 1px solid #3666a5; /* Default border color (Blue) */
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    background-color: #ffffff; /* Light mode background color */
+    color: #1a202c; /* Light mode text color */
 }
 
 input[type="text"]:focus,
@@ -70,25 +70,32 @@ input[type="email"]:focus,
 textarea:focus,
 select:focus,
 input[type="file"]:focus,
-input[type="tel"]:focus {
+input[type="number"]:focus {
     outline: none;
-    border-color: #4299e1;
+    border-color: #FFB84D; /* Yellow-Orange border on focus */
 }
 
-input[type="tel"]::placeholder {
-    color: transparent;
+/* Dark Mode */
+[data-theme="dark"] {
+    --bg-color: #1a202c;
+    --text-color: #cbd5e0;
+    --border-color: #2d3748;
 }
 
-/* Dark mode styles */
+[data-theme="dark"] body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
 [data-theme="dark"] input[type="text"],
 [data-theme="dark"] input[type="email"],
 [data-theme="dark"] textarea,
 [data-theme="dark"] select,
 [data-theme="dark"] input[type="file"],
-[data-theme="dark"] input[type="tel"] {
-    color: #e5e7eb; /* Light text color for readability */
-    border-color: #4a5568;
-    background-color: #2d3748; /* Dark mode background color for inputs */
+[data-theme="dark"] input[type="number"] {
+    background-color: #2d3748; /* Dark mode background color */
+    color: #cbd5e0; /* Dark mode text color */
+    border-color: #4a5568; /* Dark mode border color */
 }
 
 [data-theme="dark"] input[type="text"]:focus,
@@ -96,69 +103,54 @@ input[type="tel"]::placeholder {
 [data-theme="dark"] textarea:focus,
 [data-theme="dark"] select:focus,
 [data-theme="dark"] input[type="file"]:focus,
-[data-theme="dark"] input[type="tel"]:focus {
-    border-color: #4299e1;
+[data-theme="dark"] input[type="number"]:focus {
+    border-color: #FFB84D; /* Yellow-Orange border on focus in dark mode */
 }
 
-[data-theme="dark"] input[type="tel"]::placeholder {
-    color: #a0aec0; /* Ensure placeholder color is readable */
-}
-
-.bg-white {
-    color: #000000;
-    background-color: #ffffff; /* Light mode background color */
-}
-
-[data-theme="dark"] .bg-white {
-    background-color: #212327; /* Dark mode background color */
-    color: #fcfcfc; /* Dark mode text color */
-}
-
-.text-gray-100 {
-    color: #030708; /* Light color for text in light mode */
-}
-
-[data-theme="dark"] .text-gray-100 {
-    color: #f3f3f3; /* Confirm dark mode text color */
-}
-
-/* Navbar and footer */
+/* Navbar styles */
 .navbar {
-    background-color: #e7e8f7;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #007BFF; /* Blue base color */
+    color: white;
 }
 
-.footer {
-    background-color: #f9fafb;
-    color: #4a5568;
-    border-top: 1px solid #d2d6dc;
-}
-
-.navbar a,
-.footer a {
-    color: #0f1011;
+.navbar a {
+    color: white;
     transition: color 0.3s ease;
 }
 
-.navbar a:hover,
-.footer a:hover {
-    color: #3182ce;
+.navbar a:hover {
+    color: #FF4D4D; /* Red-Orange hover effect */
 }
 
+/* Footer styles */
+.footer {
+    background-color: #f9fafb; /* Light mode footer background */
+    color: #FFB84D;
+}
+
+.footer a {
+    color: #007BFF; /* Blue link color */
+}
+
+.footer a:hover {
+    color: #FF4D4D; /* Red-Orange hover effect */
+}
+
+/* Dark Mode for Navbar and Footer */
 [data-theme="dark"] .navbar,
 [data-theme="dark"] .footer {
-    background-color: #2d3748;
-    color: #e5e7eb;
+    background-color: #2d3748; /* Dark mode background */
+    color: #a0aec0;
 }
 
 [data-theme="dark"] .navbar a,
 [data-theme="dark"] .footer a {
-    color: #90cdf4;
+    color: #FFB84D; /* Yellow-Orange links in dark mode */
 }
 
 [data-theme="dark"] .navbar a:hover,
 [data-theme="dark"] .footer a:hover {
-    color: #e5e7eb;
+    color: #FF4D4D; /* Red-Orange hover in dark mode */
 }
 
 /* Form section */
@@ -389,7 +381,9 @@ input {
 }
 
 .bg-white {
-    background-color: #ffffff;
+    background-color: #ffffff00;
+    border-radius: 4px; /* Optional: rounding the corners for a smoother look */
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
 .dark\:bg-gray-700 {
@@ -443,7 +437,7 @@ input {
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
 
      <!-- Navbar -->
-<nav class="navbar shadow-md">
+     <nav class="navbar bg-gradient-to-r from-blue-900 via-amber-500 to-yellow-900 dark:from-gray-700 dark:via-gray-800 dark:to-black shadow-md">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
         <!-- Brand Name -->
         <div class="flex items-center">
@@ -543,7 +537,7 @@ input {
                 
                  <!-- Dropdown Button -->
                  <div class="flex justify-end px-4 pt-4 absolute top-0 right-0">
-                    <button id="dropdownButton" class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
+                    <button id="dropdownButton" class="inline-block text-blue-700 font-bold  dark:text-blue-900 hover:bg-white-100 dark:hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
                         <span class="sr-only">Open dropdown</span>
                         <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
                             <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
@@ -581,9 +575,9 @@ input {
                 <!-- Contact and Address -->
                 <div>
                     <h3 class="text-blue-700 dark:text-gray-300 uppercase font-bold tracking-wider mb-2">Contact:</h3>
-                    <p class="text-white-700 dark:text-gray-300">0912121440323</p>
+                    <p class="text-gray-700 font-semibold dark:text-gray-300 mb-6">0912121440323</p>
                     <h3 class="text-blue-700 dark:text-gray-300 uppercase font-bold tracking-wider mb-2 mt-4">Address:</h3>
-                    <p class="text-white-700 dark:text-gray-300">Lorem ipsum</p>
+                    <p class="text-gray-700 font-semibold dark:text-gray-300 mb-6">Lorem ipsum</p>
                 </div>
             </div>
         </div>
@@ -592,13 +586,13 @@ input {
         <div class="md:col-span-2">
             <div class="bg-white dark:bg-gray-800 shadow rounded-lg p-6">
                 <h2 class="text-2xl font-bold mb-4 text-blue-900 dark:text-blue-500">About Us</h2>
-                <p class="text-white-700 dark:text-gray-300 mb-6">
+                <p class="text-gray-700 font-semibold dark:text-gray-300 mb-6">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus est vitae tortor ullamcorper, ut vestibulum velit convallis. Aenean posuere risus non velit egestas suscipit. Nunc finibus vel ante id euismod. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam erat volutpat. Nulla vulputate pharetra tellus, in luctus risus rhoncus id.
                 </p>
 
                 <!-- What We Do -->
                 <h2 class="text-2xl font-bold mb-4 text-blue-900 dark:text-blue-500">What We Do</h2>
-                <p class="text-white-700 dark:text-gray-300 mb-6">Lorep ipsum donor random description no alarms and surprises</p>
+                <p class="text-gray-700 font-semibold dark:text-gray-300 mb-6">Lorep ipsum donor random description no alarms and surprises</p>
 
                 <!-- Benefits of Our Company -->
                 <h2 class="text-2xl font-bold mb-4 text-blue-900 dark:text-blue-500">Benefits of Our Company</h2>
@@ -606,21 +600,21 @@ input {
                     <div class="flex items-center">
                         <span class="text-white-700 dark:text-gray-300 font-bold">Competitive Salary</span>
                     </div>
-                    <p class="text-white-700 dark:text-gray-300">
+                    <p class="text-gray-700 font-semibold dark:text-gray-300 mb-6">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus est vitae tortor ullamcorper, ut vestibulum velit convallis. Aenean posuere risus non velit egestas suscipit.
                     </p>
 
                     <div class="flex items-center">
                         <span class="text-white-700 dark:text-gray-300 font-bold">Home Office</span>
                     </div>
-                    <p class="text-white-700 dark:text-gray-300">
+                    <p class="text-gray-700 font-semibold dark:text-gray-300 mb-6">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus est vitae tortor ullamcorper, ut vestibulum velit convallis. Aenean posuere risus non velit egestas suscipit.
                     </p>
 
                     <div class="flex items-center">
                         <span class="text-white-700 dark:text-gray-300 font-bold">Paid Vacation</span>
                     </div>
-                    <p class="text-white-700 dark:text-gray-300">
+                    <p class="text-gray-700 font-semibold dark:text-gray-300 mb-6">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus est vitae tortor ullamcorper, ut vestibulum velit convallis. Aenean posuere risus non velit egestas suscipit.
                     </p>
                 </div>
@@ -740,10 +734,10 @@ input {
     </div>
 </div>
 
-<!-- Footer -->
-<footer class="footer py-4">
-    <div class="container mx-auto text-center">
-        <p class="text-gray-600 dark:text-gray-400">© 2024 Job Compass™. All rights reserved.</p>
+ <!-- Footer -->
+ <footer class="footer py-6 bg-gradient-to-r from-blue-900 via-amber-500 to-yellow-900 dark:from-gray-700 dark:via-gray-800 dark:to-black shadow-md mt-4">
+    <div class="container mx-auto text-center text-white-900 dark:text-gray-300 font-bold ">
+        &copy; 2024 Job Compass. All rights reserved.
     </div>
 </footer>
 
