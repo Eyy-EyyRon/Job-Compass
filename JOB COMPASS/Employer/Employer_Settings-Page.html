@@ -8,271 +8,117 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet" />
     <style>
-        /* Light mode default styles */
-        :root {
-            --bg-color: #ffffff;
-            --text-color: #1a202c;
-            --accent-color: #4299e1;
-        }
-    
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-        }
-    
-        .navbar,
-        .footer {
-            background-color: #f7fafc;
-            color: var(--text-color);
-        }
-    
-        .navbar a,
-        .footer a {
-            color: var(--text-color);
-        }
-    
-        .navbar a:hover,
-        .footer a:hover {
-            color: var(--accent-color);
-        }
-    
-        .bg-white {
-            background-color: #ffffff;
-            color: var(--text-color);
-        }
-    
-        .text-gray-700 {
-            color: #4a5568;
-        }
-    
-        .border {
-            border-color: #e2e8f0;
-        }
-    
-        .hover\:text-blue-600:hover {
-            color: #4299e1;
-        }
-    
-        .hover\:underline:hover {
-            text-decoration: underline;
-        }
-    
-        .form-label {
-            color: #4a5568;
-        }
-    
-        .settings-container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #e2e8f0;
-            border-radius: 0.5rem;
-            background-color: #ffffff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-    
-        .settings-container:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-    
-        .settings-title {
-            font-size: 2rem;
-            font-weight: bold;
-            margin-bottom: 1.5rem;
-            color: #1a202c;
-        }
-    
-        .form-input {
-            margin-bottom: 1.5rem;
-        }
-    
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-            color: #4a5568;
-        }
-    
-        .form-input input[type="text"],
-        .form-input input[type="password"],
-        .form-input input[type="file"] {
-            width: 100%;
-            padding: 0.75rem;
-            font-size: 1rem;
-            border: 1px solid #cbd5e0;
-            border-radius: 0.5rem;
-            transition: border-color 0.3s, box-shadow 0.3s;
-            background-color: #ffffff;
-            color: #4a5568;
-        }
-    
-        .form-input input[type="text"]:focus,
-        .form-input input[type="password"]:focus,
-        .form-input input[type="file"]:focus {
-            border-color: #3b82f6;
-            outline: none;
-            box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
-        }
-    
-        .form-actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-    
-        .form-actions button {
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
-            font-weight: bold;
-            color: #ffffff;
-            background-color: var(--accent-color);
-            border: none;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-    
-        .form-actions button:hover {
-            background-color: #3182ce;
-        }
-    
-        .form-actions button:focus {
-            outline: none;
-            box-shadow: 0 0 8px rgba(66, 153, 225, 0.5);
-        }
-    
-        .error-message {
-            color: #e53e3e;
-            font-size: 0.875rem;
-            margin-top: 0.25rem;
-        }
-    
-        .profile-picture-preview {
-            background-color: #f7fafc;
-            border: 1px solid #cbd5e0;
-            padding: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    
-        .profile-picture-preview img {
-            max-width: 100%;
-            max-height: 200px;
-            display: block;
-        }
-    
-        /* Dark mode specific styles */
-        [data-theme="dark"] {
-            --bg-color: #1a202c;
-            --text-color: #cbd5e0;
-            --accent-color: #4299e1;
-        }
-    
-        [data-theme="dark"] body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-        }
-    
-        [data-theme="dark"] .navbar,
-        [data-theme="dark"] .footer {
-            background-color: #2d3748;
-            color: var(--accent-color);
-        }
-    
-        [data-theme="dark"] .navbar a,
-        [data-theme="dark"] .footer a {
-            color: var(--accent-color);
-        }
-    
-        [data-theme="dark"] .navbar a:hover,
-        [data-theme="dark"] .footer a:hover {
-            color: #90cdf4;
-        }
-    
-        [data-theme="dark"] .bg-white {
-            background-color: #2d3748;
-            color: #cbd5e0;
-        }
-    
-        [data-theme="dark"] .text-gray-700 {
-            color: #dde5ee;
-        }
-    
-        [data-theme="dark"] .border {
-            border-color: #4a5568;
-        }
-    
-        [data-theme="dark"] .hover\:text-blue-600:hover {
-            color: #90cdf4;
-        }
-    
-        [data-theme="dark"] .hover\:underline:hover {
-            text-decoration: underline;
-        }
-    
-        [data-theme="dark"] .form-label {
-            color: #cbd5e0;
-        }
-    
-        [data-theme="dark"] .settings-container {
-            background-color: #2d3748;
-            color: #cbd5e0;
-            border-color: #4a5568;
-        }
-    
-        [data-theme="dark"] .settings-title {
-            color: #cbd5e0;
-        }
-    
-        [data-theme="dark"] .form-input input[type="text"],
-        [data-theme="dark"] .form-input input[type="password"],
-        [data-theme="dark"] .form-input input[type="file"] {
-            border-color: #4a5568;
-            background-color: #2d3748;
-            color: #cbd5e0;
-        }
-    
-        [data-theme="dark"] .form-input input[type="text"]:focus,
-        [data-theme="dark"] .form-input input[type="password"]:focus,
-        [data-theme="dark"] .form-input input[type="file"]:focus {
-            border-color: #4a5568;
-            box-shadow: 0 0 8px rgba(74, 85, 104, 0.5);
-        }
-    
-        [data-theme="dark"] .form-actions button {
-            background-color: #4a5568;
-        }
-    
-        [data-theme="dark"] .form-actions button:hover {
-            background-color: #2d3748;
-        }
-    
-        [data-theme="dark"] .profile-picture-preview {
-            background-color: #2d3748;
-            border-color: #4a5568;
-            color: #cbd5e0;
-        }
-        * {
-      font-family: 'Source Sans Pro';
-      }
-      .text-base {
-    font-size: 1rem;
-    line-height: 1.5rem;
-    color: #1a202c;
+                   /* Form input fields - Light Mode */
+                   input[type="text"],
+input[type="email"],
+textarea,
+select,
+input[type="file"],
+input[type="number"] {
+    padding: 0.75rem;
+    width: 100%;
+    border-radius: 0.5rem;
+    border: 1px solid #3666a5; /* Default border color (Blue) */
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    background-color: #ffffff; /* Light mode background color */
+    color: #1a202c; /* Light mode text color */
 }
-[data-theme="dark"] .text-gray-700 {
-    color: #050505;
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus,
+select:focus,
+input[type="file"]:focus,
+input[type="number"]:focus {
+    outline: none;
+    border-color: #FFB84D; /* Yellow-Orange border on focus */
 }
+
+/* Dark Mode */
+[data-theme="dark"] {
+    --bg-color: #1a202c;
+    --text-color: #6a9bcf;
+    --border-color: #2d3748;
+}
+
+[data-theme="dark"] body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+[data-theme="dark"] input[type="text"],
+[data-theme="dark"] input[type="email"],
+[data-theme="dark"] textarea,
+[data-theme="dark"] select,
+[data-theme="dark"] input[type="file"],
+[data-theme="dark"] input[type="number"] {
+    background-color: #2d3748; /* Dark mode background color */
+    color: #cbd5e0; /* Dark mode text color */
+    border-color: #4a5568; /* Dark mode border color */
+}
+
+[data-theme="dark"] input[type="text"]:focus,
+[data-theme="dark"] input[type="email"]:focus,
+[data-theme="dark"] textarea:focus,
+[data-theme="dark"] select:focus,
+[data-theme="dark"] input[type="file"]:focus,
+[data-theme="dark"] input[type="number"]:focus {
+    border-color: #FFB84D; /* Yellow-Orange border on focus in dark mode */
+}
+
+/* Navbar styles */
+.navbar {
+    background-color: #007BFF; /* Blue base color */
+    color: white;
+}
+
+.navbar a {
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #FF4D4D; /* Red-Orange hover effect */
+}
+
+/* Footer styles */
+.footer {
+    background-color: #f9fafb; /* Light mode footer background */
+    color: #FFB84D;
+}
+
+.footer a {
+    color: #007BFF; /* Blue link color */
+}
+
+.footer a:hover {
+    color: #FF4D4D; /* Red-Orange hover effect */
+}
+
+/* Dark Mode for Navbar and Footer */
+[data-theme="dark"] .navbar,
+[data-theme="dark"] .footer {
+    background-color: #2d3748; /* Dark mode background */
+    color: #a0aec0;
+}
+
+[data-theme="dark"] .navbar a,
+[data-theme="dark"] .footer a {
+    color: #FFB84D; /* Yellow-Orange links in dark mode */
+}
+
+[data-theme="dark"] .navbar a:hover,
+[data-theme="dark"] .footer a:hover {
+    color: #FF4D4D; /* Red-Orange hover in dark mode */
+}
+
     </style>    
 </head>
 
 <body class="bg-gray-100 dark:bg-gray-900">
 
     <!-- Navbar -->
-    <nav class="navbar shadow-md">
+    <nav class="navbar  bg-gradient-to-r from-blue-900 via-amber-500 to-yellow-900 dark:from-gray-700 dark:via-gray-800 dark:to-black shadow-md mt-4">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <!-- Brand Name -->
             <div class="flex items-center">
@@ -442,7 +288,7 @@
                 <a class="recover-account-btn text-sm font-semibold text-blue-600 dark:text-blue-400 underline decoration-2" href="#">Recover Account</a>
             </p>       
 
-            <button class="mt-4 rounded-lg bg-blue-600 dark:bg-blue-500 px-4 py-2 text-white dark:text-gray-200">Save Password</button>
+            <button class="mt-4 rounded-lg bg-blue-900 hover:bg-blue-700 text-blue-200 font-semibold  px-4 py-2 text-white dark:text-gray-200">Save Password</button>
             <hr class="mt-4 mb-8 dark:border-gray-600" />
 
             <div class="mb-10">
@@ -462,14 +308,14 @@
 
 <!-- Email Change Modal -->
 <div id="emailChangeModal" class="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50 hidden">
-    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg w-full max-w-md p-6">
+    <div class="bg-black dark:bg-gray-800 rounded-lg shadow-lg w-full max-w-md p-6">
         <h2 class="text-xl font-semibold text-blue-600 dark:text-gray-100">Change Email Address</h2>
         <form id="emailChangeForm" class="mt-4">
             <label for="newEmail" class="block text-white-700 dark:text-gray-300">New Email Address</label>
             <input type="email" id="newEmail" name="newEmail" class="mt-2 w-full p-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600" required>
             <div class="mt-4 flex justify-end gap-4">
-                <button type="button" id="closeEmailModal" class="bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded">Cancel</button>
-                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">Save Changes</button>
+                <button type="button" id="closeEmailModal" class="bg-gray-900 hover:bg-gray-700 text-white-200 font-semibold py-2 px-4 rounded">Cancel</button>
+                <button type="submit"class="bg-blue-900 hover:bg-blue-700 text-blue-200 font-semibold py-2 px-1 rounded">Save Changes</button>
             </div>
         </form>
     </div>
@@ -477,14 +323,14 @@
 
 <!-- Contact Number Change Modal -->
 <div id="contactChangeModal" class="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50 hidden">
-    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg w-full max-w-md p-6">
+    <div class="bg-black dark:bg-gray-800 rounded-lg shadow-lg w-full max-w-md p-6">
         <h2 class="text-xl font-semibold text-blue-600 dark:text-gray-100">Change Contact Number</h2>
         <form id="contactChangeForm" class="mt-4">
             <label for="newContact" class="block text-white-700 dark:text-gray-300">New Contact Number</label>
             <input type="text" id="newContact" name="newContact" class="mt-2 w-full p-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600" required>
             <div class="mt-4 flex justify-end gap-4">
-                <button type="button" id="closeContactModal" class="bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded">Cancel</button>
-                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">Save Changes</button>
+                <button type="button" id="closeContactModal"  class="bg-gray-900 hover:bg-gray-700 text-white-200 font-semibold py-2 px-4 rounded">Cancel</button>
+                <button type="submit"class="bg-blue-900 hover:bg-blue-700 text-blue-200 font-semibold py-2 px-1 rounded">Save Changes</button>
             </div>
         </form>
     </div>
@@ -492,14 +338,14 @@
 
 <!-- Address Change Modal -->
 <div id="addressChangeModal" class="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50 hidden">
-    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg w-full max-w-md p-6">
+    <div class="bg-black dark:bg-gray-800 rounded-lg shadow-lg w-full max-w-md p-6">
         <h2 class="text-xl font-semibold text-blue-700 dark:text-gray-100">Change Address</h2>
         <form id="addressChangeForm" class="mt-4">
             <label for="newAddress" class="block text-white-700 dark:text-gray-300">New Address</label>
             <input type="text" id="newAddress" name="newAddress" class="mt-2 w-full p-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600" required>
             <div class="mt-4 flex justify-end gap-4">
-                <button type="button" id="closeAddressModal" class="bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded">Cancel</button>
-                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">Save Changes</button>
+                <button type="button" id="closeAddressModal" class="bg-gray-900 hover:bg-gray-700 text-white-200 font-semibold py-2 px-4 rounded">Cancel</button>
+                <button type="submit" class="bg-blue-900 hover:bg-blue-700 text-blue-200 font-semibold py-2 px-1 rounded">Save Changes</button>
             </div>
         </form>
     </div>
@@ -507,26 +353,26 @@
 
 <!-- Recover Account Modal -->
 <div id="recoverAccountModal" class="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50 hidden">
-    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg w-full max-w-md p-6">
+    <div class="bg-black dark:bg-gray-800 rounded-lg shadow-lg w-full max-w-md p-6">
         <h2 class="text-xl font-semibold text-blue-700 dark:text-gray-100">Recover Your Account</h2>
         <form id="recoverAccountForm" class="mt-4">
             <label for="recoverEmail" class="block text-white-700 dark:text-gray-300">Enter Your Email Address</label>
             <input type="email" id="recoverEmail" name="recoverEmail" class="mt-2 w-full p-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600" placeholder="you@example.com" required>
             <div class="mt-4 flex justify-end gap-4">
-                <button type="button" id="closeRecoverModal" class="bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded">Cancel</button>
-                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">Send Recovery Link</button>
+                <button type="button" id="closeRecoverModal" class="bg-gray-900 hover:bg-gray-700 text-white-200 font-semibold py-2 px-4 rounded">Cancel</button>
+                <button type="submit" class="bg-blue-900 hover:bg-blue-700 text-blue-200 font-semibold py-2 px-1 rounded">Send Recovery Link</button>
             </div>
         </form>
     </div>
 </div>
 
 
-    <!-- Footer -->
-    <footer class="footer mt-8 py-4 bg-gray-200 dark:bg-gray-800">
-        <div class="container mx-auto px-4">
-            <p class="text-center text-gray-700 dark:text-gray-300">&copy; 2024 Job Compass™. All rights reserved.</p>
-        </div>
-    </footer>
+   <!-- Footer -->
+   <footer class="footer py-6 bg-gradient-to-r from-blue-900 via-amber-500 to-yellow-900 dark:from-gray-700 dark:via-gray-800 dark:to-black shadow-md mt-4">
+    <div class="container mx-auto text-center text-white-900 dark:text-gray-300 font-bold ">
+        &copy; 2024 Job Compass. All rights reserved.
+    </div>
+</footer>
 
     <script>
            document.addEventListener('DOMContentLoaded', () => {
