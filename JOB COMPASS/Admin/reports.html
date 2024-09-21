@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports Dashboard - Job Portal Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha512-TRn+LpHQU+Km6ZrMiEYW14snDpNhFZ/5z15t8nCv0oC7OHoiEgXJG9jXpDf8F51G53b5OqE9b8LPeWONKxR7A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .dashboard-icon {
+            color: #4a90e2;
+        }
+        .user-type {
+            color: #6b7280;
+            font-size: 14px;
+        }
+        .user-count {
+            font-size: 24px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <img class="h-8 w-auto" src="/placeholder.svg?height=32&width=32" alt="Logo">
+                        <span class="ml-2 text-xl font-semibold text-gray-800">Job Compass</span>
+                    </div>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="Dashboard.html" class="nav-link border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Dashboard
+                        </a>
+                        <a href="employers.html" class="nav-link border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Employers
+                        </a>
+                        <a href="reports.html" class="nav-link border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Reports
+                        </a>
+                        <a href="verification.html" class="nav-link border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Verification
+                        </a>
+                        <a href="../Landing,signup,login/Landing-Page.html" class="nav-link border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sm:hidden" id="mobile-menu">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="Dashboard.html" class="nav-link border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                    Dashboard
+                </a>
+                <a href="employers.html" class="nav-link border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                    Employers
+                </a>
+                <a href="reports.html" class="nav-link border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                    Reports
+                </a>
+                <a href="verification.html" class="nav-link border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                    Verification
+                </a>
+                <a href="../Landing,signup,login/Landing-Page.html" class="nav-link border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                    Logout
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto p-4">
+        <div class="bg-white shadow rounded-lg mb-8">
+            <div class="p-6 border-b border-gray-200">
+                <h1 class="text-2xl font-bold text-gray-900">Reports Dashboard</h1>
+                <p class="mt-1 text-sm text-gray-500">View and analyze platform statistics</p>
+            </div>
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-bold">Platform Activity</h2>
+                    <select id="reportType" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                        <option value="daily">Daily</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly" selected>Monthly</option>
+                        <option value="yearly">Yearly</option>
+                    </select>
+                </div>
+                <div class="h-96">
+                    <canvas id="activityChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="bg-white shadow rounded-lg p-6">
+                <h3 class="text-lg font-semibold mb-2">Total Job Seekers</h3>
+                <p class="text-4xl font-bold" id="totalJobSeekers">1,955</p>
+            </div>
+            <div class="bg-white shadow rounded-lg p-6">
+                <h3 class="text-lg font-semibold mb-2">Total Employers</h3>
+                <p class="text-4xl font-bold" id="totalEmployers">3,039</p>
+            </div>
+            <div class="bg-white shadow rounded-lg p-6">
+                <h3 class="text-lg font-semibold mb-2">Total Job Postings</h3>
+                <p class="text-4xl font-bold" id="totalJobPostings">1,568</p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Sample data for the chart
+        const monthlyData = [
+            { name: 'Jan', jobSeekers: 400, employers: 240, jobPostings: 240 },
+            { name: 'Feb', jobSeekers: 300, employers: 139, jobPostings: 221 },
+            { name: 'Mar', jobSeekers: 200, employers: 980, jobPostings: 229 },
+            { name: 'Apr', jobSeekers: 278, employers: 390, jobPostings: 200 },
+            { name: 'May', jobSeekers: 189, employers: 480, jobPostings: 218 },
+            { name: 'Jun', jobSeekers: 239, employers: 380, jobPostings: 250 },
+            { name: 'Jul', jobSeekers: 349, employers: 430, jobPostings: 210 },
+        ];
+
+        // Initialize the chart
+        const ctx = document.getElementById('activityChart').getContext('2d');
+        let activityChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: monthlyData.map(d => d.name),
+                datasets: [
+                    {
+                        label: 'Job Seekers',
+                        data: monthlyData.map(d => d.jobSeekers),
+                        backgroundColor: 'rgba(59, 130, 246, 0.5)',
+                        borderColor: 'rgb(59, 130, 246)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Employers',
+                        data: monthlyData.map(d => d.employers),
+                        backgroundColor: 'rgba(16, 185, 129, 0.5)',
+                        borderColor: 'rgb(16, 185, 129)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Job Postings',
+                        data: monthlyData.map(d => d.jobPostings),
+                        backgroundColor: 'rgba(245, 158, 11, 0.5)',
+                        borderColor: 'rgb(245, 158, 11)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Update chart based on selected report type
+        document.getElementById('reportType').addEventListener('change', function(e) {
+            // In a real application, you would fetch different data based on the selected report type
+            // For this example, we'll just use the same data
+            activityChart.data.labels = monthlyData.map(d => d.name);
+            activityChart.data.datasets[0].data = monthlyData.map(d => d.jobSeekers);
+            activityChart.data.datasets[1].data = monthlyData.map(d => d.employers);
+            activityChart.data.datasets[2].data = monthlyData.map(d => d.jobPostings);
+            activityChart.update();
+        });
+
+        // Update total counts
+        function updateTotalCounts() {
+            document.getElementById('totalJobSeekers').textContent = '1,955';
+            document.getElementById('totalEmployers').textContent = '3,039';
+            document.getElementById('totalJobPostings').textContent = '1,568';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.remove('text-gray-500', 'border-transparent');
+                    link.classList.add('text-indigo-600', 'border-indigo-500');
+                } else {
+                    link.classList.remove('text-indigo-600', 'border-indigo-500');
+                    link.classList.add('text-gray-500', 'border-transparent');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
