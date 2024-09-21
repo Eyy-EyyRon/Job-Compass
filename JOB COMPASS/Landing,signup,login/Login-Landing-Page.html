@@ -3,85 +3,77 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Job Compass Login</title>
+  <title>Selection Page</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <style>
-    .button-container {
-      max-width: 500px;
-      margin: 0 auto;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      background-color: #f9fafb;
-    }
-
-    .button-header {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .button-header h2 {
-      font-size: 2.2rem;
-      font-weight: bold;
-    font-style: italic;
-      color: #12ac4d;
-    }
-
-    .button-list {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 30px;
-    }
-
-    .custom-button {
-      background-color: #12ac4d;
+    /* Custom Styles */
+    .hero-section {
+      background: url('../Images/zcbg2.jpg') no-repeat center center;
       color: white;
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+    }
+    .hero-section h1 {
+      font-size: 4rem;
+      margin-bottom: 2rem;
+    }
+    .hero-section p {
+      font-weight: 300;
+      font-size: 1.25rem;
+      margin-bottom: 3rem;
+    }
+    .card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      padding: 2rem;
+      border-radius: 1rem;
+      background-color: #fffffff0;
+      font-weight: 200;
+      color: #020202;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+    .btn-animate {
       transition: background-color 0.3s ease, transform 0.3s ease;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 45%;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      font-size: 1.125rem;
     }
-
-    .custom-button:hover {
-      background-color: #2c5282;
-      transform: translateY(-2px);
+    .btn-animate:hover {
+      background-color: #004aad;
+      transform: scale(1.05);
     }
-
-    .custom-button .icon {
-      font-size: 2rem;
-      margin-right: 10px;
+    .fade-in {
+      animation: fadeIn 1.5s ease-in-out;
     }
-
-    .custom-button .button-text {
-      font-weight: bold;
-      font-size: 1.2rem;
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
-
-    .footer {
-      background-color: #2d3748;
-      color: #a0aec0;
-      text-align: center;
-      padding: 10px 0;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
+    .icon-animation {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      transition: transform 0.3s ease;
+      color: #090775;
     }
-
+    .card:hover .icon-animation {
+      transform: scale(1.1);
+    }
     .back-link {
       position: absolute;
-      top: 20px;
+      top: 10px;
       left: 20px;
-      color: #2b6cb0;
+      color: #0a3e75;
       text-decoration: none;
       font-weight: bold;
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       display: flex;
       align-items: center;
     }
@@ -93,39 +85,43 @@
 </head>
 <body class="bg-gray-100">
 
-  <!-- Navbar -->
-  
 
-  <!-- Button Section -->
-  <section class="container mx-auto px-4 py-20">
-    <a href="Landing-Page.html" class="back-link">
-      <i class="fas fa-arrow-left"></i>
-      Back to Home
-    </a>
-
-    <div class="button-container bg-white mt-10">
-      <div class="button-header">
-        <h2>Login</h2>
+  <!-- Hero Section -->
+  <a href="Landing-Page.html" class="back-link">
+    <i class="fas fa-arrow-left"></i>
+    Back to Home
+  </a>
+  <section class="hero-section container mx-auto px-4 text-center fade-in">
+    <h1 class="text-4xl font-bold mb-8">Welcome to Job Compass™</h1>
+    <p class="text-lg mb-12">Your one-stop platform for job seekers and employers. Choose your path to get started.</p>
+    
+    <div class="flex justify-center space-x-8">
+      <!-- Job Seekers Section -->
+      <div class="max-w-sm p-8 rounded-lg shadow-md card">
+        <div class="icon-animation">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-16 h-16 mx-auto mb-4">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 19.121a1.503 1.503 0 01-.3-1.43A5.002 5.002 0 005 12a5.002 5.002 0 00-1.794 7.69c.188.215.392.413.611.601l1.414-1.414a3.508 3.508 0 01-.11-.856zM12 8a4 4 0 110-8 4 4 0 010 8zm2 12a2 2 0 002-2H8a2 2 0 002 2h4zm0-2H8a2 2 0 012-2h2a2 2 0 012 2zm-6-6a2 2 0 100-4 2 2 0 000 4zm8 0a2 2 0 100-4 2 2 0 000 4z" />
+          </svg>
+        </div>
+        <h2 class="text-2xl font-bold mb-6">Job Seeker</h2>
+        <p class="mb-6">Find your dream job and take your career to the next level.</p>
+        <a href="Job-Seeker/Login.html" class="block bg-blue-800 text-white p-3 rounded-lg hover:bg-blue-600  font-semibold btn-animate">Login as a Job Seeker</a>
       </div>
-      <div class="button-list">
-        <a href="Employer/Employer-Login.html" class="custom-button">
-          <span class="icon"><i class="fas fa-building"></i></span>
-          <span class="button-text">Employer Login</span>
-        </a>
-        <a href="Job-Seeker/Login.html" class="custom-button">
-          <span class="icon"><i class="fas fa-user"></i></span>
-          <span class="button-text">Job Seeker Login</span>
-        </a>
+
+      <!-- Employers Section -->
+      <div class="max-w-sm p-8 rounded-lg shadow-md card">
+        <div class="icon-animation">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-16 h-16 mx-auto mb-4">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21l-7-3-7 3V5a2 2 0 012-2h10a2 2 0 012 2z" />
+          </svg>
+        </div>
+        <h2 class="text-2xl font-bold mb-6">Employer</h2>
+        <p class="mb-6">Post jobs and find the perfect candidates for your company.</p>
+        <a href="Employer/Employer-Login.html" class="block bg-blue-800 text-white p-3 rounded-lg hover:bg-blue-600 font-semibold btn-animate">Login as a Employer</a>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container mx-auto text-center text-gray-300">
-      <p>&copy; 2024 Job Compass. All rights reserved.</p>
-    </div>
-  </footer>
 
 </body>
 </html>

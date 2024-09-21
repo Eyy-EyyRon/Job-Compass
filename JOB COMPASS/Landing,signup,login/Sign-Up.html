@@ -61,10 +61,25 @@
       font-size: 3rem;
       margin-bottom: 1rem;
       transition: transform 0.3s ease;
-      color: #6a11cb;
+      color: #160e81;
     }
     .card:hover .icon-animation {
       transform: scale(1.1);
+    }
+    .back-link {
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      color: #0a3e75;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .back-link i {
+      margin-right: 5px;
     }
   </style>
 </head>
@@ -72,6 +87,10 @@
 
 
   <!-- Hero Section -->
+  <a href="Landing-Page.html" class="back-link">
+    <i class="fas fa-arrow-left"></i>
+    Back to Home
+  </a>
   <section class="hero-section container mx-auto px-4 text-center fade-in">
     <h1 class="text-4xl font-bold mb-8">Welcome to Job Compass™</h1>
     <p class="text-lg mb-12">Your one-stop platform for job seekers and employers. Choose your path to get started.</p>
@@ -86,7 +105,7 @@
         </div>
         <h2 class="text-2xl font-bold mb-6">Job Seeker</h2>
         <p class="mb-6">Find your dream job and take your career to the next level.</p>
-        <a href="C:\Users\HP 348\OneDrive\Desktop\Capstone1-2\JOB COMPASS\Job-Seeker\Job-Seeker-signup.html" class="block bg-blue-800 text-white p-3 rounded-lg hover:bg-blue-600  font-semibold btn-animate">I'm a Job Seeker</a>
+        <a href="../Job-Seeker/Job-Seeker-signup.html" class="block bg-blue-800 text-white p-3 rounded-lg hover:bg-blue-600  font-semibold btn-animate">I'm a Job Seeker</a>
       </div>
 
       <!-- Employers Section -->
@@ -98,7 +117,7 @@
         </div>
         <h2 class="text-2xl font-bold mb-6">Employer</h2>
         <p class="mb-6">Post jobs and find the perfect candidates for your company.</p>
-        <a href="C:\Users\HP 348\OneDrive\Desktop\Capstone1-2\JOB COMPASS\Employer\Employer-signup.html" class="block bg-blue-800 text-white p-3 rounded-lg hover:bg-blue-600 font-semibold btn-animate">I'm an Employer</a>
+        <a href="../Employer/Employer-signup.html" class="block bg-blue-800 text-white p-3 rounded-lg hover:bg-blue-600 font-semibold btn-animate">I'm an Employer</a>
       </div>
     </div>
   </section>

@@ -8,77 +8,132 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        /* Dark mode specific styles */
-        [data-theme="dark"] {
-            --bg-color: #1a202c;
-            --text-color: #d2d9e0; /* Light text color */
-            --accent-color: #4299e1;
-        }
+                         /* Form input fields - Light Mode */
+                         input[type="text"],
+input[type="email"],
+textarea,
+select,
+input[type="file"],
+input[type="number"] {
+    padding: 0.75rem;
+    width: 100%;
+    border-radius: 0.5rem;
+    border: 1px solid #3666a5; /* Default border color (Blue) */
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    background-color: #ffffff; /* Light mode background color */
+    color: #1a202c; /* Light mode text color */
+}
 
-        [data-theme="dark"] body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-        }
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus,
+select:focus,
+input[type="file"]:focus,
+input[type="number"]:focus {
+    outline: none;
+    border-color: #FFB84D; /* Yellow-Orange border on focus */
+}
 
-        [data-theme="dark"] .navbar,
-        [data-theme="dark"] .footer {
-            background-color: #2d3748;
-            color: #3d82dd;
-        }
+/* Dark Mode */
+[data-theme="dark"] {
+    --bg-color: #1a202c;
+    --text-color: #cbd5e0;
+    --border-color: #2d3748;
+}
 
-        [data-theme="dark"] .navbar a,
-        [data-theme="dark"] .footer a {
-            color: var(--accent-color);
-        }
+[data-theme="dark"] body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
 
-        [data-theme="dark"] .navbar a:hover,
-        [data-theme="dark"] .footer a:hover {
-            color: #90cdf4;
-        }
+[data-theme="dark"] input[type="text"],
+[data-theme="dark"] input[type="email"],
+[data-theme="dark"] textarea,
+[data-theme="dark"] select,
+[data-theme="dark"] input[type="file"],
+[data-theme="dark"] input[type="number"] {
+    background-color: #2d3748; /* Dark mode background color */
+    color: #cbd5e0; /* Dark mode text color */
+    border-color: #4a5568; /* Dark mode border color */
+}
 
-        [data-theme="dark"] .bg-white {
-            background-color: #2d3748;
-            color: #d2d9e0; /* Light text color */
-        }
+[data-theme="dark"] input[type="text"]:focus,
+[data-theme="dark"] input[type="email"]:focus,
+[data-theme="dark"] textarea:focus,
+[data-theme="dark"] select:focus,
+[data-theme="dark"] input[type="file"]:focus,
+[data-theme="dark"] input[type="number"]:focus {
+    border-color: #FFB84D; /* Yellow-Orange border on focus in dark mode */
+}
 
-        [data-theme="dark"] .text-gray-700 {
-            color: #e2e8f0; /* Lighter text color for readability */
-        }
+/* Navbar styles */
+.navbar {
+    background-color: #007BFF; /* Blue base color */
+    color: white;
+}
 
-        [data-theme="dark"] .border {
-            border-color: #4a5568;
-        }
+.navbar a {
+    color: white;
+    transition: color 0.3s ease;
+}
 
-        [data-theme="dark"] .hover\:text-blue-600:hover {
-            color: #63b3ed; /* Lighter blue for hover effect */
-        }
+.navbar a:hover {
+    color: #FF4D4D; /* Red-Orange hover effect */
+}
 
-        [data-theme="dark"] .hover\:underline:hover {
-            text-decoration: underline;
-        }
+/* Footer styles */
+.footer {
+    background-color: #f9fafb; /* Light mode footer background */
+    color: #FFB84D;
+}
+
+.footer a {
+    color: #007BFF; /* Blue link color */
+}
+
+.footer a:hover {
+    color: #FF4D4D; /* Red-Orange hover effect */
+}
+
+/* Dark Mode for Navbar and Footer */
+[data-theme="dark"] .navbar,
+[data-theme="dark"] .footer {
+    background-color: #2d3748; /* Dark mode background */
+    color: #a0aec0;
+}
+
+[data-theme="dark"] .navbar a,
+[data-theme="dark"] .footer a {
+    color: #FFB84D; /* Yellow-Orange links in dark mode */
+}
+
+[data-theme="dark"] .navbar a:hover,
+[data-theme="dark"] .footer a:hover {
+    color: #FF4D4D; /* Red-Orange hover in dark mode */
+}
+
 
         /* General notification styles */
         .notification {
             padding: 12px;
-            background-color: #2d3748; /* Dark background color */
-            border: 1px solid #4a5568;
+            border: 1px solid #f78504;
             border-radius: 0.5rem;
             margin-bottom: 10px;
-            color: #d2d9e0; /* Light text color */
+            color: #020202; /* Light text color */
             transition: background-color 0.3s ease, border-color 0.3s ease;
             position: relative;
         }
 
         .notification:hover {
-            background-color: #4a5568; /* Darker shade on hover */
-            border-color: #2b6cb0; /* Blue border on hover */
+            background-color: #072d42; /* Darker shade on hover */
+            border-color: #f78504; /* Blue border on hover */
         }
 
         .notification h4 {
             font-size: 1rem;
             font-weight: bold;
             margin-bottom: 0.5rem;
-            color: #e2e8f0; /* Light text color */
+            color: #036313; /* Light text color */
         }
 
         .notification p {
@@ -89,7 +144,7 @@
 
         .notification .meta {
             font-size: 0.875rem;
-            color: #a0aec0; /* Lighter text color */
+            color: #0f53ac; /* Lighter text color */
         }
 
         /* Delete button */
@@ -129,11 +184,11 @@
         }
 
         .notifications-list h2 {
-            color: #5e7fdb;
+            font-family: 'Gill Sans', 'Trebuchet MS', sans-serif;
+            color: #000000;
             font-size: 1.5rem;
             font-weight: bold;
             padding: 1rem;
-            background-color: #4f5153;
             border-bottom: 1px solid #cbd5e0;
         }
 
@@ -141,16 +196,17 @@
             flex: 1;
             padding: 20px;
             overflow-y: auto;
-            background-color: #36425a; /* Dark background color */
         }
 
         .notification-content {
+            font-weight: 500;
+            color: #072d42;
+            font-size: larger;
+            padding: 20px;
             margin-top: 20px;
             padding: 20px;
-            background-color: #2d3748;
             border-radius: 0.5rem;
-            border: 1px solid #4a5568;
-            color: #edf2f7; /* Even lighter text color for better readability */
+            border: 1px solid #dd5812;
         }
     </style>
 </head>
@@ -158,7 +214,7 @@
 <body class="bg-gray-100 dark:bg-gray-900">
 
   <!-- Navbar -->
-<nav class="navbar shadow-md">
+  <nav class="navbar bg-gradient-to-r from-yellow-900 via-amber-500 to-dark:from-gray-700 dark:via-gray-800 dark:to-black shadow-md">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
         <!-- Brand Name -->
         <div class="flex items-center">
