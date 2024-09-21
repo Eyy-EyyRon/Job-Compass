@@ -56,6 +56,12 @@
       font-size: 14px;
       font-style: italic;
     }
+    .flag-icon {
+      height: 20px;
+  width: 20px;  /* Adjust the width */
+  height: auto; /* Automatically scale the height */
+}
+
 
   </style>
 </head>
@@ -105,19 +111,20 @@
                 placeholder="Enter email" required>
             </div>
 
-            <!-- Phone -->
-            <div class="mb-4 flex items-center">
-              <label for="phone" class="block text-sm font-medium text-gray-700 mr-2">Phone</label>
-              <div class="phone-input-container flex items-center">
-                <img src="https://www.countryflags.io/ph/flat/32.png" alt="PH Flag" class="mr-1">
-                <span class="mr-1">+63</span>
-                <input type="tel" id="phone" name="phone"
-                  class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500 input-field"
-                  placeholder="Enter phone number (e.g., 9XXXXXXXXX)" pattern="[0-9]{10}" maxlength="10"
-                  oninput="this.value = this.value.replace(/[^0-9]/g, ''); validatePhone()" required>
-              </div>
-              <p id="phone-error" class="text-sm text-red-600 mt-1"></p>
-            </div>
+           <!-- Phone -->
+<div class="mb-4 flex items-center">
+  <label for="phone" class="block text-sm font-medium text-gray-700 mr-2">Phone</label>
+  <div class="phone-input-container flex items-center">
+    <img src="../Images/ph flag.png" alt="PH Flag" class="mr-1 flag-icon">
+    <span class="mr-1">+63</span>
+    <input type="tel" id="phone" name="phone"
+      class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500 input-field"
+      placeholder="Enter phone number (e.g., 9XXXXXXXXX)" pattern="[0-9]{10}" maxlength="10"
+      oninput="this.value = this.value.replace(/[^0-9]/g, ''); validatePhone()" required>
+  </div>
+  <p id="phone-error" class="text-sm text-red-600 mt-1"></p>
+</div>
+
 
             <!-- Address -->
             <div class="mb-4">
